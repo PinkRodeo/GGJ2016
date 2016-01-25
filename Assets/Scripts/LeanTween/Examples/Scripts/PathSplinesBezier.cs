@@ -2,41 +2,42 @@ using UnityEngine;
 
 public class PathSplinesBezier : MonoBehaviour {
 
-	public Transform[] trans;
-	
-	LTBezierPath cr;
-	private GameObject avatar1;
+	public Transform[] Trans;
 
-	void OnEnable(){
+	private LTBezierPath _cr;
+	private GameObject _avatar1;
+
+	private void OnEnable(){
 		// create the path
-		cr = new LTBezierPath( new Vector3[] {trans[0].position, trans[2].position, trans[1].position, trans[3].position, trans[3].position, trans[5].position, trans[4].position, trans[6].position} );
+		_cr = new LTBezierPath( new[] {Trans[0].position, Trans[2].position, Trans[1].position, Trans[3].position, Trans[3].position, Trans[5].position, Trans[4].position, Trans[6].position} );
 	}
 
-	void Start () {
-		avatar1 = GameObject.Find("Avatar1");
+	private void Start () {
+		_avatar1 = GameObject.Find("Avatar1");
 
 		// Tween automatically
-		LTDescr descr = LeanTween.move(avatar1, cr.pts, 6.5f).setOrientToPath(true).setRepeat(-1);
-		Debug.Log("length of path 1:"+cr.length);
+		var descr = LeanTween.move(_avatar1, _cr.pts, 6.5f).setOrientToPath(true).setRepeat(-1);
+		Debug.Log("length of path 1:"+_cr.length);
 		Debug.Log("length of path 2:"+descr.path.length);
 	}
 	
-	private float iter;
-	void Update () {
+	private float _iter;
+
+	private void Update () {
 		// Or Update Manually
 		//cr.place2d( sprite1.transform, iter );
 
-		iter += Time.deltaTime*0.07f;
-		if(iter>1.0f)
-			iter = 0.0f;
+		_iter += Time.deltaTime*0.07f;
+		if(_iter>1.0f)
+			_iter = 0.0f;
 	}
 
-	void OnDrawGizmos(){
+	private void OnDrawGizmos(){
 		// Debug.Log("drwaing");
-		if(cr!=null)
+		if(_cr!=null)
 			OnEnable();
 		Gizmos.color = Color.red;
-		if(cr!=null)
-			cr.gizmoDraw(); // To Visualize the path, use this method
+		if(_cr!=null)
+			_cr.gizmoDraw(); // To Visualize the path, use this method
 	}
 }

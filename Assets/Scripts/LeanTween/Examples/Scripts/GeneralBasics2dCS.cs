@@ -2,16 +2,16 @@ using UnityEngine;
 
 public class GeneralBasics2dCS : MonoBehaviour {
 
-	public Texture2D dudeTexture;
-	public GameObject prefabParticles;
+	public Texture2D DudeTexture;
+	public GameObject PrefabParticles;
 
 	#if !(UNITY_3_5 || UNITY_4_0 || UNITY_4_0_1 || UNITY_4_1 || UNITY_4_2)
 
-	void Start () {
+	private void Start () {
 		// Setup
-		GameObject avatarRotate = createSpriteDude( "avatarRotate", new Vector3(-2.51208f,10.7119f,-14.37754f));
-		GameObject avatarScale = createSpriteDude( "avatarScale", new Vector3(2.51208f,10.2119f,-14.37754f));
-		GameObject avatarMove = createSpriteDude( "avatarMove", new Vector3(-3.1208f,7.100643f,-14.37754f));
+		var avatarRotate = CreateSpriteDude( "avatarRotate", new Vector3(-2.51208f,10.7119f,-14.37754f));
+		var avatarScale = CreateSpriteDude( "avatarScale", new Vector3(2.51208f,10.2119f,-14.37754f));
+		var avatarMove = CreateSpriteDude( "avatarMove", new Vector3(-3.1208f,7.100643f,-14.37754f));
 	
 		// Rotate Example
 		LeanTween.rotateAround( avatarRotate, Vector3.forward, -360f, 5f);
@@ -30,36 +30,36 @@ public class GeneralBasics2dCS : MonoBehaviour {
 		LeanTween.scale( avatarScale, new Vector3(0.2f, 0.2f, 0.2f), 1f).setDelay(7f).setEase(LeanTweenType.easeInOutCirc).setLoopPingPong(3);
 
 		// Call methods after a certain time period
-		LeanTween.delayedCall(gameObject, 0.2f, advancedExamples);
+		LeanTween.delayedCall(gameObject, 0.2f, AdvancedExamples);
 	}
-	
-	GameObject createSpriteDude( string name, Vector3 pos, bool hasParticles = true ){
-		GameObject go = new GameObject(name);
-		SpriteRenderer ren = go.AddComponent<SpriteRenderer>();
+
+	private GameObject CreateSpriteDude( string spriteDudeName, Vector3 pos, bool hasParticles = true ){
+		var go = new GameObject(spriteDudeName);
+		var ren = go.AddComponent<SpriteRenderer>();
 		go.GetComponent<SpriteRenderer>().color = new Color(0f,181f/255f,1f);
-		ren.sprite = Sprite.Create( dudeTexture, new Rect(0.0f,0.0f,256.0f,256.0f), new Vector2(0.5f,0f), 256f);
+		ren.sprite = Sprite.Create( DudeTexture, new Rect(0.0f,0.0f,256.0f,256.0f), new Vector2(0.5f,0f), 256f);
 		go.transform.position = pos;
 
-		if(hasParticles){
-			GameObject particles = (GameObject)GameObject.Instantiate(prefabParticles, Vector3.zero, prefabParticles.transform.rotation );
-			particles.transform.parent = go.transform;
-			particles.transform.localPosition = prefabParticles.transform.position;
-		}
+		if (!hasParticles) return go;
+
+		var particles = (GameObject)Instantiate(PrefabParticles, Vector3.zero, PrefabParticles.transform.rotation );
+		particles.transform.parent = go.transform;
+		particles.transform.localPosition = PrefabParticles.transform.position;
 		return go;
 	}
 
 	// Advanced Examples
 	// It might be best to master the basics first, but this is included to tease the many possibilies LeanTween provides.
 
-	void advancedExamples(){
+	private void AdvancedExamples(){
 		LeanTween.delayedCall(gameObject, 14f, ()=>{
-			for(int i=0; i < 10; i++){
+			for(var i=0; i < 10; i++){
 				// Instantiate Container
-				GameObject rotator = new GameObject("rotator"+i);
+				var rotator = new GameObject("rotator"+i);
 				rotator.transform.position = new Vector3(2.71208f,7.100643f,-12.37754f);
 
 				// Instantiate Avatar
-				GameObject dude = createSpriteDude( "dude"+i, new Vector3(-2.51208f,7.100643f,-14.37754f), false);//(GameObject)GameObject.Instantiate(prefabAvatar, Vector3.zero, prefabAvatar.transform.rotation );
+				var dude = CreateSpriteDude( "dude"+i, new Vector3(-2.51208f,7.100643f,-14.37754f), false);//(GameObject)GameObject.Instantiate(prefabAvatar, Vector3.zero, prefabAvatar.transform.rotation );
 				dude.transform.parent = rotator.transform;
 				dude.transform.localPosition = new Vector3(0f,0.5f,0.5f*i);
 
@@ -68,11 +68,11 @@ public class GeneralBasics2dCS : MonoBehaviour {
 				LeanTween.scale(dude, new Vector3(0.65f,0.65f,0.65f), 1f).setDelay(i*0.2f).setEase(LeanTweenType.easeOutBack);
 
 				// Color like the rainbow
-				float period = LeanTween.tau/10*i;
-				float red   = Mathf.Sin(period + LeanTween.tau*0f/3f) * 0.5f + 0.5f;
-	  			float green = Mathf.Sin(period + LeanTween.tau*1f/3f) * 0.5f + 0.5f;
-	  			float blue  = Mathf.Sin(period + LeanTween.tau*2f/3f) * 0.5f + 0.5f;
-				Color rainbowColor = new Color(red, green, blue);
+				var period = LeanTween.tau/10*i;
+				var red   = Mathf.Sin(period + LeanTween.tau*0f/3f) * 0.5f + 0.5f;
+	  			var green = Mathf.Sin(period + LeanTween.tau*1f/3f) * 0.5f + 0.5f;
+	  			var blue  = Mathf.Sin(period + LeanTween.tau*2f/3f) * 0.5f + 0.5f;
+				var rainbowColor = new Color(red, green, blue);
 				LeanTween.color(dude, rainbowColor, 0.3f).setDelay(1.2f + i*0.4f);
 				
 				// Push into the wheel

@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class TestingPunch : MonoBehaviour {
 
-    public AnimationCurve exportCurve;
-	
-	void Start () {
+    public AnimationCurve ExportCurve;
+
+	private void Start () {
 	   //LeanTween.rotateAround(gameObject, gameObject.transform.rotation.eulerAngles, 360f, 5f).setDelay(1f).setEase(LeanTweenType.easeOutBounce);
-        Debug.Log( "exported curve:" + curveToString(exportCurve) );
+        Debug.Log( "exported curve:" + CurveToString(ExportCurve) );
 	}
 
-	void Update () 
+	private void Update () 
     {        
         LeanTween.dtManual = Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.Q))
@@ -21,8 +21,8 @@ public class TestingPunch : MonoBehaviour {
             Debug.Log("on complete move local X");
             }).setOnCompleteOnStart(true);
 
-            GameObject light = GameObject.Find("DirectionalLight");
-            Light lt = light.GetComponent<Light>(); 
+            var dirLight = GameObject.Find("DirectionalLight");
+            var lt = dirLight.GetComponent<Light>(); 
         
             LeanTween.value(lt.gameObject, lt.intensity, 0.0f, 1.5f)
               .setEase(LeanTweenType.linear)
@@ -35,14 +35,14 @@ public class TestingPunch : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            LeanTween.scale(this.gameObject, Vector3.one*3f, 1.0f).setEase(LeanTweenType.punch);            
+            LeanTween.scale(gameObject, Vector3.one*3f, 1.0f).setEase(LeanTweenType.punch);            
             print("scale punch!");
         }
  
         if (Input.GetKeyDown(KeyCode.R))
         {
             // LeanTween.rotate(this.gameObject, Vector3.one, 1.0f).setEase(LeanTweenType.punch);
-            LeanTween.rotateAroundLocal(this.gameObject, this.transform.forward, -80f, 5.0f).setPoint(new Vector3(1.25f, 0f, 0f));
+            LeanTween.rotateAroundLocal(gameObject, transform.forward, -80f, 5.0f).setPoint(new Vector3(1.25f, 0f, 0f));
             print("rotate punch!");
         }
  
@@ -51,36 +51,36 @@ public class TestingPunch : MonoBehaviour {
             // LeanTween.move(this.gameObject, new Vector3(0f,0f,1f), 1.0f).setEase(LeanTweenType.punch);
             print("move punch!");
             Time.timeScale = 0.25f;
-            float start = Time.realtimeSinceStartup;
-            LeanTween.moveX( this.gameObject, 1f, 1f).setOnComplete( destroyOnComp ).setOnCompleteParam( this.gameObject ).setOnComplete( ()=>{
-                float end = Time.realtimeSinceStartup;
-                float diff = end - start;
-                Debug.Log("start:"+start+" end:"+end+" diff:"+diff+" x:"+this.gameObject.transform.position.x);
+            var start = Time.realtimeSinceStartup;
+            LeanTween.moveX( gameObject, 1f, 1f).setOnComplete( DestroyOnComp ).setOnCompleteParam( gameObject ).setOnComplete( ()=>{
+                var end = Time.realtimeSinceStartup;
+                var diff = end - start;
+                Debug.Log("start:"+start+" end:"+end+" diff:"+diff+" x:"+gameObject.transform.position.x);
             }).setEase(LeanTweenType.easeInOutElastic).setOvershoot(8f).setPeriod(0.3f);
         }
 
         if (Input.GetKeyDown(KeyCode.C))
         {
-            LeanTween.color( this.gameObject, new Color(1f, 0f, 0f, 0.5f), 1f);
+            LeanTween.color( gameObject, new Color(1f, 0f, 0f, 0.5f), 1f);
 
-            Color to = new Color(Random.Range(0f,1f),0f,Random.Range(0f,1f),0.0f);
-            GameObject l = GameObject.Find("LCharacter");
+            var to = new Color(Random.Range(0f,1f),0f,Random.Range(0f,1f),0.0f);
+            var l = GameObject.Find("LCharacter");
             LeanTween.color( l, to, 4.0f ).setLoopPingPong(1).setEase(LeanTweenType.easeOutBounce);
         }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            LeanTween.delayedCall(gameObject,0.3f, delayedMethod).setRepeat(4).setOnCompleteOnRepeat(true).setOnCompleteParam( "hi" );
+            LeanTween.delayedCall(gameObject,0.3f, DelayedMethod).setRepeat(4).setOnCompleteOnRepeat(true).setOnCompleteParam( "hi" );
         }
 
         if (Input.GetKeyDown(KeyCode.V))
         {
-            LeanTween.value( gameObject, updateColor, new Color(1.0f,0.0f,0.0f,1.0f), Color.blue, 4.0f );//.setRepeat(2).setLoopPingPong().setEase(LeanTweenType.easeOutBounce);
+            LeanTween.value( gameObject, UpdateColor, new Color(1.0f,0.0f,0.0f,1.0f), Color.blue, 4.0f );//.setRepeat(2).setLoopPingPong().setEase(LeanTweenType.easeOutBounce);
         }
 
         if (Input.GetKeyDown(KeyCode.P))
         {
-            LeanTween.delayedCall(0.05f, enterMiniGameStart).setOnCompleteParam( new object[]{""+5} );
+            LeanTween.delayedCall(0.05f, EnterMiniGameStart).setOnCompleteParam( new object[]{""+5} );
         }
 
         if(Input.GetKeyDown(KeyCode.U)){
@@ -90,7 +90,7 @@ public class TestingPunch : MonoBehaviour {
                 transform.position = new Vector3(val.x, transform.position.y, transform.position.z);
             }, new Vector2(0f,0f), new Vector2(5f,100f), 1f ).setEase(LeanTweenType.easeOutBounce);
 
-            GameObject l = GameObject.Find("LCharacter");
+            var l = GameObject.Find("LCharacter");
             Debug.Log("x:"+l.transform.position.x+" y:"+l.transform.position.y);
             LeanTween.value(l, new Vector2( l.transform.position.x, l.transform.position.y), new Vector2( l.transform.position.x, l.transform.position.y+5), 1f ).setOnUpdate( 
             (Vector2 val)=>{
@@ -103,31 +103,31 @@ public class TestingPunch : MonoBehaviour {
         }
 	}
 
-    void enterMiniGameStart( object val ){
-        object[] arr = (object [])val;
-        int lvl = int.Parse((string)arr[0]);
+	private static void EnterMiniGameStart( object val ){
+        var arr = (object [])val;
+        var lvl = int.Parse((string)arr[0]);
         Debug.Log("level:"+lvl);
     }
 
-    void updateColor( Color c ){
-        GameObject l = GameObject.Find("LCharacter");
+	private void UpdateColor( Color c ){
+        var l = GameObject.Find("LCharacter");
         // Debug.Log("new col:"+c);
         l.GetComponent<Renderer>().material.color = c;
     }
 
-    void delayedMethod( object myVal ){
-        string castBack = myVal as string;
+	private void DelayedMethod( object myVal ){
+        var castBack = myVal as string;
         Debug.Log("delayed call:"+Time.time +" myVal:"+castBack);
     }
 
-    void destroyOnComp( object p ){
-      GameObject g = (GameObject)p;
+	private void DestroyOnComp( object p ){
+      var g = (GameObject)p;
       Destroy( g );
     }
 
-    string curveToString( AnimationCurve curve) {
-        string str = "";
-        for(int i = 0; i < curve.length; i++){
+	private string CurveToString( AnimationCurve curve) {
+        var str = "";
+        for(var i = 0; i < curve.length; i++){
             str += "new Keyframe("+curve[i].time+"f, "+curve[i].value+"f)";
             if(i<curve.length-1)
                 str += ", ";
