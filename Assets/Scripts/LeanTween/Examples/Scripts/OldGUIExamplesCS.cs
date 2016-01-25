@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 public class OldGUIExamplesCS : MonoBehaviour {
 	public Texture2D grumpy;
