@@ -28,7 +28,7 @@ public class TestingPunch : MonoBehaviour {
               .setEase(LeanTweenType.linear)
               .setLoopPingPong()
               .setRepeat(-1)
-              .setOnUpdate((float val)=>{
+              .setOnUpdate(val=>{
                 
             lt.intensity = val;
             });
@@ -83,9 +83,10 @@ public class TestingPunch : MonoBehaviour {
             LeanTween.delayedCall(0.05f, EnterMiniGameStart).setOnCompleteParam( new object[]{""+5} );
         }
 
+		// ReSharper disable once InvertIf
         if(Input.GetKeyDown(KeyCode.U)){
             #if !UNITY_FLASH
-            LeanTween.value(gameObject, (Vector2 val)=>{
+            LeanTween.value(gameObject, val=>{
                 // Debug.Log("tweening vec2 val:"+val);
                 transform.position = new Vector3(val.x, transform.position.y, transform.position.z);
             }, new Vector2(0f,0f), new Vector2(5f,100f), 1f ).setEase(LeanTweenType.easeOutBounce);
@@ -109,23 +110,23 @@ public class TestingPunch : MonoBehaviour {
         Debug.Log("level:"+lvl);
     }
 
-	private void UpdateColor( Color c ){
+	private static void UpdateColor( Color c ){
         var l = GameObject.Find("LCharacter");
         // Debug.Log("new col:"+c);
         l.GetComponent<Renderer>().material.color = c;
     }
 
-	private void DelayedMethod( object myVal ){
+	private static void DelayedMethod( object myVal ){
         var castBack = myVal as string;
         Debug.Log("delayed call:"+Time.time +" myVal:"+castBack);
     }
 
-	private void DestroyOnComp( object p ){
+	private static void DestroyOnComp( object p ){
       var g = (GameObject)p;
       Destroy( g );
     }
 
-	private string CurveToString( AnimationCurve curve) {
+	private static string CurveToString( AnimationCurve curve) {
         var str = "";
         for(var i = 0; i < curve.length; i++){
             str += "new Keyframe("+curve[i].time+"f, "+curve[i].value+"f)";

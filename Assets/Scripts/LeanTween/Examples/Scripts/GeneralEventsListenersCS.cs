@@ -38,7 +38,7 @@ public class GeneralEventsListenersCS : MonoBehaviour {
 		var distance = Vector3.Distance( tran.position, transform.position);
 		var to = new Color(Random.Range(0f,1f),0f,Random.Range(0f,1f));
 		LeanTween.value( gameObject, _fromColor, to, 0.8f ).setLoopPingPong(1).setDelay(distance*0.05f).setOnUpdate(
-			(Color col)=>{
+			col=>{
 				GetComponent<Renderer>().material.color = col;
 			}
 		);

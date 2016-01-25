@@ -42,6 +42,7 @@ public class TestingAllCs : MonoBehaviour {
 		//LeanTween.delayedCall(8, loopResume);
 	}
 
+	// ReSharper disable once UnusedMember.Local
 	private void PauseNow(){
 		Time.timeScale = 0f;
 		Debug.Log("pausing");
@@ -52,6 +53,7 @@ public class TestingAllCs : MonoBehaviour {
 		GUI.Label(new Rect(0.03f*Screen.width,0.03f*Screen.height,0.5f*Screen.width,0.3f*Screen.height), label);
 	}
 
+	// ReSharper disable once UnusedMember.Local
 	private void EndlessCallback(){
 		Debug.Log("endless");
 	}
@@ -68,7 +70,7 @@ public class TestingAllCs : MonoBehaviour {
 				Time.timeScale = 0.5f;
 
 			if(_timingType==TimingType.VariableTimeScale){
-				_descrTimeScaleChangeId = LeanTween.value( gameObject, 0.01f, 10.0f, 3f).setOnUpdate( (float val)=>{
+				_descrTimeScaleChangeId = LeanTween.value( gameObject, 0.01f, 10.0f, 3f).setOnUpdate( val=>{
 					//Debug.Log("timeScale val:"+val);
 					Time.timeScale = val;
 				}).setEase(LeanTweenType.easeInQuad).setUseEstimatedTime(true).setRepeat(-1).id;

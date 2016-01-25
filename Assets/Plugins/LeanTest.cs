@@ -1,3 +1,5 @@
+// ReSharper disable All
+
 using UnityEngine;
 using System.Collections;
 

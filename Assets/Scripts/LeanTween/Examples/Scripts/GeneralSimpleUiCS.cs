@@ -33,7 +33,7 @@ public class GeneralSimpleUiCS : MonoBehaviour {
 		);
 
 		LeanTween.value(gameObject, Color.red, Color.green, 1f ).setOnUpdate( 
-			(Color val)=>{
+			val=>{
 				var image = (Image)Button.gameObject.GetComponent( typeof(Image) );
 				image.color = val;
 			}

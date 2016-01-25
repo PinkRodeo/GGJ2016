@@ -42,7 +42,7 @@ public class GeneralCameraShake : MonoBehaviour {
 
 				// Slow the camera shake down to zero
 				LeanTween.value(gameObject, shakeAmt, 0f, dropOffTime).setOnUpdate( 
-					(float val)=>{
+					val=>{
 						shakeTween.setTo(Vector3.right*val);
 					}
 				).setEase(LeanTweenType.easeOutQuad);

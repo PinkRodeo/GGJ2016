@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class TempTestingCancel : MonoBehaviour {
     public bool IsTweening;
-    public bool TweenOverride = false;
+    public bool TweenOverride;
     private LTDescr _tween;
  
     // Use this for initialization
@@ -35,8 +37,11 @@ public class TestingEverything : MonoBehaviour {
 
 	private bool _eventGameObjectWasCalled, _eventGeneralWasCalled;
 	private int _lt1Id;
+/*
+	unused
 	private LTDescr _lt2;
 	private LTDescr _lt3;
+*/
 	private LTDescr _lt4;
 	private LTDescr[] _groupTweens;
 	private GameObject[] _groupGOs;
@@ -65,7 +70,7 @@ public class TestingEverything : MonoBehaviour {
 		LeanTest.expect(LeanTween.isTweening(Cube1) == false, "OBJECT NOT TWEEENING AT BEGINNING" );
 
 		LeanTween.scaleX( Cube4, 2f, 0f).setOnComplete( ()=>{
-			LeanTest.expect( Cube4.transform.localScale.x == 2f, "TWEENED WITH ZERO TIME" );
+			LeanTest.expect( Math.Abs(Cube4.transform.localScale.x - 2f) < Mathf.Epsilon, "TWEENED WITH ZERO TIME" );
 		});
 
 		// dispatch event that is received
@@ -107,7 +112,7 @@ public class TestingEverything : MonoBehaviour {
 		});
 
 		var descr = LeanTween.descriptions( cube );
-		LeanTest.expect( descr.Length >= 0 && descr[0].to.x == 12f, "WE CAN RETRIEVE A DESCRIPTION");
+		LeanTest.expect( descr.Length >= 0 && Math.Abs(descr[0].to.x - 12f) < Mathf.Epsilon, "WE CAN RETRIEVE A DESCRIPTION");
 
 		cube = Instantiate( _boxNoCollider );
 		cube.name = "ignoreTimeScale";
@@ -171,6 +176,7 @@ public class TestingEverything : MonoBehaviour {
 		var hasGroupTweensCheckStarted = false;
 		var setOnStartNum = 0;
 		for(var i = 0; i < _groupTweens.Length; i++){
+			// ReSharper disable once ImplicitlyCapturedClosure
 			_groupTweens[i] = LeanTween.move(_groupGOs[i], transform.position + Vector3.one*3f, 3f ).setOnStart( ()=>{
 				setOnStartNum++;
 			}).setOnComplete( ()=>{
@@ -198,7 +204,7 @@ public class TestingEverything : MonoBehaviour {
 		// resume item before calling pause should continue item along it's way
 		var previousXlt4 = Cube4.transform.position.x;
 		_lt4 = LeanTween.moveX( Cube4, 5.0f, 1.1f).setOnComplete( ()=>{
-			LeanTest.expect( Cube4!=null && previousXlt4!=Cube4.transform.position.x, "RESUME OUT OF ORDER", "cube4:"+Cube4+" previousXlt4:"+previousXlt4+" cube4.transform.position.x:"+(Cube4!=null ? Cube4.transform.position.x : 0));
+			LeanTest.expect( Cube4!=null && Math.Abs(previousXlt4 - Cube4.transform.position.x) > Mathf.Epsilon, "RESUME OUT OF ORDER", "cube4:"+Cube4+" previousXlt4:"+previousXlt4+" cube4.transform.position.x:"+(Cube4!=null ? Cube4.transform.position.x : 0));
 		});
 		_lt4.resume();
 
@@ -266,6 +272,7 @@ public class TestingEverything : MonoBehaviour {
 		var expectedTime = tweenTime * (1f/Time.timeScale);
 		var start = Time.realtimeSinceStartup;
 		var onUpdateWasCalled = false;
+		// ReSharper disable once ImplicitlyCapturedClosure
 		LeanTween.moveX(Cube1, -5f, tweenTime).setOnUpdate( (float val)=>{
 			onUpdateWasCalled = true;
 		}).setOnComplete( ()=>{
@@ -282,16 +289,20 @@ public class TestingEverything : MonoBehaviour {
 
 		var ltCount = 0;
 		var allGos = FindObjectsOfType(typeof(GameObject)) as GameObject[];
-        foreach (var go in allGos) {
-            if(go.name == "~LeanTween")
-		     	ltCount++;
-        }
+		if (allGos != null)
+			// ReSharper disable once LoopCanBeConvertedToQuery
+			foreach (var go in allGos) {
+				if(go.name == "~LeanTween")
+					ltCount++;
+			}
 		LeanTest.expect( ltCount==1, "RESET CORRECTLY CLEANS UP" );
 
-
+		// Used for testing
+		// ReSharper disable once IteratorMethodResultIsIgnored
 		LotsOfCancels();
 	}
 
+	// ReSharper disable once UnusedMethodReturnValue.Local
 	private IEnumerator LotsOfCancels(){
 		yield return new WaitForEndOfFrame();
 

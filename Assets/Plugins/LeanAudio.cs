@@ -1,6 +1,6 @@
 
 using UnityEngine;
-using System.Collections.Generic;
+// ReSharper disable All
 
 public class LeanAudioStream {
 
