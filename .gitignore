@@ -25,3 +25,11 @@ ExportedObj/
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
 *.DotSettings
+
+Assets/Procore/**/*.cs
+Assets/Procore/**/*.pdf
+Assets/Procore/**/*.dll
+
+Assets/Procore/**/*.cs*
+Assets/Procore/**/*.dll*
+Assets/Procore/**/*.pdf*
