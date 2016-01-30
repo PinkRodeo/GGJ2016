@@ -1,5 +1,3 @@
-// ReSharper disable All
-
 // Copyright (c) 2015 Russell Savage - Dented Pixel
 // 
 // LeanTween version 2.30 - http://dentedpixel.com/developer-diary/
