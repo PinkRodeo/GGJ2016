@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class ControllerInput : MonoBehaviour
+public class ControllerInput
 {
 	public enum CurrentPlatform
 	{
@@ -53,6 +53,44 @@ public class ControllerInput : MonoBehaviour
 	public int assignedPlayerNumber = 1;
 
 	#region Public accessors
+	public ControllerInput()
+	{
+
+#if UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN
+		currentPlatform = CurrentPlatform.Windows;
+#elif UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
+		currentPlatform = CurrentPlatform.Mac;
+#endif
+
+		string[] controllerNames = Input.GetJoystickNames();
+		if (controllerNames.Length < assignedPlayerNumber)
+		{
+			Log.Weikie(string.Format("Player {0} not assigned controller, only {1} controllers detected", assignedPlayerNumber, controllerNames.Length));
+		}
+		else
+		{
+			string name = controllerNames[assignedPlayerNumber - 1];
+
+			if (name.ToLower().Contains("xbox"))
+			{
+				controllerType = ControllerType.Xbox;
+				Log.Weikie("Assigned xbox controller");
+				XboxBindings();
+			}
+			else if (name == "Wireless Controller")
+			{
+				controllerType = ControllerType.Playstation;
+				Log.Weikie("Assigned playstation controller");
+				PlaystationBinding();
+			}
+			else
+			{
+				Log.Weikie("Unknown controller, go fix. Name is " + name);
+			}
+		}
+
+		XboxBindings();
+	}
 
 	public bool GetKeyDown(ControllerAction action)
 	{
@@ -243,52 +281,12 @@ public class ControllerInput : MonoBehaviour
 		}
 	}
 
-	private void Start()
-	{
-
-#if UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN
-		currentPlatform = CurrentPlatform.Windows;
-#elif UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
-		currentPlatform = CurrentPlatform.Mac;
-#endif
-
-		string[] controllerNames = Input.GetJoystickNames();
-		if (controllerNames.Length < assignedPlayerNumber)
-		{
-			Log.Weikie(string.Format("Player {0} not assigned controller, only {1} controllers detected", assignedPlayerNumber, controllerNames.Length));
-		}
-		else
-		{
-			string name = controllerNames[assignedPlayerNumber - 1];
-
-			if (name.ToLower().Contains("xbox"))
-			{
-				controllerType = ControllerType.Xbox;
-				Log.Weikie("Assigned xbox controller");
-				XboxBindings();
-			}
-			else if (name == "Wireless Controller")
-			{
-				controllerType = ControllerType.Playstation;
-				Log.Weikie("Assigned playstation controller");
-				PlaystationBinding();
-			}
-			else
-			{
-				Log.Weikie("Unknown controller, go fix. Name is " + name);
-			}
-		}
-
-		XboxBindings();
-	}
-
+	//Debugging only
 	private void Update()
 	{
 		if (controllerType == ControllerType.Unknown) return;
 		//ButtonTestPrints();
 		//AxisTestPrints();
-
-
 	}
 
 	private void AxisTestPrints()
