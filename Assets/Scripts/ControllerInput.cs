@@ -33,7 +33,6 @@ public class ControllerInput
 	/// <param name="controllerPort">1-based index of what controller port to use</param>
 	public ControllerInput(int controllerPort)
 	{
-		this.controllerPort = controllerPort;
 #if UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN
 		currentPlatform = CurrentPlatform.Windows;
 #elif UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
@@ -42,12 +41,15 @@ public class ControllerInput
 		currentPlatform = CurrentPlatform.Unknown;
 #endif
 
+		this.controllerPort = controllerPort;
 		string[] controllerNames = Input.GetJoystickNames();
 		if (controllerNames.Length < controllerPort)
 		{
-			Log.Weikie(string.Format("Player {0} not assigned controller, only {1} controllers detected", controllerPort, controllerNames.Length));
+			Log.Weikie(string.Format("Controller {0} not assigned, only {1} controllers detected", controllerPort, controllerNames.Length));
+			Log.Weikie("Assigned to port 1 as default.");
+			this.controllerPort = 1;
 		}
-		else
+		//else
 		{
 			string name = controllerNames[controllerPort - 1];
 
