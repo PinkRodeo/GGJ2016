@@ -48,6 +48,8 @@ public class ControllerInput
 			Log.Weikie(string.Format("Controller {0} not assigned, only {1} controllers detected", controllerPort, controllerNames.Length));
 			Log.Weikie("Assigned to port 1 as default.");
 			this.controllerPort = 1;
+			if (controllerNames.Length == 0)
+				return;
 		}
 		//else
 		{
