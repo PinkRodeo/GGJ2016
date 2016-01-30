@@ -30,6 +30,7 @@ public class CreditSceneMaster : MonoBehaviour
 		{
 		case 0:
 			//show GGJ sponsor
+			canvasImage.gameObject.SetActive(true);
 			GetComponent<Credits3D>().Stop();
 			canvasImage.sprite = sponsorSprite;
 			break;
