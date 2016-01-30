@@ -378,6 +378,8 @@ public class ControllerInput
 		if (GetKeyDown(ControllerAction.B)) Log.Weikie("Key pressed B"); //
 		if (GetKeyDown(ControllerAction.X)) Log.Weikie("Key pressed X"); //
 		if (GetKeyDown(ControllerAction.Y)) Log.Weikie("Key pressed Y"); //
+		if (GetKeyDown(ControllerAction.PLAYSTATION)) Log.Weikie("Key pressed PLAYSTATION"); //
+		if (GetKeyDown(ControllerAction.TOUCHPAD_PRESS)) Log.Weikie("Key pressed TOUCHPAD_PRESS"); //
 	}
 
 	#endregion
