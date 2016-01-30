@@ -32,6 +32,10 @@ public class DanceScript : MonoBehaviour
 	private ControllerInput input;
 	private BodyPart currentBodyPart = BodyPart.None;
 
+	//I really cannot be bothered with rotations
+	private int leftWingCounter = 0;
+	private int rightWingCounter = 0;
+
 
 	// Use this for initialization
 	void Start ()
@@ -64,23 +68,13 @@ public class DanceScript : MonoBehaviour
 
 	private void Dance()
 	{
-		var leftTrigger = input.GetAxis(ControllerInput.ControllerAction.L2);
-		var rightTrigger = input.GetAxis(ControllerInput.ControllerAction.R2);
-
 
 		DoHead();
 		DoAss();
 
+		DoLeftWing();
+		DoRightWing();
 
-		switch (currentBodyPart)
-		{
-		case BodyPart.LeftWing:
-			DoWing(leftTrigger, rightTrigger, leftWing);
-			break;
-		case BodyPart.RightWing:
-			DoWing(leftTrigger, rightTrigger, rightWing);
-			break;
-		}
 	}
 
 	private void DoAss()
@@ -115,22 +109,51 @@ public class DanceScript : MonoBehaviour
 		}
 	}
 
-	private void DoWing(float leftTrigger, float rightTrigger, List<ObjectStrengthCombo> wing)
+
+
+	private void DoLeftWing()
 	{
-		if (leftTrigger > -0.7f)
+		var leftTrigger = input.GetAxis(ControllerInput.ControllerAction.L2);
+		if (leftTrigger > 0.1f && leftWingCounter < 80)
 		{
-			foreach (var combo in wing)
+			leftWingCounter++;
+			foreach (var combo in leftWing)
 			{
 				Transform trans = combo.moveableObject.transform;
-				trans.Rotate(trans.forward, 1*combo.modifierStrength);
+				trans.Rotate(trans.forward, 1 * combo.modifierStrength);
 			}
 		}
-		if (rightTrigger > -0.7f)
+		else if (leftWingCounter > 0)
 		{
-			foreach (var combo in wing)
+			leftWingCounter--;
+			foreach (var combo in leftWing)
 			{
 				Transform trans = combo.moveableObject.transform;
-				trans.Rotate(trans.forward, -1*combo.modifierStrength);
+				trans.Rotate(trans.forward, -1 * combo.modifierStrength);
+			}
+		}
+	}
+
+	//Copy dat floppy
+	private void DoRightWing()
+	{
+		var rightTrigger = input.GetAxis(ControllerInput.ControllerAction.R2);
+		if (rightTrigger > 0.1f && rightWingCounter < 80)
+		{
+			rightWingCounter++;
+			foreach (var combo in rightWing)
+			{
+				Transform trans = combo.moveableObject.transform;
+				trans.Rotate(trans.forward, -1 * combo.modifierStrength);
+			}
+		}
+		else if (rightWingCounter > 0)
+		{
+			rightWingCounter--;
+			foreach (var combo in rightWing)
+			{
+				Transform trans = combo.moveableObject.transform;
+				trans.Rotate(trans.forward, 1 * combo.modifierStrength);
 			}
 		}
 	}
