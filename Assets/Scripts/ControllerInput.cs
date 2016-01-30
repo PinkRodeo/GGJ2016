@@ -12,34 +12,6 @@ public class ControllerInput
 		Mac
 	}
 
-	public enum ControllerAction
-	{
-		A,
-		B,
-		X,
-		Y,
-		START,
-		SELECT,
-		LEFT_STICK_X,
-		LEFT_STICK_Y,
-		RIGHT_STICK_X,
-		RIGHT_STICK_Y,
-		L1,
-		L2,
-		L3,
-		R1,
-		R2,
-		R3,
-		CROSS,
-		CIRCLE,
-		SQUARE,
-		TRIANGLE,
-		DPAD_X,
-		DPAD_Y,
-		PLAYSTATION,
-		TOUCHPAD_PRESS
-	}
-
 	public enum ControllerType
 	{
 		Unknown,
@@ -61,7 +33,6 @@ public class ControllerInput
 	/// <param name="controllerPort">1-based index of what controller port to use</param>
 	public ControllerInput(int controllerPort)
 	{
-		this.controllerPort = controllerPort;
 #if UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN
 		currentPlatform = CurrentPlatform.Windows;
 #elif UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
@@ -70,12 +41,15 @@ public class ControllerInput
 		currentPlatform = CurrentPlatform.Unknown;
 #endif
 
+		this.controllerPort = controllerPort;
 		string[] controllerNames = Input.GetJoystickNames();
 		if (controllerNames.Length < controllerPort)
 		{
-			Log.Weikie(string.Format("Player {0} not assigned controller, only {1} controllers detected", controllerPort, controllerNames.Length));
+			Log.Weikie(string.Format("Controller {0} not assigned, only {1} controllers detected", controllerPort, controllerNames.Length));
+			Log.Weikie("Assigned to port 1 as default.");
+			this.controllerPort = 1;
 		}
-		else
+		//else
 		{
 			string name = controllerNames[controllerPort - 1];
 
@@ -164,8 +138,8 @@ public class ControllerInput
 	/// <returns>A 0 to 1 normalized value, where 0.5 is idle</returns>
 	public Vector2 GetLeftStick()
 	{
-		return new Vector2((GetAxis(ControllerInput.ControllerAction.LEFT_STICK_X)),
-						   (GetAxis(ControllerInput.ControllerAction.LEFT_STICK_Y)));
+		return new Vector2((GetAxis(ControllerAction.LEFT_STICK_X)),
+						   (GetAxis(ControllerAction.LEFT_STICK_Y)));
 	}
 
 	/// <summary>
@@ -174,8 +148,8 @@ public class ControllerInput
 	/// <returns>A 0 to 1 normalized value, where 0.5 is idle</returns>
 	public Vector2 GetRightStick()
 	{
-		return new Vector2((GetAxis(ControllerInput.ControllerAction.RIGHT_STICK_X)),
-						   (GetAxis(ControllerInput.ControllerAction.RIGHT_STICK_Y)));
+		return new Vector2((GetAxis(ControllerAction.RIGHT_STICK_X)),
+						   (GetAxis(ControllerAction.RIGHT_STICK_Y)));
 	}
 
 	/// <summary>
@@ -184,7 +158,7 @@ public class ControllerInput
 	/// <returns>A 0 to 1 normalized value</returns>
 	public float GetLeftTrigger()
 	{
-		return GetAxis(ControllerInput.ControllerAction.L2);
+		return GetAxis(ControllerAction.L2);
 	}
 
 	/// <summary>
@@ -193,7 +167,7 @@ public class ControllerInput
 	/// <returns>A 0 to 1 normalized value</returns>
 	public float GetRightTrigger()
 	{
-		return GetAxis(ControllerInput.ControllerAction.R2);
+		return GetAxis(ControllerAction.R2);
 	}
 
 	public int GetControllerPort()
@@ -430,4 +404,32 @@ public class ControllerInput
 	}
 
 	#endregion
+}
+
+public enum ControllerAction
+{
+	A,
+	B,
+	X,
+	Y,
+	START,
+	SELECT,
+	LEFT_STICK_X,
+	LEFT_STICK_Y,
+	RIGHT_STICK_X,
+	RIGHT_STICK_Y,
+	L1,
+	L2,
+	L3,
+	R1,
+	R2,
+	R3,
+	CROSS,
+	CIRCLE,
+	SQUARE,
+	TRIANGLE,
+	DPAD_X,
+	DPAD_Y,
+	PLAYSTATION,
+	TOUCHPAD_PRESS
 }

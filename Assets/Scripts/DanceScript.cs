@@ -45,8 +45,8 @@ public class DanceScript : MonoBehaviour
 	/// <returns>A 0 to 1 normalized value, where 0.5 is idle</returns>
 	public Vector2 GetLeftStick()
 	{
-		return new Vector2((input.GetAxis(ControllerInput.ControllerAction.LEFT_STICK_X) + 1) * 0.5f,
-						   (input.GetAxis(ControllerInput.ControllerAction.LEFT_STICK_Y) + 1) * 0.5f);
+		return new Vector2((input.GetAxis(ControllerAction.LEFT_STICK_X) + 1) * 0.5f,
+						   (input.GetAxis(ControllerAction.LEFT_STICK_Y) + 1) * 0.5f);
 	}
 
 	/// <summary>
@@ -55,8 +55,8 @@ public class DanceScript : MonoBehaviour
 	/// <returns>A 0 to 1 normalized value, where 0.5 is idle</returns>
 	public Vector2 GetRightStick()
 	{
-		return new Vector2((input.GetAxis(ControllerInput.ControllerAction.RIGHT_STICK_X) + 1) * 0.5f,
-						   (input.GetAxis(ControllerInput.ControllerAction.RIGHT_STICK_Y) + 1) * 0.5f);
+		return new Vector2((input.GetAxis(ControllerAction.RIGHT_STICK_X) + 1) * 0.5f,
+						   (input.GetAxis(ControllerAction.RIGHT_STICK_Y) + 1) * 0.5f);
 	}
 
 	/// <summary>
@@ -65,7 +65,7 @@ public class DanceScript : MonoBehaviour
 	/// <returns>A 0 to 1 normalized value</returns>
 	public float GetLeftTrigger()
 	{
-		return input.GetAxis(ControllerInput.ControllerAction.L2);
+		return input.GetAxis(ControllerAction.L2);
 	}
 
 	/// <summary>
@@ -74,7 +74,7 @@ public class DanceScript : MonoBehaviour
 	/// <returns>A 0 to 1 normalized value</returns>
 	public float GetRightTrigger()
 	{
-		return input.GetAxis(ControllerInput.ControllerAction.R2);
+		return input.GetAxis(ControllerAction.R2);
 	}
 
 	private static void SetStartingValues(List<ObjectStrengthCombo> container)
@@ -93,7 +93,7 @@ public class DanceScript : MonoBehaviour
 	{
 		Dance();
 
-		if (input.GetKeyDown(ControllerInput.ControllerAction.TOUCHPAD_PRESS))
+		if (input.GetKeyDown(ControllerAction.TOUCHPAD_PRESS))
 		{
 			Log.Weikie("asd");
 		}
@@ -110,8 +110,8 @@ public class DanceScript : MonoBehaviour
 
 	private void DoAss()
 	{
-		float rightStickX = input.GetAxis(ControllerInput.ControllerAction.RIGHT_STICK_X);
-		float rightStickY = input.GetAxis(ControllerInput.ControllerAction.RIGHT_STICK_Y);
+		float rightStickX = input.GetAxis(ControllerAction.RIGHT_STICK_X);
+		float rightStickY = input.GetAxis(ControllerAction.RIGHT_STICK_Y);
 		float posModifier = 0.1f;
 		Vector3 inputValues = new Vector3(rightStickX, 0, rightStickY);
 		foreach (var combo in tail)
@@ -124,8 +124,8 @@ public class DanceScript : MonoBehaviour
 
 	private void DoHead()
 	{
-		float leftStickX = input.GetAxis(ControllerInput.ControllerAction.LEFT_STICK_X);
-		float leftStickY = input.GetAxis(ControllerInput.ControllerAction.LEFT_STICK_Y);
+		float leftStickX = input.GetAxis(ControllerAction.LEFT_STICK_X);
+		float leftStickY = input.GetAxis(ControllerAction.LEFT_STICK_Y);
 		float posModifier = 0.1f;
 		var inputValues = new Vector3(-leftStickX, 0, leftStickY);
 		foreach (var combo in head)
@@ -147,7 +147,7 @@ public class DanceScript : MonoBehaviour
 		{
 			//I dont really know what this does, I copied/edited this from above and it works better than rotation
 			float posModifier = 0.1f;
-			var leftTrigger = input.GetAxis(ControllerInput.ControllerAction.L2);
+			var leftTrigger = input.GetAxis(ControllerAction.L2);
 			Vector3 inputValue = new Vector3(0, 0, -leftTrigger);
 			//if (leftTrigger > 0.1f && leftWingCounter < 80)
 			{
@@ -165,7 +165,7 @@ public class DanceScript : MonoBehaviour
 		if (useRotation)
 		{
 
-			var leftTrigger = input.GetAxis(ControllerInput.ControllerAction.L2);
+			var leftTrigger = input.GetAxis(ControllerAction.L2);
 			if (leftTrigger > 0.1f && leftWingCounter < 80)
 			{
 				leftWingCounter++;
@@ -194,7 +194,7 @@ public class DanceScript : MonoBehaviour
 
 		//I dont really know what this does, I copied/edited this from above and it works better than rotation
 		float posModifier = 0.1f;
-		var rightTrigger = input.GetAxis(ControllerInput.ControllerAction.R2);
+		var rightTrigger = input.GetAxis(ControllerAction.R2);
 
 		Vector3 inputValue = new Vector3(0, 0, -rightTrigger);
 		//if (leftTrigger > 0.1f && leftWingCounter < 80)
