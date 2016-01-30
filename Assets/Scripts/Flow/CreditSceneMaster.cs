@@ -20,17 +20,23 @@ public class CreditSceneMaster : MonoBehaviour
 	{
 		if (input.AnyButtonPressed())
 		{
-			switch (endState)
-			{
-			case 0:
-				//show GGJ sponsor
-				canvasImage.sprite = sponsorSprite;
-				break;
-			default:
-				SceneManager.LoadScene(0);
-				break;
-			}
-			++endState;
+			Next();
 		}
+	}
+
+	public void Next()
+	{
+		switch (endState)
+		{
+		case 0:
+			//show GGJ sponsor
+			GetComponent<Credits3D>().Stop();
+			canvasImage.sprite = sponsorSprite;
+			break;
+		default:
+			SceneManager.LoadScene(0);
+			break;
+		}
+		++endState;
 	}
 }
