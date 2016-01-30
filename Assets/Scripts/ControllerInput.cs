@@ -80,7 +80,8 @@ public class ControllerInput
 			else if (name == "Wireless Controller")
 			{
 				controllerType = ControllerType.Playstation;
-				Log.Weikie("Assigned playstation controller");
+				//commented because seems to work pretty good after 5 hours of testing
+				//Log.Weikie("Assigned playstation controller");
 				PlaystationBinding();
 			}
 			else
@@ -127,6 +128,14 @@ public class ControllerInput
 			float value = Input.GetAxis(axisName);
 			if (Mathf.Abs(value) > Mathf.Epsilon)
 			{
+				//hack to make triggers go from -1 to 1
+				if (controllerType == ControllerType.Playstation)
+				{
+					if (action == ControllerAction.L2 || action == ControllerAction.R2)
+					{
+						return (value + 1) / 2.0f;
+					}
+				}
 				return value;
 			}
 		}
