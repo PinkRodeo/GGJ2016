@@ -131,7 +131,7 @@ public class ControllerInput
 		List<string> keycodeList = axisKeymap[action];
 		foreach (var axisName in keycodeList)
 		{
-			float value = Input.GetAxis(axisName);
+			float value = Input.GetAxisRaw(axisName);
 			if (Mathf.Abs(value) > Mathf.Epsilon)
 			{
 				//hack to make triggers go from -1 to 1
