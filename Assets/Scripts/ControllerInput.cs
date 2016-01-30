@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -148,6 +149,13 @@ public class ControllerInput
 			}
 		}
 		return 0;
+	}
+
+	public bool AnyButtonPressed()
+	{
+		var values = Enum.GetValues(typeof(ControllerAction)).Cast<ControllerAction>();
+
+		return values.Any(GetKeyDown);
 	}
 
 	/// <summary>
