@@ -16,6 +16,8 @@ public class BirdWing
 
 	private float sign = 1f;
 
+	private float currentApplied = 0f;
+
 
 	public BirdWing(Transform shoulderTransform, string suffix)
 	{
@@ -37,6 +39,9 @@ public class BirdWing
 
 	public void Update(float dt, float currentInput)
 	{
+		currentInput = Mathf.MoveTowards(currentApplied, currentInput, 8f*dt);
+		currentApplied = currentInput;
+
 		shoulder.bone.localRotation = shoulder.initialLocalRotation * Quaternion.AngleAxis(Mathf.Lerp(-20f * sign, 0, currentInput), Vector3.up)
 		* Quaternion.AngleAxis(Mathf.Lerp(20f * sign, 0, currentInput), Vector3.forward);
 
