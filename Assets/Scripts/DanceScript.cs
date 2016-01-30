@@ -32,8 +32,7 @@ public class DanceScript : MonoBehaviour
 
 	void Start ()
 	{
-		input = new ControllerInput();
-		input.assignedPlayerNumber = playerNumber;
+		input = new ControllerInput(playerNumber);
 		SetStartingValues(head);
 		SetStartingValues(tail);
 		SetStartingValues(leftWing);

@@ -14,9 +14,7 @@ public class BirdControl : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-
-
-		input = new ControllerInput();
+		input = new ControllerInput(1);
 
 		leftWing = new BirdWing(transform.FindInChildren("Shoulder_L"), "_L");
 		rightWing = new BirdWing(transform.FindInChildren("Shoulder_R"), "_R");
