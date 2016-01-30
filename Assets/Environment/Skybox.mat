@@ -144,11 +144,11 @@ Material:
       data:
         first:
           name: _SunSize
-        second: 0.35
+        second: 0.054
       data:
         first:
           name: _AtmosphereThickness
-        second: 1
+        second: 0.98
       data:
         first:
           name: _Metallic
@@ -201,11 +201,11 @@ Material:
       data:
         first:
           name: _SkyTint
-        second: {r: 0.45847753, g: 0.65989137, b: 0.7794118, a: 1}
+        second: {r: 0.2826125, g: 0.10705019, b: 0.72794116, a: 1}
       data:
         first:
           name: _GroundColor
-        second: {r: 0.11856618, g: 0.2476674, b: 0.375, a: 1}
+        second: {r: 0.10336635, g: 0.08526169, b: 0.6102941, a: 1}
       data:
         first:
           name: _Tint
