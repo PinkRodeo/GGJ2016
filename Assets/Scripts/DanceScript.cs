@@ -15,6 +15,8 @@ public class DanceScript : MonoBehaviour
 		public Vector3 localStartingEulerAngles;
 	}
 
+	public float speed;
+
 	public List<ObjectStrengthCombo> leftWing;
 	public List<ObjectStrengthCombo> rightWing;
 	public List<ObjectStrengthCombo> head;
@@ -27,7 +29,6 @@ public class DanceScript : MonoBehaviour
 	private int rightWingCounter;
 
 
-	// Use this for initialization
 	void Start ()
 	{
 		input = new ControllerInput();
@@ -49,21 +50,23 @@ public class DanceScript : MonoBehaviour
 		}
 	}
 
-	// Update is called once per frame
 	void Update ()
 	{
 		Dance();
+
+		if (input.GetKeyDown(ControllerInput.ControllerAction.TOUCHPAD_PRESS))
+		{
+			Log.Weikie("asd");
+		}
 	}
 
 	private void Dance()
 	{
-
 		DoHead();
 		DoAss();
 
 		DoLeftWing();
 		DoRightWing();
-
 	}
 
 	private void DoAss()
@@ -71,13 +74,12 @@ public class DanceScript : MonoBehaviour
 		float rightStickX = input.GetAxis(ControllerInput.ControllerAction.RIGHT_STICK_X);
 		float rightStickY = input.GetAxis(ControllerInput.ControllerAction.RIGHT_STICK_Y);
 		float posModifier = 0.1f;
-
+		Vector3 inputValues = new Vector3(rightStickX, 0, rightStickY);
 		foreach (var combo in tail)
 		{
 			Transform trans = combo.moveableObject.transform;
-			Vector3 newPos = combo.localStartingPosition +
-							 (new Vector3(rightStickX, 0, rightStickY)*combo.modifierStrength*posModifier);
-			trans.localPosition = Vector3.Lerp(trans.localPosition, newPos, Time.deltaTime);
+			Vector3 newPos = combo.localStartingPosition + (inputValues * combo.modifierStrength*posModifier);
+			trans.localPosition = Vector3.Lerp(trans.localPosition, newPos, Time.deltaTime * speed);
 		}
 	}
 
@@ -86,33 +88,36 @@ public class DanceScript : MonoBehaviour
 		float leftStickX = input.GetAxis(ControllerInput.ControllerAction.LEFT_STICK_X);
 		float leftStickY = input.GetAxis(ControllerInput.ControllerAction.LEFT_STICK_Y);
 		float posModifier = 0.1f;
-
+		var inputValues = new Vector3(-leftStickX, 0, leftStickY);
 		foreach (var combo in head)
 		{
 			Transform trans = combo.moveableObject.transform;
 
 			//I added - to invert because it looks cooler, makes no other logical sense right now
 			Vector3 newPos = combo.localStartingPosition +
-							 (new Vector3(-leftStickX, 0, leftStickY)*combo.modifierStrength*posModifier);
-			trans.localPosition = Vector3.Lerp(trans.localPosition, newPos, Time.deltaTime);
+							 (inputValues*combo.modifierStrength*posModifier);
+			trans.localPosition = Vector3.Lerp(trans.localPosition, newPos, Time.deltaTime * speed);
 		}
 	}
 
 	private void DoLeftWing()
 	{
 		bool useRotation = false;
+
+		if (!useRotation)
 		{
 			//I dont really know what this does, I copied/edited this from above and it works better than rotation
 			float posModifier = 0.1f;
 			var leftTrigger = input.GetAxis(ControllerInput.ControllerAction.L2);
+			Vector3 inputValue = new Vector3(0, 0, -leftTrigger);
 			//if (leftTrigger > 0.1f && leftWingCounter < 80)
 			{
 				leftWingCounter++;
 				foreach (var combo in leftWing)
 				{
 					Transform trans = combo.moveableObject.transform;
-					Vector3 newPos = combo.localStartingPosition + (new Vector3(0, 0, -leftTrigger) * combo.modifierStrength * posModifier);
-					trans.localPosition = Vector3.Lerp(trans.localPosition, newPos, Time.deltaTime);
+					Vector3 newPos = combo.localStartingPosition + (inputValue * combo.modifierStrength * posModifier);
+					trans.localPosition = Vector3.Lerp(trans.localPosition, newPos, Time.deltaTime * speed);
 					//trans.position(trans.forward, 1*combo.modifierStrength);
 				}
 			}
@@ -128,7 +133,7 @@ public class DanceScript : MonoBehaviour
 				foreach (var combo in leftWing)
 				{
 					Transform trans = combo.moveableObject.transform;
-					trans.Rotate(trans.forward, 1 * combo.modifierStrength);
+					trans.Rotate(-trans.forward, combo.modifierStrength);
 				}
 			}
 			else if (leftWingCounter > 0)
@@ -137,7 +142,7 @@ public class DanceScript : MonoBehaviour
 				foreach (var combo in leftWing)
 				{
 					Transform trans = combo.moveableObject.transform;
-					trans.Rotate(trans.forward, -1 * combo.modifierStrength);
+					trans.Rotate(-trans.forward, -combo.modifierStrength);
 				}
 			}
 		}
@@ -153,7 +158,7 @@ public class DanceScript : MonoBehaviour
 			foreach (var combo in rightWing)
 			{
 				Transform trans = combo.moveableObject.transform;
-				trans.Rotate(trans.forward, -1 * combo.modifierStrength);
+				trans.Rotate(trans.forward, -combo.modifierStrength);
 			}
 		}
 		else if (rightWingCounter > 0)
@@ -162,7 +167,7 @@ public class DanceScript : MonoBehaviour
 			foreach (var combo in rightWing)
 			{
 				Transform trans = combo.moveableObject.transform;
-				trans.Rotate(trans.forward, 1 * combo.modifierStrength);
+				trans.Rotate(trans.forward, combo.modifierStrength);
 			}
 		}
 	}
