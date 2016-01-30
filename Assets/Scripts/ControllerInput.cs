@@ -148,6 +148,44 @@ public class ControllerInput
 		return 0;
 	}
 
+	/// <summary>
+	/// Gets the combined axis values in a single vector
+	/// </summary>
+	/// <returns>A 0 to 1 normalized value, where 0.5 is idle</returns>
+	public Vector2 GetLeftStick()
+	{
+		return new Vector2((GetAxis(ControllerInput.ControllerAction.LEFT_STICK_X)),
+						   (GetAxis(ControllerInput.ControllerAction.LEFT_STICK_Y)));
+	}
+
+	/// <summary>
+	/// Gets the combined axis values in a single vector
+	/// </summary>
+	/// <returns>A 0 to 1 normalized value, where 0.5 is idle</returns>
+	public Vector2 GetRightStick()
+	{
+		return new Vector2((GetAxis(ControllerInput.ControllerAction.RIGHT_STICK_X)),
+						   (GetAxis(ControllerInput.ControllerAction.RIGHT_STICK_Y)));
+	}
+
+	/// <summary>
+	/// Return left trigger value
+	/// </summary>
+	/// <returns>A 0 to 1 normalized value</returns>
+	public float GetLeftTrigger()
+	{
+		return GetAxis(ControllerInput.ControllerAction.L2);
+	}
+
+	/// <summary>
+	/// Return right trigger value
+	/// </summary>
+	/// <returns>A 0 to 1 normalized value</returns>
+	public float GetRightTrigger()
+	{
+		return GetAxis(ControllerInput.ControllerAction.R2);
+	}
+
 	#endregion
 
 	#region Private stuff

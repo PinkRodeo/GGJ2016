@@ -6,6 +6,9 @@ public class BirdControl : MonoBehaviour
 	private BirdWing leftWing;
 	private BirdWing rightWing;
 
+	private BirdHead head;
+
+
 	private ControllerInput input;
 
 
@@ -16,6 +19,9 @@ public class BirdControl : MonoBehaviour
 
 		leftWing = new BirdWing(transform.FindInChildren("Shoulder_L"), "_L");
 		rightWing = new BirdWing(transform.FindInChildren("Shoulder_R"), "_R");
+
+		head = new BirdHead(transform.FindInChildren("Neck"), input);
+
 
 
 	}
@@ -29,5 +35,6 @@ public class BirdControl : MonoBehaviour
 
 		rightWing.Update(dt, input.GetAxis(ControllerInput.ControllerAction.R2));
 
+		head.Update(dt);
 	}
 }
