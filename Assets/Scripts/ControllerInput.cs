@@ -92,8 +92,6 @@ public class ControllerInput
 				Log.Weikie("Unknown controller, go fix. Name is " + name);
 			}
 		}
-
-		XboxBindings();
 	}
 
 	public bool GetKeyDown(ControllerAction action)
@@ -385,7 +383,7 @@ public class ControllerInput
 		//AxisTestPrints();
 	}
 
-	private void AxisTestPrints()
+	public void AxisTestPrints()
 	{
 		float f;
 
@@ -400,7 +398,7 @@ public class ControllerInput
 		if (Mathf.Abs(f = GetAxis(ControllerAction.R2)) > deadzonePrint)				Log.Weikie(assignedPlayerNumber + " R2 " + f);
 	}
 
-	private void ButtonTestPrints()
+	public void ButtonTestPrints()
 	{
 		if (GetKeyDown(ControllerAction.SQUARE)) Log.Weikie("Key pressed SQUARE"); //
 		if (GetKeyDown(ControllerAction.CROSS)) Log.Weikie("Key pressed CROSS"); //
@@ -418,6 +416,8 @@ public class ControllerInput
 		if (GetKeyDown(ControllerAction.B)) Log.Weikie("Key pressed B"); //
 		if (GetKeyDown(ControllerAction.X)) Log.Weikie("Key pressed X"); //
 		if (GetKeyDown(ControllerAction.Y)) Log.Weikie("Key pressed Y"); //
+		if (GetKeyDown(ControllerAction.PLAYSTATION)) Log.Weikie("Key pressed PLAYSTATION"); //
+		if (GetKeyDown(ControllerAction.TOUCHPAD_PRESS)) Log.Weikie("Key pressed TOUCHPAD_PRESS"); //
 	}
 
 	#endregion

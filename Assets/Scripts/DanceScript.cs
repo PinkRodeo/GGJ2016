@@ -15,6 +15,7 @@ public class DanceScript : MonoBehaviour
 		public Vector3 localStartingEulerAngles;
 	}
 
+	public int playerNumber = 1;
 	public float speed;
 
 	public List<ObjectStrengthCombo> leftWing;
@@ -32,6 +33,7 @@ public class DanceScript : MonoBehaviour
 	void Start ()
 	{
 		input = new ControllerInput();
+		input.assignedPlayerNumber = playerNumber;
 		SetStartingValues(head);
 		SetStartingValues(tail);
 		SetStartingValues(leftWing);
