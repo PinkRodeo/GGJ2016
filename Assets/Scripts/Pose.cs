@@ -55,14 +55,14 @@ public class Pose {
 		maxDiff = 0.0f;
 		minDiff = 99.0f;
 
-		calculateDiffs(desiredLeftWing, controller.GetAxis(ControllerInput.ControllerAction.L2));
-		calculateDiffs(desiredRightWing, controller.GetAxis(ControllerInput.ControllerAction.R2));
+		calculateDiffs(desiredLeftWing, controller.GetAxis(ControllerAction.L2));
+		calculateDiffs(desiredRightWing, controller.GetAxis(ControllerAction.R2));
 
-		calculateDiffs(desiredHeadX, controller.GetAxis(ControllerInput.ControllerAction.RIGHT_STICK_X));
-		calculateDiffs(desiredHeadY, controller.GetAxis(ControllerInput.ControllerAction.RIGHT_STICK_Y));
+		calculateDiffs(desiredHeadX, controller.GetAxis(ControllerAction.RIGHT_STICK_X));
+		calculateDiffs(desiredHeadY, controller.GetAxis(ControllerAction.RIGHT_STICK_Y));
 
-		calculateDiffs(desiredTailX, controller.GetAxis(ControllerInput.ControllerAction.LEFT_STICK_X));
-		calculateDiffs(desiredTailY, controller.GetAxis(ControllerInput.ControllerAction.LEFT_STICK_Y));
+		calculateDiffs(desiredTailX, controller.GetAxis(ControllerAction.LEFT_STICK_X));
+		calculateDiffs(desiredTailY, controller.GetAxis(ControllerAction.LEFT_STICK_Y));
 	}
 
 	private void calculateDiffs(float a, float b) {
