@@ -38,11 +38,12 @@ public class BirdHead
 	{
 
 		Vector2 stick = input.GetRightStick();
+		stick.x = stick.x*-1f;
 		
 		neck.bone.localPosition = neck.initialLocalPosition + new Vector3(stick.x * NECK_POS_MOD, stick.y * NECK_POS_MOD);
 		head.bone.localPosition = head.initialLocalPosition + new Vector3(stick.x*HEAD_POS_MOD, stick.y*HEAD_POS_MOD);
 
-		if (input.GetKey(ControllerInput.ControllerAction.R3))
+		/*if (input.GetKey(ControllerAction.R3))
 		{
 			r3_held += dt*10f;
 			r3_held = Mathf.Min(r3_held, 1f);
@@ -52,14 +53,15 @@ public class BirdHead
 			r3_held -= dt*5f;
 			r3_held = Mathf.Max(r3_held, 0f);
 			
-		}
+		}*/
+		r3_held = 1f;
 		var normalized = -stick.normalized;
 
 		head.bone.localRotation = head.initialLocalRotation * Quaternion.AngleAxis(Mathf.Lerp(0, 30f * r3_held, stick.magnitude), new Vector2(normalized.y, normalized.x));
 		neck.bone.localRotation = neck.initialLocalRotation * Quaternion.AngleAxis(Mathf.Lerp(0, 5f * r3_held, stick.magnitude), new Vector2(normalized.y, normalized.x));
 
 
-		if (input.GetKey(ControllerInput.ControllerAction.A))
+		if (input.GetKey(ControllerAction.R1) || input.GetKey(ControllerAction.L1) || input.GetKey(ControllerAction.A))
 		{
 			beak_held += dt * 10f;
 			beak_held = Mathf.Min(beak_held, 1f);
