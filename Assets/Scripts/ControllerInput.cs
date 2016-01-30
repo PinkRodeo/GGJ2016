@@ -98,6 +98,7 @@ public class ControllerInput
 
 	public bool GetKeyDown(ControllerAction action)
 	{
+		TransformCrossControllerButton(ref action);
 		if (!IsActionMapped(action)) return false;
 
 		List<KeyCode> keycodeList = buttonKeymap[action];
@@ -106,6 +107,7 @@ public class ControllerInput
 
 	public bool GetKey(ControllerAction action)
 	{
+		TransformCrossControllerButton(ref action);
 		if (!IsActionMapped(action)) return false;
 
 		List<KeyCode> keycodeList = buttonKeymap[action];
@@ -114,6 +116,7 @@ public class ControllerInput
 
 	public bool GetKeyUp(ControllerAction action)
 	{
+		TransformCrossControllerButton(ref action);
 		if (!IsActionMapped(action)) return false;
 
 		List<KeyCode> keycodeList = buttonKeymap[action];
@@ -148,6 +151,47 @@ public class ControllerInput
 	#endregion
 
 	#region Private stuff
+
+	private void TransformCrossControllerButton(ref ControllerAction action)
+	{
+		if (controllerType == ControllerType.Playstation)
+		{
+			switch (action)
+			{
+			case ControllerAction.A:
+				action = ControllerAction.CROSS;
+				break;
+			case ControllerAction.B:
+				action = ControllerAction.CIRCLE;
+				break;
+			case ControllerAction.X:
+				action = ControllerAction.SQUARE;
+				break;
+			case ControllerAction.Y:
+				action = ControllerAction.TRIANGLE;
+				break;
+
+			}
+		}
+		else if (controllerType == ControllerType.Playstation)
+		{
+			switch (action)
+			{
+			case ControllerAction.CIRCLE:
+				action = ControllerAction.B;
+				break;
+			case ControllerAction.CROSS:
+				action = ControllerAction.A;
+				break;
+			case ControllerAction.SQUARE:
+				action = ControllerAction.X;
+				break;
+			case ControllerAction.TRIANGLE:
+				action = ControllerAction.Y;
+				break;
+			}
+		}
+	}
 
 	private bool IsActionMapped(ControllerAction action)
 	{

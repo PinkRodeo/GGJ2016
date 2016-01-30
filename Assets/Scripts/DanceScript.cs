@@ -38,6 +38,44 @@ public class DanceScript : MonoBehaviour
 		SetStartingValues(rightWing);
 	}
 
+	/// <summary>
+	/// Gets the combined axis values in a single vector
+	/// </summary>
+	/// <returns>A 0 to 1 normalized value, where 0.5 is idle</returns>
+	public Vector2 GetLeftStick()
+	{
+		return new Vector2((input.GetAxis(ControllerInput.ControllerAction.LEFT_STICK_X) + 1) * 0.5f,
+						   (input.GetAxis(ControllerInput.ControllerAction.LEFT_STICK_Y) + 1) * 0.5f);
+	}
+
+	/// <summary>
+	/// Gets the combined axis values in a single vector
+	/// </summary>
+	/// <returns>A 0 to 1 normalized value, where 0.5 is idle</returns>
+	public Vector2 GetRightStick()
+	{
+		return new Vector2((input.GetAxis(ControllerInput.ControllerAction.RIGHT_STICK_X) + 1) * 0.5f,
+						   (input.GetAxis(ControllerInput.ControllerAction.RIGHT_STICK_Y) + 1) * 0.5f);
+	}
+
+	/// <summary>
+	/// Return left trigger value
+	/// </summary>
+	/// <returns>A 0 to 1 normalized value</returns>
+	public float GetLeftTrigger()
+	{
+		return input.GetAxis(ControllerInput.ControllerAction.L2);
+	}
+
+	/// <summary>
+	/// Return right trigger value
+	/// </summary>
+	/// <returns>A 0 to 1 normalized value</returns>
+	public float GetRightTrigger()
+	{
+		return input.GetAxis(ControllerInput.ControllerAction.R2);
+	}
+
 	private static void SetStartingValues(List<ObjectStrengthCombo> container)
 	{
 		for (int i = 0; i < container.Count; i++)
