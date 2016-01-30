@@ -19,13 +19,16 @@ public class BirdWing
 
 	private ControllerInput input;
 
+	public ControllerAction trigger = ControllerAction.R2;
+
 	public BirdWing(Transform shoulderTransform, string suffix, ControllerInput input)
 	{
 		this.input = input;
 
 		if (suffix == "_L")
 			sign = -1f;
-			
+	
+
 		shoulder = BirdBone.CreateBirdBone(shoulderTransform);
 
 		wing_1 = BirdBone.CreateBirdBone(shoulderTransform.FindInChildren("Wing_1" + suffix));
@@ -41,7 +44,7 @@ public class BirdWing
 
 	public void Update(float dt)
 	{
-		float currentInput = input.GetAxis(ControllerInput.ControllerAction.R2);
+		float currentInput = input.GetAxis(trigger);
 
 
 		currentInput = Mathf.MoveTowards(currentApplied, currentInput, 8f*dt);

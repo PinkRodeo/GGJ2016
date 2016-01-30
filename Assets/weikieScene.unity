@@ -142,10 +142,6 @@ MonoBehaviour:
 GameObject:
   m_PrefabParentObject: {fileID: 100008, guid: c1de031c7669cd14da7b91f29a5ed02c, type: 3}
   m_PrefabInternal: {fileID: 1400483659}
---- !u!4 &269801121 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 400038, guid: 64d402bb49eae094ba49a69b5a4b2586, type: 3}
-  m_PrefabInternal: {fileID: 1567173205}
 --- !u!1 &287273287
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,9 +546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d01facf462d651b448733e2e02e45e05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ikActive: 1
-  rightHandObj: {fileID: 269801121}
-  lookObj: {fileID: 728520597}
+  playerId: 1
 --- !u!4 &1567173213 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 64d402bb49eae094ba49a69b5a4b2586, type: 3}
