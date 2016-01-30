@@ -102,11 +102,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftWing:
   - moveableObject: {fileID: 1639132900}
-    modifierStrength: 1
+    modifierStrength: 0.94
     localStartingPosition: {x: 0, y: 0, z: 0}
     localStartingEulerAngles: {x: 0, y: 0, z: 0}
   - moveableObject: {fileID: 1446761998}
-    modifierStrength: 0.5
+    modifierStrength: 0.14
     localStartingPosition: {x: 0, y: 0, z: 0}
     localStartingEulerAngles: {x: 0, y: 0, z: 0}
   rightWing:
