@@ -39,9 +39,11 @@ public class BirdHead
 
 		Vector2 stick = input.GetRightStick();
 		stick.x = stick.x*-1f;
-		
-		neck.bone.localPosition = neck.initialLocalPosition + new Vector3(stick.x * NECK_POS_MOD, stick.y * NECK_POS_MOD);
-		head.bone.localPosition = head.initialLocalPosition + new Vector3(stick.x*HEAD_POS_MOD, stick.y*HEAD_POS_MOD);
+
+		float beakMod = 1f + 0.15f*beak_held;
+
+		neck.bone.localPosition = neck.initialLocalPosition + new Vector3(stick.x * NECK_POS_MOD* beakMod, stick.y * NECK_POS_MOD* beakMod);
+		head.bone.localPosition = head.initialLocalPosition + new Vector3(stick.x*HEAD_POS_MOD* beakMod, stick.y*HEAD_POS_MOD* beakMod);
 
 		/*if (input.GetKey(ControllerAction.R3))
 		{
