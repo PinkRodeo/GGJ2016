@@ -111,29 +111,29 @@ MonoBehaviour:
     localStartingEulerAngles: {x: 0, y: 0, z: 0}
   rightWing:
   - moveableObject: {fileID: 742531533}
-    modifierStrength: 1
+    modifierStrength: 0.94
     localStartingPosition: {x: 0, y: 0, z: 0}
     localStartingEulerAngles: {x: 0, y: 0, z: 0}
   - moveableObject: {fileID: 1831959922}
-    modifierStrength: 0.5
+    modifierStrength: 0.14
     localStartingPosition: {x: 0, y: 0, z: 0}
     localStartingEulerAngles: {x: 0, y: 0, z: 0}
   head:
   - moveableObject: {fileID: 1548896869}
-    modifierStrength: 0.11
+    modifierStrength: 0.04
     localStartingPosition: {x: 0, y: 0, z: 0}
     localStartingEulerAngles: {x: 0, y: 0, z: 0}
   - moveableObject: {fileID: 253655457}
-    modifierStrength: 0.27
+    modifierStrength: 0.15
     localStartingPosition: {x: 0, y: 0, z: 0}
     localStartingEulerAngles: {x: 0, y: 0, z: 0}
   tail:
   - moveableObject: {fileID: 295798365}
-    modifierStrength: 0.07
+    modifierStrength: 0.04
     localStartingPosition: {x: 0, y: 0, z: 0}
     localStartingEulerAngles: {x: 0, y: 0, z: 0}
   - moveableObject: {fileID: 1819798810}
-    modifierStrength: 0.41
+    modifierStrength: 0.13
     localStartingPosition: {x: 0, y: 0, z: 0}
     localStartingEulerAngles: {x: 0, y: 0, z: 0}
 --- !u!1 &253655457 stripped
