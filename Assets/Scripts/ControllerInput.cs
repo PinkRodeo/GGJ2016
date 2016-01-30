@@ -47,8 +47,7 @@ public class ControllerInput
 
 	private Dictionary<ControllerAction, List<KeyCode>> buttonKeymap = new Dictionary<ControllerAction, List<KeyCode>>();
 	private Dictionary<ControllerAction, List<string>> axisKeymap = new Dictionary<ControllerAction, List<string>>();
-	private CurrentPlatform currentPlatform = CurrentPlatform.Unknown;
-	private int controllerNumber = -1;
+	private CurrentPlatform currentPlatform;
 	private ControllerType controllerType = ControllerType.Unknown;
 	public int assignedPlayerNumber = 1;
 
@@ -60,6 +59,8 @@ public class ControllerInput
 		currentPlatform = CurrentPlatform.Windows;
 #elif UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
 		currentPlatform = CurrentPlatform.Mac;
+#else
+		currentPlatform = CurrentPlatform.Unknown;
 #endif
 
 		string[] controllerNames = Input.GetJoystickNames();

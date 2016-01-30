@@ -4,15 +4,6 @@ using System.Collections.Generic;
 
 public class DanceScript : MonoBehaviour
 {
-	private enum BodyPart
-	{
-		None,
-		Head,
-		LeftWing,
-		RightWing,
-		Tail
-	}
-
 	[Serializable]
 	public struct ObjectStrengthCombo
 	{
@@ -30,11 +21,10 @@ public class DanceScript : MonoBehaviour
 	public List<ObjectStrengthCombo> tail;
 
 	private ControllerInput input;
-	private BodyPart currentBodyPart = BodyPart.None;
 
 	//I really cannot be bothered with rotations
-	private int leftWingCounter = 0;
-	private int rightWingCounter = 0;
+	private int leftWingCounter;
+	private int rightWingCounter;
 
 
 	// Use this for initialization
@@ -62,7 +52,6 @@ public class DanceScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		SwitchSelectedPart();
 		Dance();
 	}
 
@@ -109,8 +98,6 @@ public class DanceScript : MonoBehaviour
 		}
 	}
 
-
-
 	private void DoLeftWing()
 	{
 		var leftTrigger = input.GetAxis(ControllerInput.ControllerAction.L2);
@@ -155,26 +142,6 @@ public class DanceScript : MonoBehaviour
 				Transform trans = combo.moveableObject.transform;
 				trans.Rotate(trans.forward, 1 * combo.modifierStrength);
 			}
-		}
-	}
-
-	private void SwitchSelectedPart()
-	{
-		if (input.GetKeyDown(ControllerInput.ControllerAction.CROSS))
-		{
-			currentBodyPart = BodyPart.Tail;
-		}
-		if (input.GetKeyDown(ControllerInput.ControllerAction.SQUARE))
-		{
-			currentBodyPart = BodyPart.LeftWing;
-		}
-		if (input.GetKeyDown(ControllerInput.ControllerAction.CIRCLE))
-		{
-			currentBodyPart = BodyPart.RightWing;
-		}
-		if (input.GetKeyDown(ControllerInput.ControllerAction.TRIANGLE))
-		{
-			currentBodyPart = BodyPart.Head;
 		}
 	}
 }
