@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -47,16 +47,21 @@ public class ControllerInput
 		Xbox
 	}
 
-	private Dictionary<ControllerAction, List<KeyCode>> buttonKeymap = new Dictionary<ControllerAction, List<KeyCode>>();
-	private Dictionary<ControllerAction, List<string>> axisKeymap = new Dictionary<ControllerAction, List<string>>();
-	private CurrentPlatform currentPlatform;
-	private ControllerType controllerType = ControllerType.Unknown;
-	public int assignedPlayerNumber = 1;
+	private readonly Dictionary<ControllerAction, List<KeyCode>> buttonKeymap = new Dictionary<ControllerAction, List<KeyCode>>();
+	private readonly Dictionary<ControllerAction, List<string>> axisKeymap = new Dictionary<ControllerAction, List<string>>();
+	private readonly CurrentPlatform currentPlatform;
+	private readonly ControllerType controllerType = ControllerType.Unknown;
+	private readonly int controllerPort;
 
 	#region Public accessors
-	public ControllerInput()
-	{
 
+	/// <summary>
+	/// Weikie's controller input wrapper
+	/// </summary>
+	/// <param name="controllerPort">1-based index of what controller port to use</param>
+	public ControllerInput(int controllerPort)
+	{
+		this.controllerPort = controllerPort;
 #if UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN
 		currentPlatform = CurrentPlatform.Windows;
 #elif UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
@@ -66,13 +71,13 @@ public class ControllerInput
 #endif
 
 		string[] controllerNames = Input.GetJoystickNames();
-		if (controllerNames.Length < assignedPlayerNumber)
+		if (controllerNames.Length < controllerPort)
 		{
-			Log.Weikie(string.Format("Player {0} not assigned controller, only {1} controllers detected", assignedPlayerNumber, controllerNames.Length));
+			Log.Weikie(string.Format("Player {0} not assigned controller, only {1} controllers detected", controllerPort, controllerNames.Length));
 		}
 		else
 		{
-			string name = controllerNames[assignedPlayerNumber - 1];
+			string name = controllerNames[controllerPort - 1];
 
 			if (name.ToLower().Contains("xbox"))
 			{
@@ -92,12 +97,11 @@ public class ControllerInput
 				Log.Weikie("Unknown controller, go fix. Name is " + name);
 			}
 		}
-
-		XboxBindings();
 	}
 
 	public bool GetKeyDown(ControllerAction action)
 	{
+		TransformCrossControllerButton(ref action);
 		if (!IsActionMapped(action)) return false;
 
 		List<KeyCode> keycodeList = buttonKeymap[action];
@@ -106,6 +110,7 @@ public class ControllerInput
 
 	public bool GetKey(ControllerAction action)
 	{
+		TransformCrossControllerButton(ref action);
 		if (!IsActionMapped(action)) return false;
 
 		List<KeyCode> keycodeList = buttonKeymap[action];
@@ -114,6 +119,7 @@ public class ControllerInput
 
 	public bool GetKeyUp(ControllerAction action)
 	{
+		TransformCrossControllerButton(ref action);
 		if (!IsActionMapped(action)) return false;
 
 		List<KeyCode> keycodeList = buttonKeymap[action];
@@ -128,7 +134,7 @@ public class ControllerInput
 		List<string> keycodeList = axisKeymap[action];
 		foreach (var axisName in keycodeList)
 		{
-			float value = Input.GetAxis(axisName);
+			float value = Input.GetAxisRaw(axisName);
 			if (Mathf.Abs(value) > Mathf.Epsilon)
 			{
 				//hack to make triggers go from -1 to 1
@@ -145,9 +151,100 @@ public class ControllerInput
 		return 0;
 	}
 
+	public bool AnyButtonPressed()
+	{
+		var values = Enum.GetValues(typeof(ControllerAction)).Cast<ControllerAction>();
+
+		return values.Any(GetKeyDown);
+	}
+
+	/// <summary>
+	/// Gets the combined axis values in a single vector
+	/// </summary>
+	/// <returns>A 0 to 1 normalized value, where 0.5 is idle</returns>
+	public Vector2 GetLeftStick()
+	{
+		return new Vector2((GetAxis(ControllerInput.ControllerAction.LEFT_STICK_X)),
+						   (GetAxis(ControllerInput.ControllerAction.LEFT_STICK_Y)));
+	}
+
+	/// <summary>
+	/// Gets the combined axis values in a single vector
+	/// </summary>
+	/// <returns>A 0 to 1 normalized value, where 0.5 is idle</returns>
+	public Vector2 GetRightStick()
+	{
+		return new Vector2((GetAxis(ControllerInput.ControllerAction.RIGHT_STICK_X)),
+						   (GetAxis(ControllerInput.ControllerAction.RIGHT_STICK_Y)));
+	}
+
+	/// <summary>
+	/// Return left trigger value
+	/// </summary>
+	/// <returns>A 0 to 1 normalized value</returns>
+	public float GetLeftTrigger()
+	{
+		return GetAxis(ControllerInput.ControllerAction.L2);
+	}
+
+	/// <summary>
+	/// Return right trigger value
+	/// </summary>
+	/// <returns>A 0 to 1 normalized value</returns>
+	public float GetRightTrigger()
+	{
+		return GetAxis(ControllerInput.ControllerAction.R2);
+	}
+
+	public int GetControllerPort()
+	{
+		return controllerPort;
+	}
+
 	#endregion
 
 	#region Private stuff
+
+	private void TransformCrossControllerButton(ref ControllerAction action)
+	{
+		if (controllerType == ControllerType.Playstation)
+		{
+			switch (action)
+			{
+			case ControllerAction.A:
+				action = ControllerAction.CROSS;
+				break;
+			case ControllerAction.B:
+				action = ControllerAction.CIRCLE;
+				break;
+			case ControllerAction.X:
+				action = ControllerAction.SQUARE;
+				break;
+			case ControllerAction.Y:
+				action = ControllerAction.TRIANGLE;
+				break;
+
+			}
+		}
+		else if (controllerType == ControllerType.Playstation)
+		{
+			switch (action)
+			{
+			case ControllerAction.CIRCLE:
+				action = ControllerAction.B;
+				break;
+			case ControllerAction.CROSS:
+				action = ControllerAction.A;
+				break;
+			case ControllerAction.SQUARE:
+				action = ControllerAction.X;
+				break;
+			case ControllerAction.TRIANGLE:
+				action = ControllerAction.Y;
+				break;
+			}
+		}
+	}
 
 	private bool IsActionMapped(ControllerAction action)
 	{
@@ -170,7 +267,7 @@ public class ControllerInput
 		}
 		else
 		{
-			buttonKeymap.TryGetValue(action, out list);
+			list = buttonKeymap[action];
 		}
 
 		list.Add(keyCode);
@@ -187,7 +284,7 @@ public class ControllerInput
 		}
 		else
 		{
-			axisKeymap.TryGetValue(action, out list);
+			list = axisKeymap[action];
 		}
 
 		list.Add(axisName);
@@ -197,7 +294,7 @@ public class ControllerInput
 	private void PlaystationBinding()
 	{
 		//TERRARIA STYLE HACKS HELL YEAH
-		int joystickNumber = 20 * (assignedPlayerNumber - 1);
+		int joystickNumber = 20 * (controllerPort - 1);
 
 		AddButtonBinding(ControllerAction.SQUARE,	KeyCode.Joystick1Button0  + joystickNumber);
 		AddButtonBinding(ControllerAction.CROSS,	KeyCode.Joystick1Button1  + joystickNumber);
@@ -216,14 +313,14 @@ public class ControllerInput
 
 		//if (currentPlatform == CurrentPlatform.Windows)
 		{
-			AddAxisBinding(ControllerAction.LEFT_STICK_X,	"Controller" + assignedPlayerNumber + "Axis1"); //correct
-			AddAxisBinding(ControllerAction.LEFT_STICK_Y,	"Controller" + assignedPlayerNumber + "Axis2"); //correct
-			AddAxisBinding(ControllerAction.RIGHT_STICK_X,	"Controller" + assignedPlayerNumber + "Axis3"); //correct
-			AddAxisBinding(ControllerAction.RIGHT_STICK_Y,	"Controller" + assignedPlayerNumber + "Axis6"); //wrong,kinda does work but shares with DPAD_X for some reason
-			AddAxisBinding(ControllerAction.L2,				"Controller" + assignedPlayerNumber + "Axis4"); //correct
-			AddAxisBinding(ControllerAction.R2,				"Controller" + assignedPlayerNumber + "Axis5"); //correct
-			AddAxisBinding(ControllerAction.DPAD_X,			"Controller" + assignedPlayerNumber + "Axis7"); //wrong, shares with DPAD_Y for some reason
-			AddAxisBinding(ControllerAction.DPAD_Y,			"Controller" + assignedPlayerNumber + "Axis8"); //correct
+			AddAxisBinding(ControllerAction.LEFT_STICK_X,	"Controller" + controllerPort + "Axis1"); //correct
+			AddAxisBinding(ControllerAction.LEFT_STICK_Y,	"Controller" + controllerPort + "Axis2"); //correct
+			AddAxisBinding(ControllerAction.RIGHT_STICK_X,	"Controller" + controllerPort + "Axis3"); //correct
+			AddAxisBinding(ControllerAction.RIGHT_STICK_Y,	"Controller" + controllerPort + "Axis6"); //wrong,kinda does work but shares with DPAD_X for some reason
+			AddAxisBinding(ControllerAction.L2,				"Controller" + controllerPort + "Axis4"); //correct
+			AddAxisBinding(ControllerAction.R2,				"Controller" + controllerPort + "Axis5"); //correct
+			AddAxisBinding(ControllerAction.DPAD_X,			"Controller" + controllerPort + "Axis7"); //wrong, shares with DPAD_Y for some reason
+			AddAxisBinding(ControllerAction.DPAD_Y,			"Controller" + controllerPort + "Axis8"); //correct
 		}
 		//Square  = joystick button 0
 		//X       = joystick button 1
@@ -243,7 +340,7 @@ public class ControllerInput
 
 	private void XboxBindings()
 	{
-		int joystickNumber = 20 * (assignedPlayerNumber - 1);
+		int joystickNumber = 20 * (controllerPort - 1);
 
 		if (currentPlatform == CurrentPlatform.Windows)
 		{
@@ -259,14 +356,14 @@ public class ControllerInput
 			AddButtonBinding(ControllerAction.L3,		KeyCode.Joystick1Button8 + joystickNumber);
 			AddButtonBinding(ControllerAction.R3,		KeyCode.Joystick1Button9 + joystickNumber);
 
-			AddAxisBinding(ControllerAction.LEFT_STICK_X,	"Controller" + assignedPlayerNumber + "Axis1");
-			AddAxisBinding(ControllerAction.LEFT_STICK_Y,	"Controller" + assignedPlayerNumber + "Axis2");
-			AddAxisBinding(ControllerAction.RIGHT_STICK_X,	"Controller" + assignedPlayerNumber + "Axis4");
-			AddAxisBinding(ControllerAction.RIGHT_STICK_Y,	"Controller" + assignedPlayerNumber + "Axis5");
-			AddAxisBinding(ControllerAction.DPAD_X,			"Controller" + assignedPlayerNumber + "Axis6");
-			AddAxisBinding(ControllerAction.DPAD_Y,			"Controller" + assignedPlayerNumber + "Axis7");
-			AddAxisBinding(ControllerAction.L2,				"Controller" + assignedPlayerNumber + "Axis9");
-			AddAxisBinding(ControllerAction.R2,				"Controller" + assignedPlayerNumber + "Axis10");
+			AddAxisBinding(ControllerAction.LEFT_STICK_X,	"Controller" + controllerPort + "Axis1");
+			AddAxisBinding(ControllerAction.LEFT_STICK_Y,	"Controller" + controllerPort + "Axis2");
+			AddAxisBinding(ControllerAction.RIGHT_STICK_X,	"Controller" + controllerPort + "Axis4");
+			AddAxisBinding(ControllerAction.RIGHT_STICK_Y,	"Controller" + controllerPort + "Axis5");
+			AddAxisBinding(ControllerAction.DPAD_X,			"Controller" + controllerPort + "Axis6");
+			AddAxisBinding(ControllerAction.DPAD_Y,			"Controller" + controllerPort + "Axis7");
+			AddAxisBinding(ControllerAction.L2,				"Controller" + controllerPort + "Axis9");
+			AddAxisBinding(ControllerAction.R2,				"Controller" + controllerPort + "Axis10");
 		}
 		else if (currentPlatform == CurrentPlatform.Mac)
 		{
@@ -282,43 +379,35 @@ public class ControllerInput
 			AddButtonBinding(ControllerAction.L3,		KeyCode.Joystick1Button11 + joystickNumber);
 			AddButtonBinding(ControllerAction.R3,		KeyCode.Joystick1Button12 + joystickNumber);
 
-			AddAxisBinding(ControllerAction.LEFT_STICK_X,	"Controller" + assignedPlayerNumber + "Axis1");
-			AddAxisBinding(ControllerAction.LEFT_STICK_Y,	"Controller" + assignedPlayerNumber + "Axis2");
-			AddAxisBinding(ControllerAction.RIGHT_STICK_X,	"Controller" + assignedPlayerNumber + "Axis3");
-			AddAxisBinding(ControllerAction.RIGHT_STICK_Y,	"Controller" + assignedPlayerNumber + "Axis4");
-			AddAxisBinding(ControllerAction.L2,				"Controller" + assignedPlayerNumber + "Axis5");
-			AddAxisBinding(ControllerAction.R2,				"Controller" + assignedPlayerNumber + "Axis6");
+			AddAxisBinding(ControllerAction.LEFT_STICK_X,	"Controller" + controllerPort + "Axis1");
+			AddAxisBinding(ControllerAction.LEFT_STICK_Y,	"Controller" + controllerPort + "Axis2");
+			AddAxisBinding(ControllerAction.RIGHT_STICK_X,	"Controller" + controllerPort + "Axis3");
+			AddAxisBinding(ControllerAction.RIGHT_STICK_Y,	"Controller" + controllerPort + "Axis4");
+			AddAxisBinding(ControllerAction.L2,				"Controller" + controllerPort + "Axis5");
+			AddAxisBinding(ControllerAction.R2,				"Controller" + controllerPort + "Axis6");
 		}
 		else
 		{
-			Log.Weikie("Unknown platform, xbox controller not assigned for player " + assignedPlayerNumber);
+			Log.Weikie("Unknown platform, xbox controller not assigned for player " + controllerPort);
 		}
 	}
 
-	//Debugging only
-	private void Update()
-	{
-		if (controllerType == ControllerType.Unknown) return;
-		//ButtonTestPrints();
-		//AxisTestPrints();
-	}
-
-	private void AxisTestPrints()
+	public void AxisTestPrints()
 	{
 		float f;
 
 		float deadzonePrint = 0.3f;
-		if (Mathf.Abs(f = GetAxis(ControllerAction.LEFT_STICK_X)) > deadzonePrint)		Log.Weikie(assignedPlayerNumber + " LEFT_STICK_X " + f);
-		if (Mathf.Abs(f = GetAxis(ControllerAction.LEFT_STICK_Y)) > deadzonePrint)		Log.Weikie(assignedPlayerNumber + " LEFT_STICK_Y " + f);
-		if (Mathf.Abs(f = GetAxis(ControllerAction.RIGHT_STICK_X)) > deadzonePrint)		Log.Weikie(assignedPlayerNumber + " RIGHT_STICK_X " + f);
-		if (Mathf.Abs(f = GetAxis(ControllerAction.RIGHT_STICK_Y)) > deadzonePrint)		Log.Weikie(assignedPlayerNumber + " RIGHT_STICK_Y " + f);
-		if (Mathf.Abs(f = GetAxis(ControllerAction.DPAD_X)) > deadzonePrint)			Log.Weikie(assignedPlayerNumber + " DPAD_X " + f);
-		if (Mathf.Abs(f = GetAxis(ControllerAction.DPAD_Y)) > deadzonePrint)			Log.Weikie(assignedPlayerNumber + " DPAD_Y " + f);
-		if (Mathf.Abs(f = GetAxis(ControllerAction.L2)) > deadzonePrint)				Log.Weikie(assignedPlayerNumber + " L2 " + f);
-		if (Mathf.Abs(f = GetAxis(ControllerAction.R2)) > deadzonePrint)				Log.Weikie(assignedPlayerNumber + " R2 " + f);
+		if (Mathf.Abs(f = GetAxis(ControllerAction.LEFT_STICK_X)) > deadzonePrint)		Log.Weikie(controllerPort + " LEFT_STICK_X " + f);
+		if (Mathf.Abs(f = GetAxis(ControllerAction.LEFT_STICK_Y)) > deadzonePrint)		Log.Weikie(controllerPort + " LEFT_STICK_Y " + f);
+		if (Mathf.Abs(f = GetAxis(ControllerAction.RIGHT_STICK_X)) > deadzonePrint)		Log.Weikie(controllerPort + " RIGHT_STICK_X " + f);
+		if (Mathf.Abs(f = GetAxis(ControllerAction.RIGHT_STICK_Y)) > deadzonePrint)		Log.Weikie(controllerPort + " RIGHT_STICK_Y " + f);
+		if (Mathf.Abs(f = GetAxis(ControllerAction.DPAD_X)) > deadzonePrint)			Log.Weikie(controllerPort + " DPAD_X " + f);
+		if (Mathf.Abs(f = GetAxis(ControllerAction.DPAD_Y)) > deadzonePrint)			Log.Weikie(controllerPort + " DPAD_Y " + f);
+		if (Mathf.Abs(f = GetAxis(ControllerAction.L2)) > deadzonePrint)				Log.Weikie(controllerPort + " L2 " + f);
+		if (Mathf.Abs(f = GetAxis(ControllerAction.R2)) > deadzonePrint)				Log.Weikie(controllerPort + " R2 " + f);
 	}
 
-	private void ButtonTestPrints()
+	public void ButtonTestPrints()
 	{
 		if (GetKeyDown(ControllerAction.SQUARE)) Log.Weikie("Key pressed SQUARE"); //
 		if (GetKeyDown(ControllerAction.CROSS)) Log.Weikie("Key pressed CROSS"); //
@@ -336,6 +425,8 @@ public class ControllerInput
 		if (GetKeyDown(ControllerAction.B)) Log.Weikie("Key pressed B"); //
 		if (GetKeyDown(ControllerAction.X)) Log.Weikie("Key pressed X"); //
 		if (GetKeyDown(ControllerAction.Y)) Log.Weikie("Key pressed Y"); //
+		if (GetKeyDown(ControllerAction.PLAYSTATION)) Log.Weikie("Key pressed PLAYSTATION"); //
+		if (GetKeyDown(ControllerAction.TOUCHPAD_PRESS)) Log.Weikie("Key pressed TOUCHPAD_PRESS"); //
 	}
 
 	#endregion

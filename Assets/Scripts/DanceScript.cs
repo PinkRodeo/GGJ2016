@@ -15,6 +15,7 @@ public class DanceScript : MonoBehaviour
 		public Vector3 localStartingEulerAngles;
 	}
 
+	public int playerNumber = 1;
 	public float speed;
 
 	public List<ObjectStrengthCombo> leftWing;
@@ -31,11 +32,49 @@ public class DanceScript : MonoBehaviour
 
 	void Start ()
 	{
-		input = new ControllerInput();
+		input = new ControllerInput(playerNumber);
 		SetStartingValues(head);
 		SetStartingValues(tail);
 		SetStartingValues(leftWing);
 		SetStartingValues(rightWing);
+	}
+
+	/// <summary>
+	/// Gets the combined axis values in a single vector
+	/// </summary>
+	/// <returns>A 0 to 1 normalized value, where 0.5 is idle</returns>
+	public Vector2 GetLeftStick()
+	{
+		return new Vector2((input.GetAxis(ControllerInput.ControllerAction.LEFT_STICK_X) + 1) * 0.5f,
+						   (input.GetAxis(ControllerInput.ControllerAction.LEFT_STICK_Y) + 1) * 0.5f);
+	}
+
+	/// <summary>
+	/// Gets the combined axis values in a single vector
+	/// </summary>
+	/// <returns>A 0 to 1 normalized value, where 0.5 is idle</returns>
+	public Vector2 GetRightStick()
+	{
+		return new Vector2((input.GetAxis(ControllerInput.ControllerAction.RIGHT_STICK_X) + 1) * 0.5f,
+						   (input.GetAxis(ControllerInput.ControllerAction.RIGHT_STICK_Y) + 1) * 0.5f);
+	}
+
+	/// <summary>
+	/// Return left trigger value
+	/// </summary>
+	/// <returns>A 0 to 1 normalized value</returns>
+	public float GetLeftTrigger()
+	{
+		return input.GetAxis(ControllerInput.ControllerAction.L2);
+	}
+
+	/// <summary>
+	/// Return right trigger value
+	/// </summary>
+	/// <returns>A 0 to 1 normalized value</returns>
+	public float GetRightTrigger()
+	{
+		return input.GetAxis(ControllerInput.ControllerAction.R2);
 	}
 
 	private static void SetStartingValues(List<ObjectStrengthCombo> container)
@@ -151,23 +190,22 @@ public class DanceScript : MonoBehaviour
 	//Copy dat floppy
 	private void DoRightWing()
 	{
+
+
+		//I dont really know what this does, I copied/edited this from above and it works better than rotation
+		float posModifier = 0.1f;
 		var rightTrigger = input.GetAxis(ControllerInput.ControllerAction.R2);
-		if (rightTrigger > 0.1f && rightWingCounter < 80)
+
+		Vector3 inputValue = new Vector3(0, 0, -rightTrigger);
+		//if (leftTrigger > 0.1f && leftWingCounter < 80)
 		{
 			rightWingCounter++;
 			foreach (var combo in rightWing)
 			{
 				Transform trans = combo.moveableObject.transform;
-				trans.Rotate(trans.forward, -combo.modifierStrength);
-			}
-		}
-		else if (rightWingCounter > 0)
-		{
-			rightWingCounter--;
-			foreach (var combo in rightWing)
-			{
-				Transform trans = combo.moveableObject.transform;
-				trans.Rotate(trans.forward, combo.modifierStrength);
+				Vector3 newPos = combo.localStartingPosition + (inputValue * combo.modifierStrength * posModifier);
+				trans.localPosition = Vector3.Lerp(trans.localPosition, newPos, Time.deltaTime * speed);
+				//trans.position(trans.forward, 1*combo.modifierStrength);
 			}
 		}
 	}
