@@ -151,23 +151,22 @@ public class DanceScript : MonoBehaviour
 	//Copy dat floppy
 	private void DoRightWing()
 	{
+
+
+		//I dont really know what this does, I copied/edited this from above and it works better than rotation
+		float posModifier = 0.1f;
 		var rightTrigger = input.GetAxis(ControllerInput.ControllerAction.R2);
-		if (rightTrigger > 0.1f && rightWingCounter < 80)
+
+		Vector3 inputValue = new Vector3(0, 0, -rightTrigger);
+		//if (leftTrigger > 0.1f && leftWingCounter < 80)
 		{
 			rightWingCounter++;
 			foreach (var combo in rightWing)
 			{
 				Transform trans = combo.moveableObject.transform;
-				trans.Rotate(trans.forward, -combo.modifierStrength);
-			}
-		}
-		else if (rightWingCounter > 0)
-		{
-			rightWingCounter--;
-			foreach (var combo in rightWing)
-			{
-				Transform trans = combo.moveableObject.transform;
-				trans.Rotate(trans.forward, combo.modifierStrength);
+				Vector3 newPos = combo.localStartingPosition + (inputValue * combo.modifierStrength * posModifier);
+				trans.localPosition = Vector3.Lerp(trans.localPosition, newPos, Time.deltaTime * speed);
+				//trans.position(trans.forward, 1*combo.modifierStrength);
 			}
 		}
 	}
