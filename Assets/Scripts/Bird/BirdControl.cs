@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class BirdControl : MonoBehaviour
 {
@@ -16,8 +15,8 @@ public class BirdControl : MonoBehaviour
 	{
 		input = new ControllerInput(1);
 
-		leftWing = new BirdWing(transform.FindInChildren("Shoulder_L"), "_L");
-		rightWing = new BirdWing(transform.FindInChildren("Shoulder_R"), "_R");
+		leftWing = new BirdWing(transform.FindInChildren("Shoulder_L"), "_L", input);
+		rightWing = new BirdWing(transform.FindInChildren("Shoulder_R"), "_R", input);
 
 		head = new BirdHead(transform.FindInChildren("Neck"), input);
 
@@ -30,9 +29,8 @@ public class BirdControl : MonoBehaviour
 	{
 		float dt = Time.deltaTime;
 
-		leftWing.Update(dt, input.GetAxis(ControllerInput.ControllerAction.L2));
-
-		rightWing.Update(dt, input.GetAxis(ControllerInput.ControllerAction.R2));
+		leftWing.Update(dt);
+		rightWing.Update(dt);
 
 		head.Update(dt);
 	}

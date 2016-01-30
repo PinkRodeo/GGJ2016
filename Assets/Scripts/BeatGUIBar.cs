@@ -12,6 +12,7 @@ public class BeatGUIBar : MonoBehaviour
 	public int BeatsPerMinute = 128;
 	public float DelayForMusic = 3.9f;
 	public int startingAfter = 15;
+	public Sprite[] sprites;
 
 	private float timer;
 	private float globalTime;
@@ -24,7 +25,7 @@ public class BeatGUIBar : MonoBehaviour
 	private GameObject canvas;
 	private AudioSource source;
 
-	public Beat[] beatList;
+	private Beat[] beatList;
 
 	public enum BarType
 	{
@@ -37,6 +38,7 @@ public class BeatGUIBar : MonoBehaviour
 	{
 		public float time;
 		public BarType type;
+		public Sprite sprite;
 	};
 
 	void Start () 
@@ -98,11 +100,13 @@ public class BeatGUIBar : MonoBehaviour
 			{
 				Beat b = beatList[ i ];
 				b.type = BarType.empty;
+				b.sprite = null;
 				beatList[ i ] = b;
 			} 
 			Beat c = beatList[ i ];
 			c.type = BarType.normal;
 			c.time = DelayForMusic + i * timer;
+			c.sprite = sprites[0];
 			beatList[ i ] = c;
 		}
 
@@ -110,6 +114,7 @@ public class BeatGUIBar : MonoBehaviour
 		{
 			Beat b = beatList[ i ];
 			b.type = BarType.special;
+			b.sprite = sprites[1];
 			beatList[ i ] = b;
 
 			Beat c = beatList[ i + 1 ];
@@ -128,15 +133,30 @@ public class BeatGUIBar : MonoBehaviour
 			bar.transform.SetParent( canvas.transform );
 			Vector3 p = rt.position;
 
-			rt.transform.position = new Vector3( p.x + Screen.currentResolution.width + i * 300.0f, p.y, p.z );
+			rt.transform.position = new Vector3( p.x + Screen.currentResolution.width + i * 300.0f, p.y + 50.0f, p.z );
 
 			BeatBarBehaviour behaviour = bar.AddComponent<BeatBarBehaviour>();
 			behaviour.barSpeed = barSpeed;
 			Beat a = beatList[ i ];
-			if( a.type == BarType.normal ) barColor = Color.blue;
-			if( a.type == BarType.special ) barColor = Color.red;
-			if( a.type == BarType.empty ) barColor = Color.yellow;
-			bar.GetComponent<CanvasRenderer>().SetColor( barColor );
+			bar.GetComponent<Image>().sprite = a.sprite;
+			bar.GetComponent<Image>().SetNativeSize(); 
+			if (a.type == BarType.special)
+			{
+				GameObject barSpecial = new GameObject( "beatBar", typeof( RectTransform ) );
+				barSpecial.AddComponent<CanvasRenderer>();
+				barSpecial.AddComponent<Image>();
+
+				RectTransform rtSpecial = barSpecial.GetComponent<RectTransform>();
+				barSpecial.transform.SetParent( canvas.transform );
+				Vector3 pSpecial = rtSpecial.position;
+
+				rtSpecial.transform.position = new Vector3( pSpecial.x + Screen.currentResolution.width + i * 300.0f, pSpecial.y + 120.0f, pSpecial.z );
+
+				BeatBarBehaviour behaviour2 = barSpecial.AddComponent<BeatBarBehaviour>();
+				behaviour2.barSpeed = barSpeed;
+				barSpecial.GetComponent<Image>().sprite = sprites[2];
+				barSpecial.GetComponent<Image>().SetNativeSize(); 
+			}
 		}
 	}
 }

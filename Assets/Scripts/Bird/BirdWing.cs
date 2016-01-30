@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class BirdWing
 {
@@ -18,9 +17,12 @@ public class BirdWing
 
 	private float currentApplied = 0f;
 
+	private ControllerInput input;
 
-	public BirdWing(Transform shoulderTransform, string suffix)
+	public BirdWing(Transform shoulderTransform, string suffix, ControllerInput input)
 	{
+		this.input = input;
+
 		if (suffix == "_L")
 			sign = -1f;
 			
@@ -37,8 +39,11 @@ public class BirdWing
 		wing_3_f = BirdBone.CreateBirdBone(shoulderTransform.FindInChildren("Wing_F_3" + suffix));
 	}
 
-	public void Update(float dt, float currentInput)
+	public void Update(float dt)
 	{
+		float currentInput = input.GetAxis(ControllerInput.ControllerAction.R2);
+
+
 		currentInput = Mathf.MoveTowards(currentApplied, currentInput, 8f*dt);
 		currentApplied = currentInput;
 
