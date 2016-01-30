@@ -100,23 +100,45 @@ public class DanceScript : MonoBehaviour
 
 	private void DoLeftWing()
 	{
-		var leftTrigger = input.GetAxis(ControllerInput.ControllerAction.L2);
-		if (leftTrigger > 0.1f && leftWingCounter < 80)
+		bool useRotation = false;
 		{
-			leftWingCounter++;
-			foreach (var combo in leftWing)
+			//I dont really know what this does, I copied/edited this from above and it works better than rotation
+			float posModifier = 0.1f;
+			var leftTrigger = input.GetAxis(ControllerInput.ControllerAction.L2);
+			//if (leftTrigger > 0.1f && leftWingCounter < 80)
 			{
-				Transform trans = combo.moveableObject.transform;
-				trans.Rotate(trans.forward, 1 * combo.modifierStrength);
+				leftWingCounter++;
+				foreach (var combo in leftWing)
+				{
+					Transform trans = combo.moveableObject.transform;
+					Vector3 newPos = combo.localStartingPosition + (new Vector3(0, 0, -leftTrigger) * combo.modifierStrength * posModifier);
+					trans.localPosition = Vector3.Lerp(trans.localPosition, newPos, Time.deltaTime);
+					//trans.position(trans.forward, 1*combo.modifierStrength);
+				}
 			}
 		}
-		else if (leftWingCounter > 0)
+
+		if (useRotation)
 		{
-			leftWingCounter--;
-			foreach (var combo in leftWing)
+
+			var leftTrigger = input.GetAxis(ControllerInput.ControllerAction.L2);
+			if (leftTrigger > 0.1f && leftWingCounter < 80)
 			{
-				Transform trans = combo.moveableObject.transform;
-				trans.Rotate(trans.forward, -1 * combo.modifierStrength);
+				leftWingCounter++;
+				foreach (var combo in leftWing)
+				{
+					Transform trans = combo.moveableObject.transform;
+					trans.Rotate(trans.forward, 1 * combo.modifierStrength);
+				}
+			}
+			else if (leftWingCounter > 0)
+			{
+				leftWingCounter--;
+				foreach (var combo in leftWing)
+				{
+					Transform trans = combo.moveableObject.transform;
+					trans.Rotate(trans.forward, -1 * combo.modifierStrength);
+				}
 			}
 		}
 	}
