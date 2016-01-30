@@ -110,7 +110,7 @@ public class DanceScript : MonoBehaviour
 
 			//I added - to invert because it looks cooler, makes no other logical sense right now
 			Vector3 newPos = combo.localStartingPosition +
-							 -(new Vector3(leftStickX, 0, leftStickY)*combo.modifierStrength*posModifier);
+							 (new Vector3(-leftStickX, 0, leftStickY)*combo.modifierStrength*posModifier);
 			trans.localPosition = Vector3.Lerp(trans.localPosition, newPos, Time.deltaTime);
 		}
 	}

@@ -103,23 +103,39 @@ MonoBehaviour:
   leftWing:
   - moveableObject: {fileID: 1639132900}
     modifierStrength: 1
+    localStartingPosition: {x: 0, y: 0, z: 0}
+    localStartingEulerAngles: {x: 0, y: 0, z: 0}
   - moveableObject: {fileID: 1446761998}
     modifierStrength: 0.5
+    localStartingPosition: {x: 0, y: 0, z: 0}
+    localStartingEulerAngles: {x: 0, y: 0, z: 0}
   rightWing:
   - moveableObject: {fileID: 742531533}
     modifierStrength: 1
+    localStartingPosition: {x: 0, y: 0, z: 0}
+    localStartingEulerAngles: {x: 0, y: 0, z: 0}
   - moveableObject: {fileID: 1831959922}
     modifierStrength: 0.5
+    localStartingPosition: {x: 0, y: 0, z: 0}
+    localStartingEulerAngles: {x: 0, y: 0, z: 0}
   head:
   - moveableObject: {fileID: 1548896869}
-    modifierStrength: 1
+    modifierStrength: 0.11
+    localStartingPosition: {x: 0, y: 0, z: 0}
+    localStartingEulerAngles: {x: 0, y: 0, z: 0}
   - moveableObject: {fileID: 253655457}
-    modifierStrength: 1
+    modifierStrength: 0.27
+    localStartingPosition: {x: 0, y: 0, z: 0}
+    localStartingEulerAngles: {x: 0, y: 0, z: 0}
   tail:
   - moveableObject: {fileID: 295798365}
-    modifierStrength: 1
+    modifierStrength: 0.07
+    localStartingPosition: {x: 0, y: 0, z: 0}
+    localStartingEulerAngles: {x: 0, y: 0, z: 0}
   - moveableObject: {fileID: 1819798810}
-    modifierStrength: 1
+    modifierStrength: 0.41
+    localStartingPosition: {x: 0, y: 0, z: 0}
+    localStartingEulerAngles: {x: 0, y: 0, z: 0}
 --- !u!1 &253655457 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100008, guid: c1de031c7669cd14da7b91f29a5ed02c, type: 3}
