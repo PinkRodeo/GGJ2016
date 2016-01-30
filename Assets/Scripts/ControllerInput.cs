@@ -35,7 +35,9 @@ public class ControllerInput
 		SQUARE,
 		TRIANGLE,
 		DPAD_X,
-		DPAD_Y
+		DPAD_Y,
+		PLAYSTATION,
+		TOUCHPAD_PRESS
 	}
 
 	public enum ControllerType
@@ -209,6 +211,8 @@ public class ControllerInput
 		AddButtonBinding(ControllerAction.START,	KeyCode.Joystick1Button9  + joystickNumber);
 		AddButtonBinding(ControllerAction.L3,		KeyCode.Joystick1Button10 + joystickNumber);
 		AddButtonBinding(ControllerAction.R3,		KeyCode.Joystick1Button11 + joystickNumber);
+		AddButtonBinding(ControllerAction.PLAYSTATION,		KeyCode.Joystick1Button12 + joystickNumber);
+		AddButtonBinding(ControllerAction.TOUCHPAD_PRESS,	KeyCode.Joystick1Button13 + joystickNumber);
 
 		//if (currentPlatform == CurrentPlatform.Windows)
 		{
