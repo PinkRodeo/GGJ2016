@@ -6,11 +6,11 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Default_Prototype
-  m_Shader: {fileID: 4800000, guid: 3a6e79a67e3129f409bae52acc3ab06b, type: 3}
-  m_ShaderKeywords: 
+  m_Name: Skybox
+  m_Shader: {fileID: 106, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: _SUNDISK_HIGH_QUALITY
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: 1000
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 9470468fda72f4773a90a0306decbf0f, type: 3}
+          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -34,34 +34,6 @@ Material:
           name: _DetailNormalMap
         second:
           m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _FirstTex
-        second:
-          m_Texture: {fileID: 2800000, guid: eb18006e3122d7e4a84e8ef8b708df02, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _SecondTex
-        second:
-          m_Texture: {fileID: 2800000, guid: 20fa208453803ab41b65dfe6fe92c848, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _ThirdTex
-        second:
-          m_Texture: {fileID: 2800000, guid: 478de9d1d3cbac64bad0d9feaad9e272, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _FourthTex
-        second:
-          m_Texture: {fileID: 2800000, guid: 6b2e75e162ed72c428ddc9ca9cac6452, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -101,13 +73,6 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _Occlusion
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
           name: _MetallicGlossMap
         second:
           m_Texture: {fileID: 0}
@@ -115,7 +80,42 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _SpecGlossMap
+          name: _FrontTex
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _BackTex
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _LeftTex
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _RightTex
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _UpTex
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DownTex
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -132,19 +132,27 @@ Material:
       data:
         first:
           name: _Cutoff
-        second: 0.27
-      data:
-        first:
-          name: _AlphaTestRef
         second: 0.5
       data:
         first:
-          name: _Metallic
-        second: 0.4
+          name: _Exposure
+        second: 1
       data:
         first:
-          name: _Gloss
-        second: 0.8
+          name: _SunDisk
+        second: 2
+      data:
+        first:
+          name: _SunSize
+        second: 0.35
+      data:
+        first:
+          name: _AtmosphereThickness
+        second: 1
+      data:
+        first:
+          name: _Metallic
+        second: 0
       data:
         first:
           name: _Parallax
@@ -156,7 +164,7 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: 0.48
+        second: 0.5
       data:
         first:
           name: _BumpScale
@@ -172,69 +180,33 @@ Material:
       data:
         first:
           name: _UVSec
-        second: 1
+        second: 0
       data:
         first:
           name: _Mode
         second: 0
       data:
         first:
-          name: _Lightmapping
-        second: 1
-      data:
-        first:
-          name: _EmissionScaleUI
+          name: _Rotation
         second: 0
-      data:
-        first:
-          name: _Size
-        second: 25
-      data:
-        first:
-          name: _Angle
-        second: 0.46428573
-      data:
-        first:
-          name: _Amplitude
-        second: 0.33928573
-      data:
-        first:
-          name: _Wavelength
-        second: 0.17857142
-      data:
-        first:
-          name: _Phase
-        second: 1
     m_Colors:
       data:
         first:
           name: _EmissionColor
-        second: {r: 0, g: 0, b: 0, a: 0}
+        second: {r: 0, g: 0, b: 0, a: 1}
       data:
         first:
           name: _Color
         second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
-          name: _EmissionColorUI
-        second: {r: 1, g: 1, b: 1, a: 1}
+          name: _SkyTint
+        second: {r: 0.45847753, g: 0.65989137, b: 0.7794118, a: 1}
       data:
         first:
-          name: _EmissionColorWithMapUI
-        second: {r: 1, g: 1, b: 1, a: 1}
+          name: _GroundColor
+        second: {r: 0.11856618, g: 0.2476674, b: 0.375, a: 1}
       data:
         first:
-          name: _Color1
-        second: {r: 0.67910445, g: 0.67910445, b: 0.67910445, a: 1}
-      data:
-        first:
-          name: _Color2
-        second: {r: 0.14179105, g: 0.14179105, b: 0.14179105, a: 1}
-      data:
-        first:
-          name: _SpecularColor
-        second: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-      data:
-        first:
-          name: _Indicator
-        second: {r: 1, g: 0, b: 0, a: 1}
+          name: _Tint
+        second: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
