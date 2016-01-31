@@ -70,7 +70,14 @@ public class SceneChoreographer : MonoBehaviour
 			ended = true;
 			gameManager.ExitStage();
 			DoThingsExitStage();
+			crowd.StartEndCheer();
+			Invoke("StopCheer", 5);
 		}
+	}
+
+	private void StopCheer()
+	{
+		crowd.StopEndCheer();
 	}
 
 	public void DoThingsEnterStage()
