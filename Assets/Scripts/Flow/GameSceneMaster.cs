@@ -1,28 +1,49 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameSceneMaster : MonoBehaviour {
+public class GameSceneMaster : MonoBehaviour
+{
 
 	public BeatGUIBar ui;
 	public BirdControl[] birds;
+	private PoseData[]	lastPose;
 
-	public PoseData[]	lastPose;
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	void Start ()
+	{
+		lastPose = new PoseData[birds.Length];
 	}
 
-	public void HitFullBeat() {
+	void Update ()
+	{
 
 	}
 
-	public void HitSubBeat() {
+	//To be called from BeatGUIBar
+	public void HitFullBeat()
+	{
+		DoScore();
+	}
 
+	//To be called from BeatGUIBar
+	public void HitSubBeat()
+	{
+		DoScore();
+	}
+
+	private void DoScore()
+	{
+		for (int i = 0; i < birds.Length; i++)
+		{
+			PoseData currentPose = Pose.CalculateFromController(birds[i].GetInput());
+			PoseData prevPose = lastPose[i];
+
+			//compare
+			PoseDiff poseDiff = Pose.CalculatePoseDiffs(currentPose, prevPose);
+
+			int randomScoreModifier = Random.Range(20, 100);
+			ScoreHandler.GetInstance().AddScore(i + 1, Mathf.FloorToInt(poseDiff.totalDiff)*randomScoreModifier);
+
+			lastPose[i] = currentPose;
+		}
 	}
 }

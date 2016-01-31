@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public struct PoseData {
+public struct PoseData
+{
 	public float leftWing;		//0 to 1
 	public float rightWing;		//0 to 1
 
@@ -9,37 +10,46 @@ public struct PoseData {
 	public Vector2 tail;
 };
 
-public struct PoseList {
+public struct PoseList
+{
 	public PoseData[] poses;
 	public int count;
 	public Sprite uiTexture;
 };
 
-public struct PoseDiff {
+public struct PoseDiff
+{
 	public float minDiff;
 	public float maxDiff;
 	public float totalDiff;
 };
 
-public class Pose {
+public class Pose
+{
 
 	public PoseList data;
 	public float phaseLength;
 
-	public Pose(PoseList data) {
+	public Pose(PoseList data)
+	{
 		this.data = data;
-		if (data.count > 1) {
+		if (data.count > 1)
+		{
 			phaseLength = 1 / (data.count - 1);
-		} else {
+		}
+		else
+		{
 			phaseLength = 1;
 		}
 	}
 
-	public PoseDiff CompareWithController(ControllerInput controller, float progress) {
+	public PoseDiff CompareWithController(ControllerInput controller, float progress)
+	{
 		int firstPhase = (int)Mathf.Floor(progress/phaseLength);
 		int secondPhase = firstPhase + 1;
 
-		if (data.count == 1) {
+		if (data.count == 1)
+		{
 			secondPhase = 0;
 		}
 
@@ -65,7 +75,8 @@ public class Pose {
 		return CalculatePoseDiffs (desiredPose, controllerPose);
 	}
 
-	private PoseDiff CalculateDiffs(float a, float b, PoseDiff diff) {
+	private static PoseDiff CalculateDiffs(float a, float b, PoseDiff diff)
+	{
 		float dd = Mathf.Abs (a - b);
 		PoseDiff result;
 		result.minDiff = Mathf.Min (diff.minDiff, dd);
@@ -75,7 +86,8 @@ public class Pose {
 		return result;
 	}
 
-	private PoseDiff CalculatePoseDiffs(PoseData a, PoseData b) {
+	public static PoseDiff CalculatePoseDiffs(PoseData a, PoseData b)
+	{
 		PoseDiff result = new PoseDiff ();
 
 		result = CalculateDiffs (a.leftWing, b.leftWing, result);
@@ -88,7 +100,8 @@ public class Pose {
 		return result;
 	}
 
-	public PoseData CalculateFromController(ControllerInput controller){
+	public static PoseData CalculateFromController(ControllerInput controller)
+	{
 		PoseData result = new PoseData ();
 
 		result.leftWing = controller.GetAxis (ControllerAction.L2);
@@ -100,5 +113,5 @@ public class Pose {
 
 		return result;
 	}
-		
+
 }

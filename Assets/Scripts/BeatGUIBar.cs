@@ -8,7 +8,7 @@ public class BeatGUIBar : MonoBehaviour
 	public int BeatsPerMinute = 128;
 	public float DelayForMusic = 0.0f;
 	public int startingAfter = 15;
-	public int timesTheAmountForSmallerChecks = 3;
+	public int timesTheAmountForSmallerChecks = 1;
 	public Sprite[] sprites;
 	public Sprite[] poseSprites;
 
@@ -28,6 +28,7 @@ public class BeatGUIBar : MonoBehaviour
 	private Beat[] sBeatList;
 	private AccurateBeat[] msBeatList;
 	public TextAsset poses;
+	private GameSceneMaster gameManager;
 
 	public enum BarType
 	{
@@ -50,9 +51,10 @@ public class BeatGUIBar : MonoBehaviour
 		public Beat mainBeat;
 	};
 
-	void Start()
+	private void Start()
 	{
 		Globals.Init( poses );
+		gameManager = GameObject.Find("GameManager").GetComponent<GameSceneMaster>();
 	}
 
 	public void StartTheMusic()
@@ -86,20 +88,7 @@ public class BeatGUIBar : MonoBehaviour
 				//current greater or equal to big (visual) beat time
 				if ( msBeatList[msCurrentIndex].time >= sBeatList[currentIndex].time )
 				{
-					Vector3 position = sBeatList[ currentIndex ].position;
-					if ( position.x < -350.0f )
-					{
-						// Check if it is in pose?
-						int controllers = ControllerInput.GetConnectedControllers();
-						for( int i = 0; i < controllers; i++ )
-						{
-							ControllerInput inputController = new ControllerInput( i + 1 );
-							//inputController.GetLeftStick(); Globals.poses[ 0 ].head;
-							//inputController.GetRightStick(); Globals.poses[ 0 ].tail;
-							//inputController.GetAxis( ControllerAction.L2 ); Globals.poses[ 0 ].leftWing;
-							//inputController.GetAxis( ControllerAction.R2 ); Globals.poses[ 0 ].rightWing;
-						}
-					}
+					gameManager.HitSubBeat();
 				}
 				msCurrentIndex++;
 			}
@@ -122,7 +111,7 @@ public class BeatGUIBar : MonoBehaviour
 		{
 			if (sBeatList [i].type == BarType.Empty)
 				continue;
-			
+
 			GameObject bar = new GameObject( "beatBar", typeof( RectTransform ) );
 			bar.AddComponent<CanvasRenderer>();
 			bar.AddComponent<Image>();

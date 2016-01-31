@@ -20,6 +20,12 @@ public class BirdControl : MonoBehaviour
 
 	private ControllerInput input;
 
+
+	public ControllerInput GetInput()
+	{
+		return input;
+	}
+
 	// Use this for initialization
 	void Start ()
 	{
