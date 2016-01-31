@@ -30,17 +30,17 @@ public class BirdHead
 
 	}
 
-	const float HEAD_POS_MOD = -0.005f;
-	const float NECK_POS_MOD = -0.002f;
+	const float HEAD_POS_MOD = -0.005f * .3f;
+	const float NECK_POS_MOD = -0.002f * .3f;
 
-
+	
 	public void Update(float dt)
 	{
 
 		Vector2 stick = input.GetLeftStick();
 		stick.x = stick.x*-1f;
 
-		float beakMod = 1f + 0.15f*beak_held;
+		float beakMod = 1f + 0.45f*beak_held;
 
 		neck.bone.localPosition = neck.initialLocalPosition + new Vector3(stick.x * NECK_POS_MOD* beakMod, stick.y * NECK_POS_MOD* beakMod);
 		head.bone.localPosition = head.initialLocalPosition + new Vector3(stick.x*HEAD_POS_MOD* beakMod, stick.y*HEAD_POS_MOD* beakMod);

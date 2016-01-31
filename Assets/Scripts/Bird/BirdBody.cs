@@ -8,6 +8,7 @@ public class BirdBody
 
 	private float initialTime;
 
+	private Vector2 currentAppliedVector2;
 
 	public BirdBody(Transform temp, ControllerInput input)
 	{
@@ -30,7 +31,13 @@ public class BirdBody
 	{
 		Vector2 stick = input.GetRightStick();
 		stick.x = stick.x * -1f;
-		
+
+		stick.x = Mathf.MoveTowards(currentAppliedVector2.x, stick.x, 18f*dt);
+		stick.y = Mathf.MoveTowards(currentAppliedVector2.y, stick.y, 18f * dt);
+
+		currentAppliedVector2 = stick;
+
+
 		//body.bone.localPosition = body.initialLocalPosition + new Vector3(stick.x * BODY_POS_MOD, stick.y * BODY_POS_MOD);
 		body.bone.localRotation = body.initialLocalRotation * Quaternion.AngleAxis(Mathf.Lerp(-10f, 20f, (stick.y+1f)/2f), Vector3.right)
 		* Quaternion.AngleAxis(Mathf.Lerp(-SIDWAYSROTATE, SIDWAYSROTATE, (stick.x + 1f) / 2f), Vector3.forward);

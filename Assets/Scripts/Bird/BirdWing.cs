@@ -47,7 +47,7 @@ public class BirdWing
 		float currentInput = input.GetAxis(trigger);
 
 
-		currentInput = Mathf.MoveTowards(currentApplied, currentInput, 8f*dt);
+		currentInput = Mathf.MoveTowards(currentApplied, currentInput, 9f*dt);
 		currentApplied = currentInput;
 
 		shoulder.bone.localRotation = shoulder.initialLocalRotation * Quaternion.AngleAxis(Mathf.Lerp(-20f * sign, 0, currentInput), Vector3.up)
