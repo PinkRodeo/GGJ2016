@@ -13,6 +13,8 @@ public struct SceneGeographerBalcony
 
 public class SceneChoreographer : MonoBehaviour
 {
+	public Transform Curtain;
+
 	public BeatGUIBar beatGUIBar;
 	private StageCamera stageCamera;
 
@@ -33,7 +35,7 @@ public class SceneChoreographer : MonoBehaviour
 		targetBalconyLightSpotAngle = balconyObjects.balconySpotlight.spotAngle;
 
 
-		DoThingsEnterStage();
+		DoThingsExitStage();
 
 
 	}
@@ -109,6 +111,6 @@ public class SceneChoreographer : MonoBehaviour
 
 	public void DoThingsExitStage()
 	{
-		
+
 	}
 }
