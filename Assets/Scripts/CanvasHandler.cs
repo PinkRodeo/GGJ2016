@@ -10,7 +10,8 @@ public class CanvasHandler : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        Frequency.getInstance().startTimer();
+		Debug.LogWarning("[CanvasHandler] Needs to pass the songs bpm the timer, not a hardcoded float.");
+        SongTimer.StartSong(128f);
     }
 	
 	// Update is called once per frame
