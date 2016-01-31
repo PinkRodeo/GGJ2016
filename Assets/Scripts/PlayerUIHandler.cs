@@ -25,7 +25,6 @@ public class PlayerUIHandler : MonoBehaviour
 	void Update ()
 	{
 		DebugKeys();
-		UpdateText();
 	}
 
 	private static void DebugKeys()
@@ -45,15 +44,6 @@ public class PlayerUIHandler : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.Alpha4))
 		{
 			ScoreHandler.GetInstance().AddScore(4, 100);
-		}
-	}
-
-	private void UpdateText()
-	{
-		for (var i = 0; i < playerCount; i++)
-		{
-			uiHolder[i].textUI.text = ScoreHandler.GetInstance().GetScore(i + 1).ToString();
-			// get the score to display for in items
 		}
 	}
 }

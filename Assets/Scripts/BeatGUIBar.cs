@@ -27,6 +27,7 @@ public class BeatGUIBar : MonoBehaviour
 
 	private Beat[] sBeatList;
 	private AccurateBeat[] msBeatList;
+	public TextAsset poses;
 
 	public enum BarType
 	{
@@ -48,6 +49,11 @@ public class BeatGUIBar : MonoBehaviour
 		public float time;
 		public Beat mainBeat;
 	};
+
+	void Start()
+	{
+		Globals.Init( poses );
+	}
 
 	public void StartTheMusic()
 	{
@@ -165,13 +171,8 @@ public class BeatGUIBar : MonoBehaviour
 
 		BeatBarBehaviour behaviour2 = barSpecial.AddComponent<BeatBarBehaviour>();
 		behaviour2.barSpeed = barSpeed;
-		//Log.Tinas( Globals.poses.Length );
-		//Log.Tinas( Globals.poses[  ] );
-		//int index = UnityEngine.Random.Range( 0, Globals.poses.Length );
-		//barSpecial.GetComponent<Image>().sprite = Globals.poses[index].uiTexture;
-		int count = poseSprites.Length;
-		int poseIndex = UnityEngine.Random.Range( 0, count );
-		barSpecial.GetComponent<Image>().sprite = poseSprites[ poseIndex ];
+		int poseIndex = UnityEngine.Random.Range( 0, Globals.poses.Length );
+		barSpecial.GetComponent<Image>().sprite = Globals.poses[poseIndex].uiTexture;
 		barSpecial.GetComponent<Image>().SetNativeSize();
 	}
 

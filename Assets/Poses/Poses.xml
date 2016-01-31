@@ -1,5 +1,5 @@
 <poses>
-	<pose name="Pose 1" phases="1" texture="pose1">
+	<pose name="Pose 1" phases="1" texture="Sprites/pose">
 		<leftWing>
 			<target value="1"/>
 		</leftWing>
@@ -13,7 +13,7 @@
 			<target x="-1" y="0"/>
 		</tail>
 	</pose>
-	<pose name="Pose 1" phases="1" texture="pose1">
+	<pose name="Pose 2" phases="1" texture="Sprites/pose2">
 		<leftWing>
 			<target value="1"/>
 		</leftWing>
@@ -27,7 +27,7 @@
 			<target x="-1" y="0"/>
 		</tail>
 	</pose>
-	<pose name="Pose 1" phases="1" texture="pose1">
+	<pose name="Pose 3" phases="1" texture="Sprites/pose3">
 		<leftWing>
 			<target value="1"/>
 		</leftWing>
