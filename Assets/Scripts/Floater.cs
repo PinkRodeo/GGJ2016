@@ -8,13 +8,13 @@ public class Floater : MonoBehaviour
 	// Use this for initialization
 	void Start () {
 	    //TextInMiddle("FIETSBEL!!!!", new Vector2(100,100),Color.red);
-        Frequency.getInstance().startTimer();
+       // SongTimer.getInstance().startTimer();
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-        Log.Arny(Frequency.getInstance().freq);
+        Log.Arny(SongTimer.frequency);
 	}
 
     public void TextInMiddle(string text, Vector2 pos, Color color)
