@@ -151,7 +151,7 @@ public class BeatGUIBar : MonoBehaviour
 		barSpecial.transform.SetParent(canvas.transform);
 		Vector3 pSpecial = rtSpecial.position;
 
-		rtSpecial.transform.position = new Vector3(pSpecial.x + spawnOffSetX + index*300.0f, pSpecial.y + 120.0f, pSpecial.z);
+		rtSpecial.transform.position = new Vector3(pSpecial.x + spawnOffSetX + index*300.0f-100.0f, pSpecial.y + 120.0f, pSpecial.z);
 
 		BeatBarBehaviour behaviour2 = barSpecial.AddComponent<BeatBarBehaviour>();
 		behaviour2.barSpeed = barSpeed;
@@ -188,21 +188,11 @@ public class BeatGUIBar : MonoBehaviour
 		int amount = sBeatLength - (sBeatLength/8);
 		for (int i = 0; i < sBeatLength; i++)
 		{
-			if (i >= amount)
-			{
-				Beat b = sBeatList[i];
-				b.type = BarType.Empty;
-				b.sprite = null;
-				sBeatList[i] = b;
-			}
-			else
-			{
-				Beat beat = sBeatList[i];
-				beat.type = BarType.Normal;
-				beat.time = DelayForMusic + i*timeBetweenBeats;
-				beat.sprite = sprites[0];
-				sBeatList[i] = beat;
-			}
+			Beat beat = sBeatList[i];
+			beat.type = BarType.Normal;
+			beat.time = DelayForMusic + i*timeBetweenBeats;
+			beat.sprite = sprites[0];
+			sBeatList[i] = beat;
 		}
 	}
 }
