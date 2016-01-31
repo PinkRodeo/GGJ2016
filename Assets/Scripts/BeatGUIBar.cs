@@ -118,7 +118,7 @@ public class BeatGUIBar : MonoBehaviour
 			Vector3 p = rt.position;
 			int spawnOffSetX = 1500;
 
-			rt.transform.position = new Vector3( p.x + spawnOffSetX + i * 300.0f, p.y + 50.0f, p.z );
+			rt.transform.position = new Vector3( p.x + spawnOffSetX + i * 300.0f, p.y + 20.0f, p.z );
 
 			BeatBarBehaviour behaviour = bar.AddComponent<BeatBarBehaviour>();
 			behaviour.barSpeed = barSpeed;
