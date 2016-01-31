@@ -2,73 +2,103 @@
 using System.Collections;
 
 public struct PoseData {
-	public Texture2D uiTexture;
+	public float leftWing;		//0 to 1
+	public float rightWing;		//0 to 1
 
-	public int phases;
+	public Vector2 head;
+	public Vector2 tail;
+};
 
-	public float[] leftWing;		//0 to 1
-	public float[] rightWing;		//0 to 1
+public struct PoseList {
+	public PoseData[] poses;
+	public int count;
+	public Sprite uiTexture;
+};
 
-	public Vector2[] head;
-	public Vector2[] tail;
+public struct PoseDiff {
+	public float minDiff;
+	public float maxDiff;
+	public float totalDiff;
 };
 
 public class Pose {
 
-	public PoseData data;
+	public PoseList data;
 	public float phaseLength;
 
-	public float minDiff = 0;
-	public float maxDiff = 0;
-	public float totalDiff = 0;
-
-	public Pose(PoseData data) {
+	public Pose(PoseList data) {
 		this.data = data;
-		if (data.phases > 1) {
-			phaseLength = 1 / (data.phases - 1);
+		if (data.count > 1) {
+			phaseLength = 1 / (data.count - 1);
 		} else {
 			phaseLength = 1;
 		}
 	}
 
-	public void CompareWithController(ControllerInput controller, float progress) {
+	public PoseDiff CompareWithController(ControllerInput controller, float progress) {
 		int firstPhase = (int)Mathf.Floor(progress/phaseLength);
 		int secondPhase = firstPhase + 1;
 
-		if (data.phases == 1) {
+		if (data.count == 1) {
 			secondPhase = 0;
 		}
+
+		PoseData firstPose = data.poses [firstPhase];
+		PoseData secondPose = data.poses [secondPhase];
+
+		PoseData desiredPose = new PoseData();
 
 		float subProgress = progress % phaseLength;
 		subProgress /= phaseLength;	//normalize it;
 
-		float desiredLeftWing = data.leftWing [firstPhase] + (data.leftWing [secondPhase] - data.leftWing[firstPhase]) * subProgress;
-		float desiredRightWing = data.rightWing [firstPhase] + (data.rightWing [secondPhase] - data.rightWing[firstPhase]) * subProgress;
+		desiredPose.leftWing = firstPose.leftWing + (secondPose.leftWing - firstPose.leftWing) * subProgress;
+		desiredPose.rightWing = firstPose.rightWing + (secondPose.rightWing - firstPose.rightWing) * subProgress;
 
-		float desiredHeadX = data.head [firstPhase].x + (data.head [secondPhase].x - data.head[firstPhase].x) * subProgress;
-		float desiredHeadY = data.head [firstPhase].y + (data.head [secondPhase].y - data.head[firstPhase].y) * subProgress;
+		desiredPose.head.x = firstPose.head.x + (secondPose.head.x - firstPose.head.x) * subProgress;
+		desiredPose.head.y = firstPose.head.y + (secondPose.head.y - firstPose.head.y) * subProgress;
 
-		float desiredTailX = data.tail [firstPhase].x + (data.tail [secondPhase].x - data.tail[firstPhase].x) * subProgress;
-		float desiredTailY = data.tail [firstPhase].y + (data.tail [secondPhase].y - data.tail[firstPhase].y) * subProgress;
+		desiredPose.tail.x = firstPose.tail.x + (secondPose.tail.x - firstPose.tail.x) * subProgress;
+		desiredPose.head.y = firstPose.tail.y + (secondPose.tail.y - firstPose.tail.y) * subProgress;
 
-		totalDiff = 0.0f;
-		maxDiff = 0.0f;
-		minDiff = 99.0f;
+		PoseData controllerPose = CalculateFromController(controller);
 
-		calculateDiffs(desiredLeftWing, controller.GetAxis(ControllerAction.L2));
-		calculateDiffs(desiredRightWing, controller.GetAxis(ControllerAction.R2));
-
-		calculateDiffs(desiredHeadX, controller.GetAxis(ControllerAction.RIGHT_STICK_X));
-		calculateDiffs(desiredHeadY, controller.GetAxis(ControllerAction.RIGHT_STICK_Y));
-
-		calculateDiffs(desiredTailX, controller.GetAxis(ControllerAction.LEFT_STICK_X));
-		calculateDiffs(desiredTailY, controller.GetAxis(ControllerAction.LEFT_STICK_Y));
+		return CalculatePoseDiffs (desiredPose, controllerPose);
 	}
 
-	private void calculateDiffs(float a, float b) {
-		float diff = Mathf.Abs (a - b);
-		minDiff = Mathf.Min (minDiff, diff);
-		maxDiff = Mathf.Max (maxDiff, diff);
-		totalDiff += diff; 
+	private PoseDiff CalculateDiffs(float a, float b, PoseDiff diff) {
+		float dd = Mathf.Abs (a - b);
+		PoseDiff result;
+		result.minDiff = Mathf.Min (diff.minDiff, dd);
+		result.maxDiff = Mathf.Max (diff.maxDiff, dd);
+		result.totalDiff = diff.totalDiff + dd;
+
+		return result;
 	}
+
+	private PoseDiff CalculatePoseDiffs(PoseData a, PoseData b) {
+		PoseDiff result = new PoseDiff ();
+
+		result = CalculateDiffs (a.leftWing, b.leftWing, result);
+		result = CalculateDiffs (a.rightWing, b.rightWing, result);
+		result = CalculateDiffs (a.head.x, b.head.x, result);
+		result = CalculateDiffs (a.head.y, b.head.y, result);
+		result = CalculateDiffs (a.tail.x, b.tail.x, result);
+		result = CalculateDiffs (a.tail.y, b.tail.y, result);
+
+		return result;
+	}
+
+	public PoseData CalculateFromController(ControllerInput controller){
+		PoseData result = new PoseData ();
+
+		result.leftWing = controller.GetAxis (ControllerAction.L2);
+		result.rightWing = controller.GetAxis (ControllerAction.R2);
+		result.head.x = controller.GetAxis (ControllerAction.LEFT_STICK_X);
+		result.head.y = controller.GetAxis (ControllerAction.LEFT_STICK_X);
+		result.tail.x = controller.GetAxis (ControllerAction.RIGHT_STICK_X);
+		result.tail.y = controller.GetAxis (ControllerAction.RIGHT_STICK_Y);
+
+		return result;
+	}
+		
 }
