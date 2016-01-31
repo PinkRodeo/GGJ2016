@@ -104,8 +104,7 @@ public class ControllerInput
 
 	public float GetAxis(ControllerAction action)
 	{
-		//im too lazy to add error checks here even though its copy paste and edit
-		//if (!IsActionMapped(action)) return 0;
+		if (!IsAxisMapped(action)) return 0;
 
 		List<string> keycodeList = axisKeymap[action];
 		foreach (var axisName in keycodeList)
@@ -113,7 +112,7 @@ public class ControllerInput
 			float value = Input.GetAxisRaw(axisName);
 			if (Mathf.Abs(value) > Mathf.Epsilon)
 			{
-				//hack to make triggers go from -1 to 1
+				//Make triggers go from -1 to 1
 				if (controllerType == ControllerType.Playstation)
 				{
 					if (action == ControllerAction.L2 || action == ControllerAction.R2)
@@ -225,6 +224,17 @@ public class ControllerInput
 				break;
 			}
 		}
+	}
+
+	private bool IsAxisMapped(ControllerAction action)
+	{
+		List<string> keycodeList;
+
+		if (axisKeymap.TryGetValue(action, out keycodeList) && keycodeList != null)
+		{
+			return true;
+		}
+		return false;
 	}
 
 	private bool IsActionMapped(ControllerAction action)
