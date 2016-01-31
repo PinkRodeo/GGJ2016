@@ -6543,7 +6543,7 @@ MonoBehaviour:
   BeatsPerMinute: 128
   DelayForMusic: 2.2
   startingAfter: 16
-  timesTheAmountForSmallerChecks: 3
+  timesTheAmountForSmallerChecks: 1
   sprites:
   - {fileID: 21300000, guid: 51b7b2b0f69261b49bfa2661caf70008, type: 3}
   - {fileID: 21300000, guid: eba4825bea44c0f458343a51ce75149b, type: 3}
