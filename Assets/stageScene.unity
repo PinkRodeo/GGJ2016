@@ -97,7 +97,7 @@ GameObject:
   - 23: {fileID: 40636679}
   m_Layer: 0
   m_Name: Plane (4)
-  m_TagString: Untagged
+  m_TagString: TheaterProp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -245,11 +245,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 64d402bb49eae094ba49a69b5a4b2586, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 64d402bb49eae094ba49a69b5a4b2586, type: 3}
       propertyPath: m_Name
-      value: bird_02 (1)
+      value: BalconyBird
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 64d402bb49eae094ba49a69b5a4b2586, type: 3}
       propertyPath: m_LocalScale.x
@@ -267,7 +267,8 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 4300000, guid: 8e74f307f48dcb34f8f344a04cfb3d34, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9500000, guid: 64d402bb49eae094ba49a69b5a4b2586, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 64d402bb49eae094ba49a69b5a4b2586, type: 3}
   m_IsPrefabParent: 0
 --- !u!1 &79712752 stripped
@@ -421,7 +422,7 @@ Transform:
   m_LocalScale: {x: 1.4315894, y: 1.1026664, z: 1.1026664}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
 --- !u!1 &213977142
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,7 +434,7 @@ GameObject:
   - 108: {fileID: 213977143}
   m_Layer: 0
   m_Name: Spotlight (2)
-  m_TagString: Untagged
+  m_TagString: TheaterProp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -507,7 +508,7 @@ GameObject:
   - 23: {fileID: 285720328}
   m_Layer: 0
   m_Name: Plane (11)
-  m_TagString: Untagged
+  m_TagString: TheaterProp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -630,7 +631,7 @@ GameObject:
   - 23: {fileID: 326917634}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: TheaterProp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1105,7 +1106,7 @@ GameObject:
   - 23: {fileID: 531469049}
   m_Layer: 0
   m_Name: Plane (3)
-  m_TagString: Untagged
+  m_TagString: TheaterProp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1240,7 +1241,7 @@ GameObject:
   - 23: {fileID: 601049691}
   m_Layer: 0
   m_Name: Plane (7)
-  m_TagString: Untagged
+  m_TagString: TheaterProp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1420,7 +1421,7 @@ GameObject:
   - 23: {fileID: 611178970}
   m_Layer: 0
   m_Name: Plane (10)
-  m_TagString: Untagged
+  m_TagString: TheaterProp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1694,7 +1695,7 @@ GameObject:
   - 23: {fileID: 725782634}
   m_Layer: 0
   m_Name: Plane (5)
-  m_TagString: Untagged
+  m_TagString: TheaterProp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1756,7 +1757,7 @@ GameObject:
   - 23: {fileID: 748618652}
   m_Layer: 0
   m_Name: Plane (8)
-  m_TagString: Untagged
+  m_TagString: TheaterProp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1833,7 +1834,7 @@ GameObject:
   - 23: {fileID: 923384413}
   m_Layer: 0
   m_Name: Plane (6)
-  m_TagString: Untagged
+  m_TagString: TheaterProp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1895,7 +1896,7 @@ GameObject:
   - 23: {fileID: 988626071}
   m_Layer: 0
   m_Name: Plane (9)
-  m_TagString: Untagged
+  m_TagString: TheaterProp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2366,7 +2367,7 @@ GameObject:
   - 23: {fileID: 1149595856}
   m_Layer: 0
   m_Name: Plane (10)
-  m_TagString: Untagged
+  m_TagString: TheaterProp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2871,7 +2872,7 @@ GameObject:
   - 23: {fileID: 1317307753}
   m_Layer: 0
   m_Name: Plane (2)
-  m_TagString: Untagged
+  m_TagString: TheaterProp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2950,6 +2951,7 @@ GameObject:
   - 114: {fileID: 1417769174}
   - 114: {fileID: 1417769175}
   - 114: {fileID: 1417769176}
+  - 114: {fileID: 1417769177}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3150,6 +3152,21 @@ MonoBehaviour:
   VerandaFocusPoint: {fileID: 1423005445}
   MainStageFocustPoint: {fileID: 445813420}
   balconyTargetPOV: 20
+--- !u!114 &1417769177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1417769166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07c6f7d2d5c0ae349a467646a2e05ea8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beatGUIBar: {fileID: 1894471627}
+  balconyObjects:
+    balconyBird: {fileID: 79712752}
+    balconySpotlight: {fileID: 1710546706}
 --- !u!1 &1423005444
 GameObject:
   m_ObjectHideFlags: 0
@@ -3251,7 +3268,7 @@ GameObject:
   - 23: {fileID: 1544770280}
   m_Layer: 0
   m_Name: Plane (9)
-  m_TagString: Untagged
+  m_TagString: TheaterProp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3313,7 +3330,7 @@ GameObject:
   - 23: {fileID: 1573699458}
   m_Layer: 0
   m_Name: Quad (1)
-  m_TagString: Untagged
+  m_TagString: TheaterProp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3555,7 +3572,7 @@ GameObject:
   - 23: {fileID: 1654918589}
   m_Layer: 0
   m_Name: Quad
-  m_TagString: Untagged
+  m_TagString: TheaterProp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3690,7 +3707,7 @@ GameObject:
   - 108: {fileID: 1710546706}
   m_Layer: 0
   m_Name: Spotlight
-  m_TagString: Untagged
+  m_TagString: TheaterProp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4111,7 +4128,8 @@ AudioSource:
   m_GameObject: {fileID: 1894471626}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24305146, guid: 943fcc8394d418448a491106bf44b751,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: b5a148e3dd9b745b0bd2f874a22948bf, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -4189,7 +4207,7 @@ GameObject:
   - 23: {fileID: 1903854858}
   m_Layer: 0
   m_Name: Plane (1)
-  m_TagString: Untagged
+  m_TagString: TheaterProp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
