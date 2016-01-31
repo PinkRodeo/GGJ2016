@@ -105,6 +105,9 @@ public class BeatGUIBar : MonoBehaviour
 
 		for( int i = 0; i < sBeatLength; i++ )
 		{
+			if (sBeatList [i].type == BarType.Empty)
+				continue;
+			
 			GameObject bar = new GameObject( "beatBar", typeof( RectTransform ) );
 			bar.AddComponent<CanvasRenderer>();
 			bar.AddComponent<Image>();

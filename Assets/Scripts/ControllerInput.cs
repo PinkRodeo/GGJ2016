@@ -78,27 +78,27 @@ public class ControllerInput
 	public bool GetKeyDown(ControllerAction action)
 	{
 		TransformCrossControllerButton(ref action);
-		if (!IsActionMapped(action)) return false;
+		List<KeyCode> keycodeList;
+		if (!IsActionMapped(action, out keycodeList)) return false;
 
-		List<KeyCode> keycodeList = buttonKeymap[action];
 		return keycodeList.Any(Input.GetKeyDown);
 	}
 
 	public bool GetKey(ControllerAction action)
 	{
 		TransformCrossControllerButton(ref action);
-		if (!IsActionMapped(action)) return false;
+		List<KeyCode> keycodeList;
+		if (!IsActionMapped(action, out keycodeList)) return false;
 
-		List<KeyCode> keycodeList = buttonKeymap[action];
 		return keycodeList.Any(Input.GetKey);
 	}
 
 	public bool GetKeyUp(ControllerAction action)
 	{
 		TransformCrossControllerButton(ref action);
-		if (!IsActionMapped(action)) return false;
+		List<KeyCode> keycodeList;
+		if (!IsActionMapped(action, out keycodeList)) return false;
 
-		List<KeyCode> keycodeList = buttonKeymap[action];
 		return keycodeList.Any(Input.GetKeyUp);
 	}
 
@@ -235,12 +235,13 @@ public class ControllerInput
 		return false;
 	}
 
-	private bool IsActionMapped(ControllerAction action)
+	private bool IsActionMapped(ControllerAction action, out List<KeyCode> list)
 	{
-		if (buttonKeymap.ContainsKey(action) && buttonKeymap[action] != null)
+		if (buttonKeymap.ContainsKey(action) && (list = buttonKeymap[action]) != null)
 		{
 			return true;
 		}
+		list = null;
 		return false;
 	}
 
