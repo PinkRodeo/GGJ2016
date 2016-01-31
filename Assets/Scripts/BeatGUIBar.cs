@@ -11,7 +11,7 @@ public class BeatGUIBar : MonoBehaviour
 	public int timesTheAmountForSmallerChecks = 3;
 	public Sprite[] sprites;
 
-	private float timer;
+	private float timeBetweenBeats;
 	private float globalTime;
 
 	private int currentIndex = 0;
@@ -48,7 +48,7 @@ public class BeatGUIBar : MonoBehaviour
 
 	void Start ()
 	{
-		timer = 60.0f / BeatsPerMinute;
+		timeBetweenBeats = 60.0f / BeatsPerMinute;
 		canvas = GameObject.Find("Canvas");
 		source = GetComponent<AudioSource>();
 		GenerateArray( source.clip.length );
@@ -139,7 +139,7 @@ public class BeatGUIBar : MonoBehaviour
 		for (int i = 0; i < msBeatLength; i++)
 		{
 			AccurateBeat beat = msBeatList[i];
-			beat.time = DelayForMusic + i*(timer/timesTheAmountForSmallerChecks);
+			beat.time = DelayForMusic + i*(timeBetweenBeats/timesTheAmountForSmallerChecks);
 			msBeatList[i] = beat;
 		}
 	}
@@ -179,7 +179,7 @@ public class BeatGUIBar : MonoBehaviour
 
 	private void Initialization(float seconds)
 	{
-		float beatsPerSecond = 1.0f/timer;
+		float beatsPerSecond = BeatsPerMinute/60.0f;
 		sBeatLength = (int) (seconds*beatsPerSecond);
 		msBeatLength = sBeatLength*timesTheAmountForSmallerChecks;
 		sBeatList = new Beat[sBeatLength];
@@ -200,7 +200,7 @@ public class BeatGUIBar : MonoBehaviour
 			}
 			Beat beat = sBeatList[i];
 			beat.type = BarType.Normal;
-			beat.time = DelayForMusic + i*timer;
+			beat.time = DelayForMusic + i*timeBetweenBeats;
 			beat.sprite = sprites[0];
 			sBeatList[i] = beat;
 		}
