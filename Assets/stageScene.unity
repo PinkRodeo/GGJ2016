@@ -388,10 +388,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerId: 1
---- !u!4 &79712754 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 400000, guid: 64d402bb49eae094ba49a69b5a4b2586, type: 3}
-  m_PrefabInternal: {fileID: 79712751}
 --- !u!1001 &89365123
 Prefab:
   m_ObjectHideFlags: 0
@@ -3167,7 +3163,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2e5a33368fd7ad040a1986a9698a69d3, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2e5a33368fd7ad040a1986a9698a69d3, type: 3}
@@ -3707,7 +3703,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07c6f7d2d5c0ae349a467646a2e05ea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Curtain: {fileID: 79712754}
+  curtainTransform: {fileID: 1697074630}
+  LogoGameObject: {fileID: 58189841}
   beatGUIBar: {fileID: 1894471627}
   balconyObjects:
     balconyBird: {fileID: 79712752}
@@ -4281,6 +4278,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerId: 4
+--- !u!4 &1697074630 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: 2e5a33368fd7ad040a1986a9698a69d3, type: 3}
+  m_PrefabInternal: {fileID: 1191827406}
 --- !u!1 &1710546705
 GameObject:
   m_ObjectHideFlags: 0
