@@ -151,7 +151,7 @@ public class BeatGUIBar : MonoBehaviour
 		barSpecial.transform.SetParent(canvas.transform);
 		Vector3 pSpecial = rtSpecial.position;
 
-		rtSpecial.transform.position = new Vector3(pSpecial.x + spawnOffSetX + index*300.0f, pSpecial.y + 120.0f, pSpecial.z);
+		rtSpecial.transform.position = new Vector3(pSpecial.x + spawnOffSetX + index*300.0f-100.0f, pSpecial.y + 120.0f, pSpecial.z);
 
 		BeatBarBehaviour behaviour2 = barSpecial.AddComponent<BeatBarBehaviour>();
 		behaviour2.barSpeed = barSpeed;
