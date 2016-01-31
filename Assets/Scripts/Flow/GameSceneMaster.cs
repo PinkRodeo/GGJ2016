@@ -21,11 +21,16 @@ public class GameSceneMaster : MonoBehaviour
 	//To be called from BeatGUIBar
 	public void HitFullBeat()
 	{
-
+		DoScore();
 	}
 
 	//To be called from BeatGUIBar
 	public void HitSubBeat()
+	{
+		DoScore();
+	}
+
+	private void DoScore()
 	{
 		for (int i = 0; i < birds.Length; i++)
 		{
@@ -35,8 +40,8 @@ public class GameSceneMaster : MonoBehaviour
 			//compare
 			PoseDiff poseDiff = Pose.CalculatePoseDiffs(currentPose, prevPose);
 
-			int randomScoreModifier = Random.Range(100, 200);
-			ScoreHandler.GetInstance().AddScore(i + 1, Mathf.RoundToInt(poseDiff.totalDiff * randomScoreModifier));
+			int randomScoreModifier = Random.Range(20, 100);
+			ScoreHandler.GetInstance().AddScore(i + 1, Mathf.FloorToInt(poseDiff.totalDiff)*randomScoreModifier);
 
 			lastPose[i] = currentPose;
 		}

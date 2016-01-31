@@ -8,7 +8,7 @@ public class BeatGUIBar : MonoBehaviour
 	public int BeatsPerMinute = 128;
 	public float DelayForMusic = 0.0f;
 	public int startingAfter = 15;
-	public int timesTheAmountForSmallerChecks = 3;
+	public int timesTheAmountForSmallerChecks = 1;
 	public Sprite[] sprites;
 	public Sprite[] poseSprites;
 
@@ -42,7 +42,7 @@ public class BeatGUIBar : MonoBehaviour
 		public float time;
 		public BarType type;
 		public Sprite sprite;
-		public Vector3 position;
+		public Pose pose;
 	};
 
 	public struct AccurateBeat
@@ -88,12 +88,7 @@ public class BeatGUIBar : MonoBehaviour
 				//current greater or equal to big (visual) beat time
 				if ( msBeatList[msCurrentIndex].time >= sBeatList[currentIndex].time )
 				{
-					Vector3 position = sBeatList[ currentIndex ].position;
-					if ( position.x < -350.0f )
-					{
-						// Check if it is in pose?
-						gameManager.HitSubBeat();
-					}
+					gameManager.HitSubBeat();
 				}
 				msCurrentIndex++;
 			}
@@ -131,7 +126,6 @@ public class BeatGUIBar : MonoBehaviour
 			BeatBarBehaviour behaviour = bar.AddComponent<BeatBarBehaviour>();
 			behaviour.barSpeed = barSpeed;
 			Beat beat = sBeatList[ i ];
-			beat.position = rt.transform.position;
 			bar.GetComponent<Image>().sprite = beat.sprite;
 			bar.GetComponent<Image>().SetNativeSize();
 			if (beat.type == BarType.Special)
@@ -165,8 +159,7 @@ public class BeatGUIBar : MonoBehaviour
 
 		BeatBarBehaviour behaviour2 = barSpecial.AddComponent<BeatBarBehaviour>();
 		behaviour2.barSpeed = barSpeed;
-		int poseIndex = UnityEngine.Random.Range( 0, Globals.poses.Length );
-		barSpecial.GetComponent<Image>().sprite = Globals.poses[poseIndex].uiTexture;
+		barSpecial.GetComponent<Image>().sprite = sBeatList[ index ].pose.data.uiTexture; 
 		barSpecial.GetComponent<Image>().SetNativeSize();
 	}
 
@@ -176,6 +169,8 @@ public class BeatGUIBar : MonoBehaviour
 		{
 			Beat b = sBeatList[i];
 			b.type = BarType.Special;
+			int poseIndex = UnityEngine.Random.Range( 0, Globals.poses.Length );
+			b.pose = new Pose( Globals.poses[ poseIndex ] );
 			b.sprite = sprites[1];
 			sBeatList[i] = b;
 
