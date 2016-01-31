@@ -1,56 +1,51 @@
 ﻿using System.Collections.Generic;
 
-class players
+struct ScoreEntry
 {
-    public int id;
-    public int score;
-    public int highscore;
-    public int latestEarned;
+	public int score;
+	public int highscore;
+	public int latestEarned;
 }
 
-public class ScoreHandler {
-    private players[] pList;
-    private List<int> gameScores;
-    private static ScoreHandler instance;
-    private ScoreHandler()
-    {
-        gameScores = new List<int>();
-        pList = new players[4];
-        pList[0] = new players();
-        pList[0].id = 1;
-        pList[1] = new players();
-        pList[1].id = 2;
-        pList[2] = new players();
-        pList[2].id = 3;
-        pList[3] = new players();
-        pList[3].id = 4;
-    }
+public class ScoreHandler
+{
+	private readonly ScoreEntry[] scoreEntryList;
+	private readonly List<int> gameScores;
+	private static ScoreHandler instance;
 
-    public static ScoreHandler getInstance()
-    {
-        if (instance == null) instance = new ScoreHandler();
-        return instance;
-    }
+	private ScoreHandler()
+	{
+		gameScores = new List<int>();
+		scoreEntryList = new ScoreEntry[4];
+	}
 
-    public void addScore(int playerID, int amount)
-    {
-        pList[playerID-1].score += amount;
-        pList[playerID-1].latestEarned = amount;
-    }
+	public static ScoreHandler GetInstance()
+	{
+		if (instance == null) instance = new ScoreHandler();
+		return instance;
+	}
 
-    public int getScore(int playerID)
-    {
-        return pList[playerID - 1].score;
-    }
+	public void AddScore(int playerNumber, int amount)
+	{
+		ScoreEntry entry = scoreEntryList[playerNumber - 1];
+		entry.score += amount;
+		entry.latestEarned = amount;
+		scoreEntryList[playerNumber - 1] = entry;
+	}
 
-    public void generateTotalGameScore()
-    {
-        int score = 0;
-        score += pList[0].score;
-        score += pList[1].score;
-        score += pList[2].score;
-        score += pList[3].score;
-        gameScores.Add(score);
-    }
+	public int GetScore(int playerNumber)
+	{
+		return scoreEntryList[playerNumber - 1].score;
+	}
+
+	public void generateTotalGameScore()
+	{
+		int score = 0;
+		score += scoreEntryList[0].score;
+		score += scoreEntryList[1].score;
+		score += scoreEntryList[2].score;
+		score += scoreEntryList[3].score;
+		gameScores.Add(score);
+	}
 
 }
