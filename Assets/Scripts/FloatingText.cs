@@ -16,6 +16,7 @@ public class FloatingText : MonoBehaviour
     private Vector3 startScale;
     private Vector3 endScale;
     private float scaleJourney;
+    public bool isScore = false;
     // Use this for initialization
     void Start () {
         float floatup = Screen.height / 100;
@@ -29,33 +30,53 @@ public class FloatingText : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-        Timer += Time.deltaTime;
-	    if ( Timer < 0.8)
+	    if (!isScore)
 	    {
-            if (!scaleSet)
-            {
-                startTime = Time.time;
-                startScale = transform.localScale;
-                endScale = startScale * 3.5f;
-                scaleJourney = Vector3.Distance(transform.localScale, endScale);
-                speed = scaleJourney /2;
-                scaleSet = true;
-            }
+	        Timer += Time.deltaTime;
+	        if (Timer < 0.8)
+	        {
+	            if (!scaleSet)
+	            {
+	                startTime = Time.time;
+	                startScale = transform.localScale;
+	                endScale = startScale*3.5f;
+	                scaleJourney = Vector3.Distance(transform.localScale, endScale);
+	                speed = scaleJourney/2;
+	                scaleSet = true;
+	            }
 
-            float distCovered = (Time.time - startTime) * speed;
-            float t =  distCovered / scaleJourney;
-            t = Mathf.Sin(t * Mathf.PI * 2.1f);
-            transform.localScale = Vector3.Lerp(startScale, endScale, t); 
+	            float distCovered = (Time.time - startTime)*speed;
+	            float t = distCovered/scaleJourney;
+	            t = Mathf.Sin(t*Mathf.PI*2.1f);
+	            transform.localScale = Vector3.Lerp(startScale, endScale, t);
 
+	        }
+	        if (Timer > 0.8f)
+	        {
+	            if (startTime < 0.1) startTime = Time.time;
+	            float distCovered = (Time.time - startTime)*120;
+	            float t = distCovered/journeyLength;
+	            t = t*t*t;
+	            transform.position = Vector3.Lerp(startpos, endpos, t);
+	            float normalCovered = distCovered/journeyLength;
+	            Color newcolor = gameObject.GetComponent<Text>().color;
+	            normalCovered = 1 - normalCovered;
+	            newcolor.a = normalCovered;
+	            gameObject.GetComponent<Text>().color = newcolor;
+	            if (normalCovered < 0)
+	            {
+	                Destroy(this.gameObject);
+	            }
+	        }
         }
-        if (Timer > 0.8f)
-        {
+        else
+	    {
             if (startTime < 0.1) startTime = Time.time;
             float distCovered = (Time.time - startTime) * 120;
             float t = distCovered / journeyLength;
-            t = t*t*t;
+            t = t * t * t;
             transform.position = Vector3.Lerp(startpos, endpos, t);
-            float normalCovered = distCovered/journeyLength;
+            float normalCovered = distCovered / journeyLength;
             Color newcolor = gameObject.GetComponent<Text>().color;
             normalCovered = 1 - normalCovered;
             newcolor.a = normalCovered;
@@ -65,5 +86,5 @@ public class FloatingText : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
-    }
+	}
 }

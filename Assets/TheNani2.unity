@@ -11243,6 +11243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b007deee868115d4a8446881f09efed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiHolder: {fileID: 1015101929}
   quicksand: {fileID: 12800000, guid: 64c40348d5195e242a33efb1b0fc9d19, type: 3}
   locationHolder: {fileID: 613288348}
 --- !u!114 &2087029655

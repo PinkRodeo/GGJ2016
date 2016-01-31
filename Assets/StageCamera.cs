@@ -38,9 +38,10 @@ public class StageCamera : MonoBehaviour
 
 	}
 
-	// Update is called once per frame
-	void Update ()
+	public void setZoomedInOnVeranda(float newAmount)
 	{
+		zoomedInOnVeranda = Mathf.Clamp01(newAmount);
+
 		Vector3 newFocusPoint = Vector3.LerpUnclamped(MainStageFocustPoint.localPosition, VerandaFocusPoint.localPosition, zoomedInOnVeranda);
 
 		cameraFocalPoint.localPosition = newFocusPoint;
@@ -48,6 +49,5 @@ public class StageCamera : MonoBehaviour
 		transform.localRotation = Quaternion.LerpUnclamped(initialRotation, fullLookatQuaternion, zoomedInOnVeranda);
 
 		camera.fieldOfView = Mathf.LerpUnclamped(initialFOV, balconyTargetPOV, zoomedInOnVeranda);
-
 	}
 }
