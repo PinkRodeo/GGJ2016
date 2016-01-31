@@ -11,8 +11,6 @@ public class PlayerUIHandler : MonoBehaviour {
         {
             GameObject nextplayer = (GameObject)Instantiate(prefab, new Vector3(0,0,0), Quaternion.identity);
             nextplayer.transform.SetParent(holder[ii].transform);
-            int pnr = ii + 1;
-            nextplayer.GetComponent<PlayerUI>().playerID.text = "Player " + pnr;
             nextplayer.transform.localPosition = Vector3.zero;
             nextplayer.GetComponent<RectTransform>().sizeDelta = Vector2.zero;
 
