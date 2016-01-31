@@ -33,8 +33,7 @@ public class BeatGUIBar : MonoBehaviour
 	public enum BarType
 	{
 		Normal,
-		Special,
-		Empty
+		Special
 	}
 
 	public struct Beat
@@ -109,8 +108,6 @@ public class BeatGUIBar : MonoBehaviour
 
 		for( int i = 0; i < sBeatLength; i++ )
 		{
-			if (sBeatList [i].type == BarType.Empty)
-				continue;
 
 			GameObject bar = new GameObject( "beatBar", typeof( RectTransform ) );
 			bar.AddComponent<CanvasRenderer>();
@@ -165,7 +162,7 @@ public class BeatGUIBar : MonoBehaviour
 
 	private void InitializeSpecialVisualBeats()
 	{
-		for (int i = 6 + startingAfter; i < sBeatLength; i += 8)
+		for (int i = 6 + startingAfter; i < sBeatLength; i += 7)
 		{
 			Beat b = sBeatList[i];
 			b.type = BarType.Special;
@@ -173,10 +170,6 @@ public class BeatGUIBar : MonoBehaviour
 			b.pose = new Pose( Globals.poses[ poseIndex ] );
 			b.sprite = sprites[1];
 			sBeatList[i] = b;
-
-			Beat c = sBeatList[i + 1];
-			c.type = BarType.Empty;
-			sBeatList[i + 1] = c;
 		}
 	}
 
