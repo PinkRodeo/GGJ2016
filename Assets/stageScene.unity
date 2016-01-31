@@ -389,6 +389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerId: 1
+  _isInitialized: 0
 --- !u!1001 &89365123
 Prefab:
   m_ObjectHideFlags: 0
@@ -467,6 +468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerId: 1
+  _isInitialized: 0
 --- !u!1 &111347629
 GameObject:
   m_ObjectHideFlags: 0
@@ -707,7 +709,7 @@ MonoBehaviour:
   - {fileID: 21300062, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
   - {fileID: 21300080, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
   - {fileID: 21300044, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
-  - {fileID: 21300090, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
+  - {fileID: 21300080, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
   uiHolder: {fileID: 1428581838}
   quicksand: {fileID: 12800000, guid: 64c40348d5195e242a33efb1b0fc9d19, type: 3}
   locationHolder: {fileID: 579272407}
@@ -1239,6 +1241,7 @@ MonoBehaviour:
   - {fileID: 1281260360}
   - {fileID: 1666594384}
   end: 0
+  mistress: {fileID: 0}
 --- !u!4 &469581346
 Transform:
   m_ObjectHideFlags: 0
@@ -1372,6 +1375,24 @@ MonoBehaviour:
   m_Script: {fileID: 185759285, guid: 0472bdc8d6d15384d98f22ee34302f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _quads: []
+  _sharedIndices: []
+  _vertices: []
+  _uv: []
+  _sharedIndicesUV: []
+  _colors: []
+  angleError: 8
+  areaError: 15
+  hardAngle: 88
+  packMargin: 20
+  m_selectedFaces: 
+  m_SelectedEdges: []
+  m_selectedTriangles: 
+  previousTransform: {x: 0, y: 0, z: 0}
+  userCollisions: 0
+  isSelectable: 1
+  _name: Object
+  dontDestroyMeshOnDelete: 0
 --- !u!33 &509428260
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1390,6 +1411,7 @@ MonoBehaviour:
   m_Script: {fileID: 16342205, guid: 0472bdc8d6d15384d98f22ee34302f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _entityType: 0
 --- !u!23 &509428262
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1807,6 +1829,24 @@ MonoBehaviour:
   m_Script: {fileID: 185759285, guid: 0472bdc8d6d15384d98f22ee34302f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _quads: []
+  _sharedIndices: []
+  _vertices: []
+  _uv: []
+  _sharedIndicesUV: []
+  _colors: []
+  angleError: 8
+  areaError: 15
+  hardAngle: 88
+  packMargin: 20
+  m_selectedFaces: 
+  m_SelectedEdges: []
+  m_selectedTriangles: 
+  previousTransform: {x: 0, y: 0, z: 0}
+  userCollisions: 0
+  isSelectable: 1
+  _name: Object
+  dontDestroyMeshOnDelete: 0
 --- !u!33 &606547839
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1825,6 +1865,7 @@ MonoBehaviour:
   m_Script: {fileID: 16342205, guid: 0472bdc8d6d15384d98f22ee34302f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _entityType: 0
 --- !u!23 &606547841
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2578,6 +2619,24 @@ MonoBehaviour:
   m_Script: {fileID: 185759285, guid: 0472bdc8d6d15384d98f22ee34302f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _quads: []
+  _sharedIndices: []
+  _vertices: []
+  _uv: []
+  _sharedIndicesUV: []
+  _colors: []
+  angleError: 8
+  areaError: 15
+  hardAngle: 88
+  packMargin: 20
+  m_selectedFaces: 
+  m_SelectedEdges: []
+  m_selectedTriangles: 
+  previousTransform: {x: 0, y: 0, z: 0}
+  userCollisions: 0
+  isSelectable: 1
+  _name: Object
+  dontDestroyMeshOnDelete: 0
 --- !u!33 &1073701260
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2596,6 +2655,7 @@ MonoBehaviour:
   m_Script: {fileID: 16342205, guid: 0472bdc8d6d15384d98f22ee34302f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _entityType: 0
 --- !u!23 &1073701262
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3247,6 +3307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerId: 2
+  _isInitialized: 0
 --- !u!1001 &1191827406
 Prefab:
   m_ObjectHideFlags: 0
@@ -3363,6 +3424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerId: 3
+  _isInitialized: 0
 --- !u!1 &1287399383
 GameObject:
   m_ObjectHideFlags: 0
@@ -4165,6 +4227,24 @@ MonoBehaviour:
   m_Script: {fileID: 185759285, guid: 0472bdc8d6d15384d98f22ee34302f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _quads: []
+  _sharedIndices: []
+  _vertices: []
+  _uv: []
+  _sharedIndicesUV: []
+  _colors: []
+  angleError: 8
+  areaError: 15
+  hardAngle: 88
+  packMargin: 20
+  m_selectedFaces: 
+  m_SelectedEdges: []
+  m_selectedTriangles: 
+  previousTransform: {x: 0, y: 0, z: 0}
+  userCollisions: 0
+  isSelectable: 1
+  _name: Object
+  dontDestroyMeshOnDelete: 0
 --- !u!33 &1612706763
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4183,6 +4263,7 @@ MonoBehaviour:
   m_Script: {fileID: 16342205, guid: 0472bdc8d6d15384d98f22ee34302f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _entityType: 0
 --- !u!23 &1612706765
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4455,6 +4536,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerId: 4
+  _isInitialized: 0
 --- !u!4 &1697074630 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 2e5a33368fd7ad040a1986a9698a69d3, type: 3}
@@ -6895,6 +6977,24 @@ MonoBehaviour:
   m_Script: {fileID: 185759285, guid: 0472bdc8d6d15384d98f22ee34302f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _quads: []
+  _sharedIndices: []
+  _vertices: []
+  _uv: []
+  _sharedIndicesUV: []
+  _colors: []
+  angleError: 8
+  areaError: 15
+  hardAngle: 88
+  packMargin: 20
+  m_selectedFaces: 
+  m_SelectedEdges: []
+  m_selectedTriangles: 
+  previousTransform: {x: 0, y: 0, z: 0}
+  userCollisions: 0
+  isSelectable: 1
+  _name: Object
+  dontDestroyMeshOnDelete: 0
 --- !u!33 &2013211699
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6913,6 +7013,7 @@ MonoBehaviour:
   m_Script: {fileID: 16342205, guid: 0472bdc8d6d15384d98f22ee34302f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _entityType: 0
 --- !u!23 &2013211701
 MeshRenderer:
   m_ObjectHideFlags: 0

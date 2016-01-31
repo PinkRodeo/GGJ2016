@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 
@@ -33,6 +34,7 @@ public class SceneChoreographer : MonoBehaviour
 	private Vector3 initialLogoLocalPosition;
 	private GameSceneMaster gameManager;
 	private bool ended;
+	private bool startPressed;
 
 	// Use this for initialization
 	void Start ()
@@ -55,12 +57,18 @@ public class SceneChoreographer : MonoBehaviour
 
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.E))
+		if (Input.GetKeyDown(KeyCode.Y))
 		{
-			DoThingsEnterStage();
+			ScoreHandler.GetInstance().SetScore(1, 0);
+			ScoreHandler.GetInstance().SetScore(2, 0);
+			ScoreHandler.GetInstance().SetScore(3, 0);
+			ScoreHandler.GetInstance().SetScore(4, 0);
+			SceneManager.LoadScene(0);
 		}
-		if (debugControllerInput.GetKeyUp(ControllerAction.START))
+		if ((debugControllerInput.GetKeyUp(ControllerAction.START) || Input.GetKeyDown(KeyCode.E)) && !startPressed)
 		{
+			startPressed = true;
+
 			DoThingsEnterStage();
 			gameManager.InitBirdControls();
 		}
@@ -68,11 +76,16 @@ public class SceneChoreographer : MonoBehaviour
 		if (gameManager.end && !ended)
 		{
 			ended = true;
-			gameManager.ExitStage();
-			DoThingsExitStage();
 			crowd.StartEndCheer();
-			Invoke("StopCheer", 5);
+			Invoke("Outro", 5);
 		}
+	}
+
+	private void Outro()
+	{
+		gameManager.ExitStage();
+		DoThingsExitStage();
+		Invoke("StopCheer", 5);
 	}
 
 	private void StopCheer()
