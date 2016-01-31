@@ -16,7 +16,7 @@ public class BeatBarBehaviour : MonoBehaviour
 	{
 		//rt.sizeDelta = barSize;
 		rectTransform.transform.Translate( -transform.right * Time.fixedDeltaTime * barSpeed );
-		if ( rectTransform.transform.position.x < 0.0 )
+		if ( rectTransform.transform.position.x < -100.0 )
 		{
 			Destroy(this.gameObject);
 		}
