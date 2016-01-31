@@ -37,7 +37,7 @@ public class BirdHead
 	public void Update(float dt)
 	{
 
-		Vector2 stick = input.GetRightStick();
+		Vector2 stick = input.GetLeftStick();
 		stick.x = stick.x*-1f;
 
 		float beakMod = 1f + 0.15f*beak_held;

@@ -11,6 +11,10 @@ public class BirdControl : MonoBehaviour
 	private BirdHead head;
 	private BirdBody body;
 
+	private BirdLeg leftLeg;
+	private BirdLeg rightLeg;
+
+
 
 	private ControllerInput input;
 
@@ -26,8 +30,13 @@ public class BirdControl : MonoBehaviour
 		rightWing.trigger = ControllerAction.L2;
 
 
+		leftLeg = new BirdLeg(transform.FindInChildren("Leg_Feet_L"), "_L", input);
+		rightLeg = new BirdLeg(transform.FindInChildren("Leg_Feet_R"), "_R", input);
+
+
 		head = new BirdHead(transform.FindInChildren("Neck"), input);
 
+		body = new BirdBody(transform.FindInChildren("Body"), input);
 
 
 	}
@@ -41,5 +50,11 @@ public class BirdControl : MonoBehaviour
 		rightWing.Update(dt);
 
 		head.Update(dt);
+
+		body.Update(dt);
+
+		leftLeg.Update(dt);
+		rightLeg.Update(dt);
+
 	}
 }

@@ -55,6 +55,51 @@ ModelImporter:
     100094: Wing_F_3_L_end
     100096: Wing_F_3_R
     100098: Wing_F_3_R_end
+    100100: Bird
+    100102: Bird_Armature
+    100104: Bone.001
+    100106: Bone.002
+    100108: Bone.002_end
+    100110: Bone.003
+    100112: Bone.004
+    100114: Bone.004_end
+    100116: Bone.005
+    100118: Bone.006
+    100120: Bone.007
+    100122: Bone.008
+    100124: Bone.009
+    100126: Bone.009_end
+    100128: Bone.010
+    100130: Bone.011
+    100132: Bone.012
+    100134: Bone.013
+    100136: Bone.014
+    100138: Bone.014_end
+    100140: Bone.015
+    100142: Bone.016
+    100144: Bone.017
+    100146: Bone.018
+    100148: Bone.019
+    100150: Bone.019_end
+    100152: Bone.020
+    100154: Bone.021
+    100156: Bone.022
+    100158: Bone.023
+    100160: Bone.023_end
+    100162: Empty
+    100164: Hip_L_end
+    100166: Hip_R_end
+    100168: Leg_Heel_L_end
+    100170: Leg_Heel_R_end
+    100172: Leg_Lower_L_end
+    100174: Leg_Lower_R_end
+    100176: Leg_Upper_L_end
+    100178: Leg_Upper_R_end
+    100180: MainBone
+    100182: Sphere.000
+    100184: Sphere.002
+    100186: Sphere.003
+    100188: Sphere.005
     400000: //RootNode
     400002: Bird_Skeleton
     400004: Body
@@ -105,11 +150,70 @@ ModelImporter:
     400094: Wing_F_3_L_end
     400096: Wing_F_3_R
     400098: Wing_F_3_R_end
+    400100: Bird
+    400102: Bird_Armature
+    400104: Bone.001
+    400106: Bone.002
+    400108: Bone.002_end
+    400110: Bone.003
+    400112: Bone.004
+    400114: Bone.004_end
+    400116: Bone.005
+    400118: Bone.006
+    400120: Bone.007
+    400122: Bone.008
+    400124: Bone.009
+    400126: Bone.009_end
+    400128: Bone.010
+    400130: Bone.011
+    400132: Bone.012
+    400134: Bone.013
+    400136: Bone.014
+    400138: Bone.014_end
+    400140: Bone.015
+    400142: Bone.016
+    400144: Bone.017
+    400146: Bone.018
+    400148: Bone.019
+    400150: Bone.019_end
+    400152: Bone.020
+    400154: Bone.021
+    400156: Bone.022
+    400158: Bone.023
+    400160: Bone.023_end
+    400162: Empty
+    400164: Hip_L_end
+    400166: Hip_R_end
+    400168: Leg_Heel_L_end
+    400170: Leg_Heel_R_end
+    400172: Leg_Lower_L_end
+    400174: Leg_Lower_R_end
+    400176: Leg_Upper_L_end
+    400178: Leg_Upper_R_end
+    400180: MainBone
+    400182: Sphere.000
+    400184: Sphere.002
+    400186: Sphere.003
+    400188: Sphere.005
     2300000: //RootNode
+    2300002: Sphere.000
+    2300004: Sphere.002
+    2300006: Sphere.003
+    2300008: Sphere.005
     3300000: //RootNode
+    3300002: Sphere.000
+    3300004: Sphere.002
+    3300006: Sphere.003
+    3300008: Sphere.005
     4300000: Sphere.001
+    4300002: Sphere.003
+    4300004: Sphere.005
+    4300006: Sphere.000
+    4300008: Sphere.002
+    4300010: Bird
     9500000: //RootNode
     13700000: Sphere.001
+    13700002: Bird
   materials:
     importMaterials: 1
     materialName: 0
