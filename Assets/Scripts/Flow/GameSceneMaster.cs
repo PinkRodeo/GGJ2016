@@ -44,7 +44,7 @@ public class GameSceneMaster : MonoBehaviour
 			//compare
 			PoseDiff poseDiff = data.CompareWithController(input, 0);
 
-			int randomScoreModifier = Random.Range(30, 50);
+			int randomScoreModifier = Random.Range(10, 15);
 			ScoreHandler.GetInstance().AddScore(i + 1, Mathf.FloorToInt(poseDiff.totalDiff) * randomScoreModifier);
 
 			lastPose[i] = currentPose;
@@ -69,7 +69,7 @@ public class GameSceneMaster : MonoBehaviour
 			//compare
 			PoseDiff poseDiff = Pose.CalculatePoseDiffs(currentPose, prevPose);
 
-			int randomScoreModifier = Random.Range(10, 40);
+			int randomScoreModifier = Random.Range(5, 10);
 			ScoreHandler.GetInstance().AddScore(i + 1, Mathf.FloorToInt(poseDiff.totalDiff)*randomScoreModifier);
 
 			lastPose[i] = currentPose;
