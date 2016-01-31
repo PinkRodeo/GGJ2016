@@ -8,8 +8,13 @@ public class SongTimer
 	public static float bpm;
 	public static float frequency;
 
-	public static void StartSong(float newBPM)
+
+	public static float delay;
+
+	public static void StartSong(float newBPM, float delay = 0.0f)
 	{
+		SongTimer.delay = delay;
+
 		bpm = newBPM;
 		frequency = newBPM / 60f;
 
@@ -37,7 +42,7 @@ public class SongTimer
 	{
 		if (isSongRunning)
 		{
-			return (2f*Mathf.PI*frequency/ multiplier * (Time.time - initialTime));
+			return (2f*Mathf.PI*frequency/ multiplier * (Time.time - initialTime+ delay));
 		}
 		else
 		{

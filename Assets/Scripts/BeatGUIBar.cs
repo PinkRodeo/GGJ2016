@@ -46,7 +46,7 @@ public class BeatGUIBar : MonoBehaviour
 		public Beat mainBeat;
 	};
 
-	public void StartTheMusic ()
+	public void StartTheMusic()
 	{
 		timeBetweenBeats = 60.0f / BeatsPerMinute;
 		canvas = GameObject.Find("Canvas");
@@ -63,7 +63,7 @@ public class BeatGUIBar : MonoBehaviour
 	// ReSharper disable once UnusedMember.Local
 	private  void delayedSongStart()
 	{
-		SongTimer.StartSong(128f);
+		SongTimer.StartSong(128f, 0.18f);
 	}
 
 	void Update ()
