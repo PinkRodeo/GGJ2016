@@ -8,9 +8,10 @@ public class CanvasHandler : MonoBehaviour {
     public Text score3;
     public Text score4;
     // Use this for initialization
-    void Start () {
-	
-	}
+    void Start ()
+    {
+        Frequency.getInstance().startTimer();
+    }
 	
 	// Update is called once per frame
 	void Update () {
