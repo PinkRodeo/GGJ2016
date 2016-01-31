@@ -45,4 +45,27 @@ public class SongTimer
 			return 0f;
 		}
 	}
+
+	private const float LEADIN_DURATION = 6f;
+
+	public static float leadInRatio(float multiplier = 1f)
+	{
+		if (Time.time - initialTime < LEADIN_DURATION)
+		{
+			return (Time.time - initialTime) /LEADIN_DURATION;
+		}
+		else
+		{
+			return 1f;
+		}
+		if (isSongRunning)
+		{
+			return (2f * Mathf.PI * frequency / multiplier * (Time.time - initialTime));
+		}
+		else
+		{
+			Debug.LogError("[SongTimer] something tried to timedValue() without a song being started");
+			return 0f;
+		}
+	}
 }

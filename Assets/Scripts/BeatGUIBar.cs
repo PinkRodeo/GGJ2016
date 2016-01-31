@@ -55,7 +55,15 @@ public class BeatGUIBar : MonoBehaviour
 		if( source != null )
 		{
 			source.PlayDelayed( DelayForMusic );
+			Invoke("delayedSongStart", DelayForMusic);
 		}
+	}
+
+	// Called with Invoke() in Start()
+	// ReSharper disable once UnusedMember.Local
+	private  void delayedSongStart()
+	{
+		SongTimer.StartSong(128f);
 	}
 
 	void Update ()
