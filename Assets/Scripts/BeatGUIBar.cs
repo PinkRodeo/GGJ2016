@@ -12,20 +12,23 @@ public class BeatGUIBar : MonoBehaviour
 	public int BeatsPerMinute = 128;
 	public float DelayForMusic = 3.9f;
 	public int startingAfter = 15;
+	public int timesTheAmountForSmallerChecks = 3;
 	public Sprite[] sprites;
 
 	private float timer;
 	private float globalTime;
 
-	private int spawnIndex = 0;
 	private int currentIndex = 0;
-	private int beatLength = 0;
+	private int msCurrentIndex = 0;
+	private int sBeatLength = 0;
+	private int msBeatLength = 0;
 
 	private Color barColor;
 	private GameObject canvas;
 	private AudioSource source;
 
-	private Beat[] beatList;
+	private Beat[] sBeatList;
+	private AccurateBeat[] msBeatList;
 
 	public enum BarType
 	{
@@ -39,6 +42,12 @@ public class BeatGUIBar : MonoBehaviour
 		public float time;
 		public BarType type;
 		public Sprite sprite;
+	};
+
+	public struct AccurateBeat
+	{
+		public float time;
+		public Beat mainBeat;
 	};
 
 	void Start () 
@@ -57,12 +66,31 @@ public class BeatGUIBar : MonoBehaviour
 	{
 		globalTime += Time.deltaTime;
 
-		while( currentIndex < beatLength )
+		while( msCurrentIndex < msBeatLength )
 		{
-			if (beatList[currentIndex].time <= globalTime)
+			if ( msBeatList[msCurrentIndex].time <= globalTime )
+			{
+				if ( msBeatList[msCurrentIndex].time >= sBeatList[currentIndex].time )
+				{
+					if (Input.GetKeyDown(KeyCode.E))
+					{
+						Log.Tinas("Hit: " + DateTime.Now.ToString("mm:ss:fff") );
+					}	
+				}
+				msCurrentIndex++;
+			}
+			else
+			{
+				break;
+			}
+		}
+
+		while( currentIndex < sBeatLength )
+		{
+			if (sBeatList[currentIndex].time <= globalTime)
 			{
 				//we hit the beat in this frame so do some stuff
-				Log.Tinas("BEAT HITSZ@!" + currentIndex);
+				Log.Tinas("Should get input now: " + DateTime.Now.ToString("mm:ss:fff") );
 				currentIndex++;
 			}
 			else 
@@ -70,6 +98,7 @@ public class BeatGUIBar : MonoBehaviour
 				break;
 			}
 		}
+			
 		/*
 		while(spawnIndex < beatLength )
 		{
@@ -91,39 +120,47 @@ public class BeatGUIBar : MonoBehaviour
 	void GenerateArray( float seconds )
 	{
 		float beatsPerSecond = 1.0f / timer;
-		beatLength = (int)( seconds * beatsPerSecond  );
-		beatList = new Beat[ beatLength ];
-		int amount = beatLength - (beatLength / 8);
-		for( int i = 0; i < beatLength; i++ )
+		sBeatLength = (int)( seconds * beatsPerSecond  );
+		msBeatLength = sBeatLength * timesTheAmountForSmallerChecks;
+		sBeatList = new Beat[ sBeatLength ];
+		msBeatList = new AccurateBeat[ msBeatLength ];
+		int amount = sBeatLength - (sBeatLength / 8);
+		for( int i = 0; i < sBeatLength; i++ )
 		{
 			if ( i >= amount)
 			{
-				Beat b = beatList[ i ];
+				Beat b = sBeatList[ i ];
 				b.type = BarType.empty;
 				b.sprite = null;
-				beatList[ i ] = b;
+				sBeatList[ i ] = b;
 			} 
-			Beat c = beatList[ i ];
+			Beat c = sBeatList[ i ];
 			c.type = BarType.normal;
 			c.time = DelayForMusic + i * timer;
 			c.sprite = sprites[0];
-			beatList[ i ] = c;
+			sBeatList[ i ] = c;
 		}
 
-		for( int i = 6 + startingAfter; i < beatLength; i += 8 )
+		for( int i = 6 + startingAfter; i < sBeatLength; i += 8 )
 		{
-			Beat b = beatList[ i ];
+			Beat b = sBeatList[ i ];
 			b.type = BarType.special;
 			b.sprite = sprites[1];
-			beatList[ i ] = b;
+			sBeatList[ i ] = b;
 
-			Beat c = beatList[ i + 1 ];
+			Beat c = sBeatList[ i + 1 ];
 			c.type = BarType.empty;
-			beatList[ i + 1  ] = c;
+			sBeatList[ i + 1  ] = c;
+		}
+		float newDelay = DelayForMusic - timer * timesTheAmountForSmallerChecks;
+		for( int i = 0; i < msBeatLength; i++ )
+		{
+			AccurateBeat b = msBeatList[ i ];
+			b.time = DelayForMusic + i * ( timer / timesTheAmountForSmallerChecks );
+			msBeatList[ i ] = b;
 		}
 
-
-		for( int i = 0; i < beatLength; i++ )
+		for( int i = 0; i < sBeatLength; i++ )
 		{
 			GameObject bar = new GameObject( "beatBar", typeof( RectTransform ) );
 			bar.AddComponent<CanvasRenderer>();
@@ -133,11 +170,11 @@ public class BeatGUIBar : MonoBehaviour
 			bar.transform.SetParent( canvas.transform );
 			Vector3 p = rt.position;
 
-			rt.transform.position = new Vector3( p.x + Screen.currentResolution.width + i * 300.0f, p.y + 50.0f, p.z );
+			rt.transform.position = new Vector3( p.x + i * 300.0f, p.y + 50.0f, p.z );
 
 			BeatBarBehaviour behaviour = bar.AddComponent<BeatBarBehaviour>();
 			behaviour.barSpeed = barSpeed;
-			Beat a = beatList[ i ];
+			Beat a = sBeatList[ i ];
 			bar.GetComponent<Image>().sprite = a.sprite;
 			bar.GetComponent<Image>().SetNativeSize(); 
 			if (a.type == BarType.special)

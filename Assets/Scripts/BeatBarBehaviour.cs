@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class BeatBarBehaviour : MonoBehaviour 
 {
@@ -15,10 +16,11 @@ public class BeatBarBehaviour : MonoBehaviour
 	void Update () 
 	{
 		RectTransform rt = GetComponent<RectTransform>();
-		rt.sizeDelta = barSize;
+		//rt.sizeDelta = barSize;
 		rt.transform.Translate( -transform.right * Time.deltaTime * barSpeed );
 		if ( rt.transform.position.x < 0.0 )
 		{
+			Log.Tinas("Should delete now: " + DateTime.Now.ToString("mm:ss:fff") );
 			Destroy(this.gameObject);
 		}
 	}
