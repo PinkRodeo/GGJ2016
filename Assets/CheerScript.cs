@@ -5,6 +5,7 @@ public class CheerScript : MonoBehaviour {
 
 	public AudioClip[] cheers;
 	public AudioClip endCheer;
+	public bool canPlayCheers = false;
 
 	private AudioSource audioSource;
 
@@ -15,7 +16,9 @@ public class CheerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (Random.value < 0.002 && canPlayCheers) {
+			PlayCheer();
+		}
 	}
 
 	public void PlayCheer () {
@@ -28,6 +31,7 @@ public class CheerScript : MonoBehaviour {
 	}
 
 	public void StartEndCheer () {
+		audioSource.Stop ();
 		audioSource.clip = endCheer;
 		audioSource.loop = true;
 		audioSource.Play ();

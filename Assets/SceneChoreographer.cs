@@ -19,6 +19,8 @@ public class SceneChoreographer : MonoBehaviour
 	public BeatGUIBar beatGUIBar;
 	private StageCamera stageCamera;
 
+	public CheerScript crowd;
+
 	public SceneGeographerBalcony balconyObjects;
 
 	private ControllerInput debugControllerInput;
@@ -144,6 +146,7 @@ public class SceneChoreographer : MonoBehaviour
 							LeanTween.delayedCall(0f, () =>
 							{
 								beatGUIBar.StartTheMusic();
+								crowd.canPlayCheers = true;
 							});
 						});
 					});
