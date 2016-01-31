@@ -10,6 +10,8 @@ public class BeatGUIBar : MonoBehaviour
 	public int startingAfter = 15;
 	public int timesTheAmountForSmallerChecks = 3;
 	public Sprite[] sprites;
+	public Sprite[] poseSprites;
+
 
 	private float timeBetweenBeats;
 	private float globalTime;
@@ -38,6 +40,7 @@ public class BeatGUIBar : MonoBehaviour
 		public float time;
 		public BarType type;
 		public Sprite sprite;
+		public Vector3 position;
 	};
 
 	public struct AccurateBeat
@@ -69,7 +72,6 @@ public class BeatGUIBar : MonoBehaviour
 	void Update ()
 	{
 		globalTime += Time.deltaTime;
-
 		while( msCurrentIndex < msBeatLength )
 		{
 			//current index time lesser than global time
@@ -78,11 +80,19 @@ public class BeatGUIBar : MonoBehaviour
 				//current greater or equal to big (visual) beat time
 				if ( msBeatList[msCurrentIndex].time >= sBeatList[currentIndex].time )
 				{
-					//if during this time press, then hit
-					//Log.Weikie("Should get input now: " + DateTime.Now.ToString("mm:ss:fff"));
-					if (Input.GetKey(KeyCode.E))
+					Vector3 position = sBeatList[ currentIndex ].position;
+					if ( position.x < -350.0f )
 					{
-						Log.Steb("Hit: " + DateTime.Now.ToString("mm:ss:fff") );
+						// Check if it is in pose?
+						int controllers = ControllerInput.GetConnectedControllers();
+						for( int i = 0; i < controllers; i++ )
+						{
+							ControllerInput inputController = new ControllerInput( i + 1 );
+							//inputController.GetLeftStick(); Globals.poses[ 0 ].head;
+							//inputController.GetRightStick(); Globals.poses[ 0 ].tail;
+							//inputController.GetAxis( ControllerAction.L2 ); Globals.poses[ 0 ].leftWing;
+							//inputController.GetAxis( ControllerAction.R2 ); Globals.poses[ 0 ].rightWing;
+						}
 					}
 				}
 				msCurrentIndex++;
@@ -100,7 +110,6 @@ public class BeatGUIBar : MonoBehaviour
 		InitializeVisualBeatList();
 		InitializeSpecialVisualBeats();
 
-		//float newDelay = DelayForMusic - timer * timesTheAmountForSmallerChecks;
 		SetBeatTimes();
 
 		for( int i = 0; i < sBeatLength; i++ )
@@ -122,6 +131,7 @@ public class BeatGUIBar : MonoBehaviour
 			BeatBarBehaviour behaviour = bar.AddComponent<BeatBarBehaviour>();
 			behaviour.barSpeed = barSpeed;
 			Beat beat = sBeatList[ i ];
+			beat.position = rt.transform.position;
 			bar.GetComponent<Image>().sprite = beat.sprite;
 			bar.GetComponent<Image>().SetNativeSize();
 			if (beat.type == BarType.Special)
@@ -155,7 +165,13 @@ public class BeatGUIBar : MonoBehaviour
 
 		BeatBarBehaviour behaviour2 = barSpecial.AddComponent<BeatBarBehaviour>();
 		behaviour2.barSpeed = barSpeed;
-		barSpecial.GetComponent<Image>().sprite = sprites[2];
+		//Log.Tinas( Globals.poses.Length );
+		//Log.Tinas( Globals.poses[  ] );
+		//int index = UnityEngine.Random.Range( 0, Globals.poses.Length );
+		//barSpecial.GetComponent<Image>().sprite = Globals.poses[index].uiTexture;
+		int count = poseSprites.Length;
+		int poseIndex = UnityEngine.Random.Range( 0, count );
+		barSpecial.GetComponent<Image>().sprite = poseSprites[ poseIndex ];
 		barSpecial.GetComponent<Image>().SetNativeSize();
 	}
 
@@ -185,7 +201,6 @@ public class BeatGUIBar : MonoBehaviour
 
 	private void InitializeVisualBeatList()
 	{
-		int amount = sBeatLength - (sBeatLength/8);
 		for (int i = 0; i < sBeatLength; i++)
 		{
 			Beat beat = sBeatList[i];
