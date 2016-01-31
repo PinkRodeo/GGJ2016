@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Net.Mime;
 using System.Text;
-using UnityEditor;
+//using UnityEditor;
 using UnityEngine.UI;
 
 public class FloatingText : MonoBehaviour
