@@ -48,7 +48,6 @@ public class GameSceneMaster : MonoBehaviour
 			ScoreHandler.GetInstance().AddScore(i + 1, Mathf.FloorToInt(poseDiff.totalDiff) * randomScoreModifier);
 
 			lastPose[i] = currentPose;
-			Log.Weikie("full beat");
 		}
 	}
 

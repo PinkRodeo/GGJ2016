@@ -89,15 +89,6 @@ public class BeatGUIBar : MonoBehaviour
 				{
 					if (sBeatList[msCurrentIndex].type == BarType.Special)
 					{
-						if (sBeatList[msCurrentIndex].pose == null)
-						{
-							Log.Weikie("pose is NULL");
-						}
-						else
-						{
-
-							Log.Weikie("THEREISAPOSE");
-						}
 						gameManager.HitFullBeat(sBeatList[msCurrentIndex].pose);
 					}
 					else
