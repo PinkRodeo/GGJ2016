@@ -1,29 +1,59 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerUIHandler : MonoBehaviour {
-    public GameObject[] holder = new GameObject[3];
-    public GameObject prefab;
-    int playeramount = 4;   // the amount of player in the game TODO number should come from somewhere else
-	// Use this for initialization
-	void Start () {
-	    for (int ii = 0; ii < playeramount; ii++)
-        {
-            GameObject nextplayer = (GameObject)Instantiate(prefab, new Vector3(0,0,0), Quaternion.identity);
-            nextplayer.transform.SetParent(holder[ii].transform);
-            nextplayer.transform.localPosition = Vector3.zero;
-            nextplayer.GetComponent<RectTransform>().sizeDelta = Vector2.zero;
+public class PlayerUIHandler : MonoBehaviour
+{
+	public GameObject[] holder = new GameObject[3];
+	public GameObject prefab;
+	private PlayerUI[] uiHolder = new PlayerUI[4];
+	private int playerCount = 4;
 
-        }
+	void Start ()
+	{
+		for (int i = 0; i < playerCount; i++)
+		{
+			GameObject nextplayer = (GameObject)Instantiate(prefab, new Vector3(0,0,0), Quaternion.identity);
+			nextplayer.transform.SetParent(holder[i].transform);
+			nextplayer.transform.localPosition = Vector3.zero;
+			nextplayer.GetComponent<RectTransform>().sizeDelta = Vector2.zero;
+
+
+			uiHolder[i] = holder[i].transform.GetChild(0).GetComponent<PlayerUI>();
+		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	    for (var jj = 0; jj < playeramount; jj++)
-        {
-            ScoreHandler.getInstance().addScore(jj+1, jj+1);// add score for now
-            holder[jj].transform.GetChild(0).GetComponent<PlayerUI>().score.text = ScoreHandler.getInstance().getScore(jj + 1) + ""; // get the score to display for in items
 
-        }
-    }
+	void Update ()
+	{
+		DebugKeys();
+		UpdateText();
+	}
+
+	private static void DebugKeys()
+	{
+		if (Input.GetKeyDown(KeyCode.Alpha1))
+		{
+			ScoreHandler.GetInstance().AddScore(1, 100);
+		}
+		if (Input.GetKeyDown(KeyCode.Alpha2))
+		{
+			ScoreHandler.GetInstance().AddScore(2, 100);
+		}
+		if (Input.GetKeyDown(KeyCode.Alpha3))
+		{
+			ScoreHandler.GetInstance().AddScore(3, 100);
+		}
+		if (Input.GetKeyDown(KeyCode.Alpha4))
+		{
+			ScoreHandler.GetInstance().AddScore(4, 100);
+		}
+	}
+
+	private void UpdateText()
+	{
+		for (var i = 0; i < playerCount; i++)
+		{
+			uiHolder[i].textUI.text = ScoreHandler.GetInstance().GetScore(i + 1).ToString();
+			// get the score to display for in items
+		}
+	}
 }
