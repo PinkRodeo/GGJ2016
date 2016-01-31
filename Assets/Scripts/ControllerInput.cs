@@ -23,7 +23,7 @@ public class ControllerInput
 	private readonly Dictionary<ControllerAction, List<string>> axisKeymap = new Dictionary<ControllerAction, List<string>>();
 	private readonly CurrentPlatform currentPlatform;
 	private readonly ControllerType controllerType = ControllerType.Unknown;
-	private readonly int controllerPort;
+	private int controllerPort;
 
 	#region Public accessors
 
@@ -73,6 +73,11 @@ public class ControllerInput
 				Log.Weikie("Unknown controller, go fix. Name is " + name);
 			}
 		}
+	}
+
+	public void SetHackPortNumberModifier(int port)
+	{
+		controllerPort = port;
 	}
 
 	public bool GetKeyDown(ControllerAction action)

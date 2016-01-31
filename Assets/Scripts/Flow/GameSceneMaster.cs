@@ -8,10 +8,13 @@ public class GameSceneMaster : MonoBehaviour
 	public BirdControl[] birds;
 	private PoseData[]	lastPose;
 	public bool end;
+	public BirdControl mistress;
 
 	void Start ()
 	{
 		lastPose = new PoseData[birds.Length];
+		mistress = GameObject.Find("BalconyBird").GetComponent<BirdControl>();
+		mistress._initializeController();
 	}
 
 	void Update ()
@@ -50,6 +53,7 @@ public class GameSceneMaster : MonoBehaviour
 
 			lastPose[i] = currentPose;
 		}
+		ScoreChanged();
 	}
 
 	//To be called from BeatGUIBar
@@ -75,6 +79,7 @@ public class GameSceneMaster : MonoBehaviour
 
 			lastPose[i] = currentPose;
 		}
+		ScoreChanged();
 	}
 
 	public void ExitStage()
@@ -83,6 +88,24 @@ public class GameSceneMaster : MonoBehaviour
 		{
 			ScoreHandler.GetInstance().SetScore(i, 0);
 		}
+	}
+
+	public void ScoreChanged()
+	{
+		int highestScore = 0;
+		int player = 0;
+
+		for (int i = 0; i < birds.Length; i++)
+		{
+			int score = ScoreHandler.GetInstance().GetScore(i + 1);
+			if (score > highestScore)
+			{
+				highestScore = score;
+				player = i;
+			}
+		}
+
+		mistress.GetInput().SetHackPortNumberModifier(player + 1);
 	}
 
 	public void End()

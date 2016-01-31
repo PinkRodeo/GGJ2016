@@ -16,7 +16,7 @@ public class BirdControl : MonoBehaviour
 
 	private BirdTail tail;
 
-	private bool _isInitialized = false;
+	public bool _isInitialized = false;
 
 	private ControllerInput input;
 
