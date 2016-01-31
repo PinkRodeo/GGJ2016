@@ -64,6 +64,7 @@ public class SceneChoreographer : MonoBehaviour
 
 		if (debugControllerInput.GetKeyUp(ControllerAction.SELECT))
 		{
+			gameManager.ExitStage();
 			DoThingsExitStage();
 		}
 	}

@@ -48,4 +48,11 @@ public class ScoreHandler
 		gameScores.Add(score);
 	}
 
+	public void SetScore(int i, int amount)
+	{
+		ScoreEntry entry = scoreEntryList[i];
+		entry.score = amount;
+		entry.latestEarned = amount;
+		scoreEntryList[i] = entry;
+	}
 }

@@ -75,4 +75,12 @@ public class GameSceneMaster : MonoBehaviour
 			lastPose[i] = currentPose;
 		}
 	}
+
+	public void ExitStage()
+	{
+		for (int i = 0; i < birds.Length; i++)
+		{
+			ScoreHandler.GetInstance().SetScore(i, 0);
+		}
+	}
 }
