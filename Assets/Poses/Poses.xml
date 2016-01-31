@@ -1,5 +1,5 @@
 <poses>
-	<pose name="Pose 1" phases="1" texture="Sprites/pose">
+	<pose name="Pose 0" phases="1" texture="Sprites/poses_0">
 		<leftWing>
 			<target value="1"/>
 		</leftWing>
@@ -13,7 +13,7 @@
 			<target x="-1" y="0"/>
 		</tail>
 	</pose>
-	<pose name="Pose 2" phases="1" texture="Sprites/pose2">
+	<pose name="Pose 1" phases="1" texture="Sprites/poses_1">
 		<leftWing>
 			<target value="1"/>
 		</leftWing>
@@ -27,7 +27,63 @@
 			<target x="-1" y="0"/>
 		</tail>
 	</pose>
-	<pose name="Pose 3" phases="1" texture="Sprites/pose3">
+	<pose name="Pose 2" phases="1" texture="Sprites/poses_2">
+		<leftWing>
+			<target value="1"/>
+		</leftWing>
+		<rightWing>
+			<target value="1"/>
+		</rightWing>
+		<head>
+			<target x="1" y="0"/>
+		</head>
+		<tail>
+			<target x="-1" y="0"/>
+		</tail>
+	</pose>
+	<pose name="Pose 3" phases="1" texture="Sprites/poses_3">
+		<leftWing>
+			<target value="1"/>
+		</leftWing>
+		<rightWing>
+			<target value="1"/>
+		</rightWing>
+		<head>
+			<target x="1" y="0"/>
+		</head>
+		<tail>
+			<target x="-1" y="0"/>
+		</tail>
+	</pose>
+	<pose name="Pose 4" phases="1" texture="Sprites/poses_4">
+		<leftWing>
+			<target value="1"/>
+		</leftWing>
+		<rightWing>
+			<target value="1"/>
+		</rightWing>
+		<head>
+			<target x="1" y="0"/>
+		</head>
+		<tail>
+			<target x="-1" y="0"/>
+		</tail>
+	</pose>
+	<pose name="Pose 5" phases="1" texture="Sprites/poses_5">
+		<leftWing>
+			<target value="1"/>
+		</leftWing>
+		<rightWing>
+			<target value="1"/>
+		</rightWing>
+		<head>
+			<target x="1" y="0"/>
+		</head>
+		<tail>
+			<target x="-1" y="0"/>
+		</tail>
+	</pose>
+	<pose name="Pose 6" phases="1" texture="Sprites/poses_6">
 		<leftWing>
 			<target value="1"/>
 		</leftWing>
