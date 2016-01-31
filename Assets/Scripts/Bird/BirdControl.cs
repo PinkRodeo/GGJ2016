@@ -41,6 +41,8 @@ public class BirdControl : MonoBehaviour
 
 	public void _initializeController()
 	{
+		if (IsInitialized()) return;
+
 		input = new ControllerInput(playerId);
 
 		leftWing = new BirdWing(transform.FindInChildren("Shoulder_L"), "_L", input);
