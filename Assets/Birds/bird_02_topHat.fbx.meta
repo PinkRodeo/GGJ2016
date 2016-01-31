@@ -141,6 +141,8 @@ ModelImporter:
     100266: Wing_F_3_R 1
     100268: Wing_F_3_R_end
     100270: Wing_F_3_R_end 1
+    100272: Hip_L_end
+    100274: Hip_R_end
     400000: Bird
     400002: //RootNode
     400004: Bird_Armature
@@ -277,6 +279,8 @@ ModelImporter:
     400266: Wing_F_3_R 1
     400268: Wing_F_3_R_end
     400270: Wing_F_3_R_end 1
+    400272: Hip_L_end
+    400274: Hip_R_end
     2300000: Sphere.000
     2300002: Sphere.002
     2300004: Sphere.003

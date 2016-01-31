@@ -61,7 +61,7 @@ public class BirdLeg
 		{
 			float tap = Mathf.Sin(2 * Mathf.PI * FREQUENCY / 8f * (Time.time - initialTime));
 
-			tap -= 1f-1f/24f;
+			tap -= 1f-1f/36f;
 
 
 			leg_feet.bone.position = leg_feet.initialWorldPosition + new Vector3(0, Mathf.Max(tap, 0) * 5f, 0);

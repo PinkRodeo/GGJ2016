@@ -31,6 +31,8 @@ public class BirdBody
 	{
 		Vector2 stick = input.GetRightStick();
 		stick.x = stick.x * -1f;
+		stick.y = stick.y * -1f;
+
 
 		stick.x = Mathf.MoveTowards(currentAppliedVector2.x, stick.x, 18f*dt);
 		stick.y = Mathf.MoveTowards(currentAppliedVector2.y, stick.y, 18f * dt);

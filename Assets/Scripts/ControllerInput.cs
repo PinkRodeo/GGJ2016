@@ -53,7 +53,7 @@ public class ControllerInput
 		}
 		//else
 		{
-			string name = controllerNames[controllerPort - 1];
+			string name = controllerNames[this.controllerPort - 1];
 
 			if (name.ToLower().Contains("xbox"))
 			{
