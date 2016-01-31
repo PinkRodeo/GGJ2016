@@ -1,0 +1,1029 @@
+fileFormatVersion: 2
+guid: 851dd967b7e534d429a77b17d6ff2074
+timeCreated: 1454240541
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: textsheet_0
+    21300002: textsheet_1
+    21300004: textsheet_2
+    21300006: textsheet_3
+    21300008: textsheet_4
+    21300010: textsheet_5
+    21300012: textsheet_6
+    21300014: textsheet_7
+    21300016: textsheet_8
+    21300018: textsheet_9
+    21300020: textsheet_10
+    21300022: textsheet_11
+    21300024: textsheet_12
+    21300026: textsheet_13
+    21300028: textsheet_14
+    21300030: textsheet_15
+    21300032: textsheet_16
+    21300034: textsheet_17
+    21300036: textsheet_18
+    21300038: textsheet_19
+    21300040: textsheet_20
+    21300042: textsheet_21
+    21300044: textsheet_22
+    21300046: textsheet_23
+    21300048: textsheet_24
+    21300050: textsheet_25
+    21300052: textsheet_26
+    21300054: textsheet_27
+    21300056: textsheet_28
+    21300058: textsheet_29
+    21300060: textsheet_30
+    21300062: textsheet_31
+    21300064: textsheet_32
+    21300066: textsheet_33
+    21300068: textsheet_34
+    21300070: textsheet_35
+    21300072: textsheet_36
+    21300074: textsheet_37
+    21300076: textsheet_38
+    21300078: textsheet_39
+    21300080: textsheet_40
+    21300082: textsheet_41
+    21300084: textsheet_42
+    21300086: textsheet_43
+    21300088: textsheet_44
+    21300090: textsheet_45
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: textsheet_0
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 1957
+        width: 518
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 259, y: -26.5}
+        - {x: 259, y: 31.5}
+        - {x: -256, y: 31.5}
+        - {x: -259, y: 17.5}
+        - {x: -259, y: -31.5}
+        - {x: 258, y: -31.5}
+    - name: textsheet_1
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 1957
+        width: 446
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 223, y: 31.5}
+        - {x: -216, y: 31.5}
+        - {x: -223, y: 13.5}
+        - {x: -223, y: -31.5}
+        - {x: 223, y: -31.5}
+    - name: textsheet_2
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 1886
+        width: 518
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 259, y: -21.5}
+        - {x: 259, y: 31.5}
+        - {x: -249, y: 31.5}
+        - {x: -256, y: 21.5}
+        - {x: -259, y: 4.5}
+        - {x: -259, y: -31.5}
+        - {x: 256, y: -31.5}
+    - name: textsheet_3
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 1886
+        width: 446
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -223, y: 31.5}
+        - {x: -223, y: -31.5}
+        - {x: 216, y: -31.5}
+        - {x: 223, y: -26.5}
+        - {x: 223, y: 31.5}
+    - name: textsheet_4
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 1815
+        width: 518
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 259, y: -29.5}
+        - {x: 259, y: 31.5}
+        - {x: -255, y: 31.5}
+        - {x: -259, y: 18.5}
+        - {x: -259, y: -31.5}
+        - {x: 253, y: -31.5}
+    - name: textsheet_5
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 1815
+        width: 446
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -223, y: 31.5}
+        - {x: -223, y: -31.5}
+        - {x: 216, y: -31.5}
+        - {x: 223, y: -26.5}
+        - {x: 223, y: 31.5}
+    - name: textsheet_6
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 1745
+        width: 518
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 259, y: -29.5}
+        - {x: 259, y: 31.5}
+        - {x: -255, y: 31.5}
+        - {x: -259, y: 18.5}
+        - {x: -259, y: -31.5}
+        - {x: 253, y: -31.5}
+    - name: textsheet_7
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 1745
+        width: 446
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 223, y: 31.5}
+        - {x: -214, y: 31.5}
+        - {x: -219, y: 25.5}
+        - {x: -223, y: 5.5}
+        - {x: -223, y: -31.5}
+        - {x: 217, y: -31.5}
+        - {x: 223, y: -19.5}
+    - name: textsheet_8
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 1663
+        width: 495
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -240.5, y: 31.5}
+        - {x: -247.5, y: 7.5}
+        - {x: -247.5, y: -31.5}
+        - {x: 243.5, y: -31.5}
+        - {x: 247.5, y: -24.5}
+        - {x: 247.5, y: 31.5}
+    - name: textsheet_9
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 1663
+        width: 620
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 310, y: -30.5}
+        - {x: 310, y: 31.5}
+        - {x: -307, y: 31.5}
+        - {x: -310, y: 13.5}
+        - {x: -310, y: -31.5}
+        - {x: 307, y: -31.5}
+    - name: textsheet_10
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 1593
+        width: 495
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -240.5, y: 31.5}
+        - {x: -247.5, y: 7.5}
+        - {x: -247.5, y: -31.5}
+        - {x: 243.5, y: -31.5}
+        - {x: 247.5, y: -24.5}
+        - {x: 247.5, y: 31.5}
+    - name: textsheet_11
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 1593
+        width: 620
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -301, y: 31.5}
+        - {x: -308, y: 26.5}
+        - {x: -310, y: 1.5}
+        - {x: -310, y: -31.5}
+        - {x: 304, y: -31.5}
+        - {x: 310, y: -17.5}
+        - {x: 310, y: 31.5}
+    - name: textsheet_12
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 1520
+        width: 495
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -240.5, y: 31.5}
+        - {x: -247.5, y: 13.5}
+        - {x: -247.5, y: -31.5}
+        - {x: 239.5, y: -31.5}
+        - {x: 247.5, y: -16.5}
+        - {x: 247.5, y: 31.5}
+    - name: textsheet_13
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 1520
+        width: 620
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -301, y: 31.5}
+        - {x: -308, y: 26.5}
+        - {x: -310, y: 1.5}
+        - {x: -310, y: -31.5}
+        - {x: 304, y: -31.5}
+        - {x: 310, y: -17.5}
+        - {x: 310, y: 31.5}
+    - name: textsheet_14
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 1447
+        width: 495
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -240.5, y: 31.5}
+        - {x: -247.5, y: 7.5}
+        - {x: -247.5, y: -31.5}
+        - {x: 243.5, y: -31.5}
+        - {x: 247.5, y: -24.5}
+        - {x: 247.5, y: 31.5}
+    - name: textsheet_15
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 1447
+        width: 620
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -301, y: 31.5}
+        - {x: -308, y: 26.5}
+        - {x: -310, y: 1.5}
+        - {x: -310, y: -31.5}
+        - {x: 304, y: -31.5}
+        - {x: 310, y: -17.5}
+        - {x: 310, y: 31.5}
+    - name: textsheet_16
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 1362
+        width: 508
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 254, y: 8.5}
+        - {x: 254, y: 37.5}
+        - {x: 252, y: 38.5}
+        - {x: -248, y: 38.5}
+        - {x: -254, y: 19.5}
+        - {x: -254, y: -32.5}
+        - {x: -126, y: -36.5}
+        - {x: -111, y: -38.5}
+        - {x: -17, y: -38.5}
+        - {x: 0, y: -32.5}
+        - {x: 247, y: -36.5}
+        - {x: 252, y: -10.5}
+    - name: textsheet_17
+      rect:
+        serializedVersion: 2
+        x: 860
+        y: 1375
+        width: 872
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 197, y: 31.5}
+        - {x: 178, y: 21.5}
+        - {x: 162, y: 31.5}
+        - {x: -436, y: 31.5}
+        - {x: -436, y: -31.5}
+        - {x: 436, y: -31.5}
+        - {x: 436, y: 31.5}
+    - name: textsheet_18
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 1280
+        width: 508
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 248, y: -36.5}
+        - {x: 254, y: -8.5}
+        - {x: 254, y: 38.5}
+        - {x: -249, y: 38.5}
+        - {x: -254, y: 24.5}
+        - {x: -254, y: -26.5}
+        - {x: -249, y: -34.5}
+        - {x: -168, y: -33.5}
+        - {x: -123, y: -38.5}
+        - {x: 233, y: -38.5}
+    - name: textsheet_19
+      rect:
+        serializedVersion: 2
+        x: 860
+        y: 1293
+        width: 872
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 436, y: -30.5}
+        - {x: 436, y: 31.5}
+        - {x: 244, y: 31.5}
+        - {x: 241, y: 30.5}
+        - {x: 238, y: 31.5}
+        - {x: -436, y: 31.5}
+        - {x: -436, y: -3.5}
+        - {x: -431, y: -31.5}
+        - {x: 430, y: -31.5}
+    - name: textsheet_20
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 1197
+        width: 508
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 254, y: 8.5}
+        - {x: 254, y: 37.5}
+        - {x: 252, y: 38.5}
+        - {x: -248, y: 38.5}
+        - {x: -254, y: 19.5}
+        - {x: -254, y: -32.5}
+        - {x: -126, y: -36.5}
+        - {x: -111, y: -38.5}
+        - {x: -17, y: -38.5}
+        - {x: 0, y: -32.5}
+        - {x: 247, y: -36.5}
+        - {x: 252, y: -10.5}
+    - name: textsheet_21
+      rect:
+        serializedVersion: 2
+        x: 860
+        y: 1210
+        width: 872
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 436, y: -26.5}
+        - {x: 436, y: 31.5}
+        - {x: -435, y: 31.5}
+        - {x: -436, y: 30.5}
+        - {x: -436, y: 17.5}
+        - {x: -432, y: 13.5}
+        - {x: -431, y: -25.5}
+        - {x: -428, y: -31.5}
+        - {x: 429, y: -31.5}
+    - name: textsheet_22
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 1115
+        width: 508
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -249, y: 38.5}
+        - {x: -254, y: 17.5}
+        - {x: -254, y: -33.5}
+        - {x: -249, y: -36.5}
+        - {x: -230, y: -38.5}
+        - {x: 80, y: -38.5}
+        - {x: 134, y: -33.5}
+        - {x: 248, y: -36.5}
+        - {x: 254, y: 1.5}
+        - {x: 254, y: 38.5}
+    - name: textsheet_23
+      rect:
+        serializedVersion: 2
+        x: 860
+        y: 1128
+        width: 872
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 436, y: 31.5}
+        - {x: -434, y: 31.5}
+        - {x: -436, y: 29.5}
+        - {x: -436, y: 17.5}
+        - {x: -432, y: 13.5}
+        - {x: -431, y: -25.5}
+        - {x: -426, y: -31.5}
+        - {x: 436, y: -31.5}
+    - name: textsheet_24
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 1040
+        width: 749
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 372.5, y: -25.5}
+        - {x: 374.5, y: -4.5}
+        - {x: 374.5, y: 31.5}
+        - {x: -372.5, y: 31.5}
+        - {x: -374.5, y: 17.5}
+        - {x: -374.5, y: -31.5}
+        - {x: 367.5, y: -31.5}
+    - name: textsheet_25
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 1040
+        width: 416
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -208, y: 31.5}
+        - {x: -208, y: -31.5}
+        - {x: 202, y: -31.5}
+        - {x: 208, y: -17.5}
+        - {x: 208, y: 31.5}
+    - name: textsheet_26
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 963
+        width: 749
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 374.5, y: -3.5}
+        - {x: 374.5, y: 31.5}
+        - {x: -367.5, y: 31.5}
+        - {x: -374.5, y: 13.5}
+        - {x: -374.5, y: -31.5}
+        - {x: 367.5, y: -31.5}
+    - name: textsheet_27
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 963
+        width: 416
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -208, y: 31.5}
+        - {x: -208, y: -21.5}
+        - {x: -198, y: -31.5}
+        - {x: 205, y: -31.5}
+        - {x: 208, y: -19.5}
+        - {x: 208, y: 31.5}
+    - name: textsheet_28
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 884
+        width: 749
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 374.5, y: -3.5}
+        - {x: 374.5, y: 31.5}
+        - {x: -367.5, y: 31.5}
+        - {x: -374.5, y: 13.5}
+        - {x: -374.5, y: -31.5}
+        - {x: 367.5, y: -31.5}
+    - name: textsheet_29
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 884
+        width: 416
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -208, y: 31.5}
+        - {x: -208, y: -21.5}
+        - {x: -198, y: -31.5}
+        - {x: 205, y: -31.5}
+        - {x: 208, y: -19.5}
+        - {x: 208, y: 31.5}
+    - name: textsheet_30
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 805
+        width: 749
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 374.5, y: -7.5}
+        - {x: 374.5, y: 31.5}
+        - {x: -365.5, y: 31.5}
+        - {x: -371.5, y: 21.5}
+        - {x: -374.5, y: 2.5}
+        - {x: -374.5, y: -31.5}
+        - {x: 367.5, y: -31.5}
+    - name: textsheet_31
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 805
+        width: 416
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -207, y: 31.5}
+        - {x: -208, y: 26.5}
+        - {x: -208, y: -31.5}
+        - {x: 206, y: -31.5}
+        - {x: 208, y: -28.5}
+        - {x: 208, y: 31.5}
+    - name: textsheet_32
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 712
+        width: 494
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 219, y: 31.5}
+        - {x: 215, y: 27.5}
+        - {x: 203, y: 31.5}
+        - {x: -242, y: 31.5}
+        - {x: -247, y: 28.5}
+        - {x: -247, y: -31.5}
+        - {x: 243, y: -31.5}
+        - {x: 247, y: -20.5}
+        - {x: 247, y: 31.5}
+    - name: textsheet_33
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 712
+        width: 619
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 307.5, y: -23.5}
+        - {x: 309.5, y: -5.5}
+        - {x: 309.5, y: 31.5}
+        - {x: -302.5, y: 31.5}
+        - {x: -309.5, y: 13.5}
+        - {x: -309.5, y: -31.5}
+        - {x: 303.5, y: -31.5}
+    - name: textsheet_34
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 642
+        width: 494
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 219, y: 31.5}
+        - {x: 215, y: 27.5}
+        - {x: 203, y: 31.5}
+        - {x: -242, y: 31.5}
+        - {x: -247, y: 28.5}
+        - {x: -247, y: -31.5}
+        - {x: 243, y: -31.5}
+        - {x: 247, y: -20.5}
+        - {x: 247, y: 31.5}
+    - name: textsheet_35
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 642
+        width: 619
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 309.5, y: -29.5}
+        - {x: 309.5, y: 31.5}
+        - {x: -300.5, y: 31.5}
+        - {x: -305.5, y: 25.5}
+        - {x: -309.5, y: 8.5}
+        - {x: -309.5, y: -31.5}
+        - {x: 1.5, y: -31.5}
+        - {x: 33.5, y: -28.5}
+        - {x: 37.5, y: -31.5}
+        - {x: 306.5, y: -31.5}
+    - name: textsheet_36
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 569
+        width: 494
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 219, y: 31.5}
+        - {x: 215, y: 27.5}
+        - {x: 203, y: 31.5}
+        - {x: -242, y: 31.5}
+        - {x: -247, y: 28.5}
+        - {x: -247, y: -31.5}
+        - {x: 243, y: -31.5}
+        - {x: 247, y: -20.5}
+        - {x: 247, y: 31.5}
+    - name: textsheet_37
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 569
+        width: 619
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 307.5, y: -23.5}
+        - {x: 309.5, y: -5.5}
+        - {x: 309.5, y: 31.5}
+        - {x: -302.5, y: 31.5}
+        - {x: -309.5, y: 13.5}
+        - {x: -309.5, y: -31.5}
+        - {x: 303.5, y: -31.5}
+    - name: textsheet_38
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 496
+        width: 494
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -247, y: 31.5}
+        - {x: -247, y: -31.5}
+        - {x: 240, y: -31.5}
+        - {x: 247, y: -29.5}
+        - {x: 247, y: 31.5}
+    - name: textsheet_39
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 496
+        width: 619
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 307.5, y: -21.5}
+        - {x: 309.5, y: -7.5}
+        - {x: 309.5, y: 31.5}
+        - {x: -300.5, y: 31.5}
+        - {x: -305.5, y: 25.5}
+        - {x: -309.5, y: -5.5}
+        - {x: -309.5, y: -31.5}
+        - {x: 300.5, y: -31.5}
+    - name: textsheet_40
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 257
+        width: 805
+        height: 163
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -117.5, y: -81.5}
+        - {x: -104.5, y: -62.5}
+        - {x: -65.5, y: -81.5}
+        - {x: -30.5, y: -81.5}
+        - {x: -21.5, y: -78.5}
+        - {x: 24.5, y: -79.5}
+        - {x: 34.5, y: -81.5}
+        - {x: 239.5, y: -81.5}
+        - {x: 253.5, y: -70.5}
+        - {x: 282.5, y: -81.5}
+        - {x: 374.5, y: -81.5}
+        - {x: 390.5, y: -59.5}
+        - {x: 402.5, y: 41.5}
+        - {x: 402.5, y: 77.5}
+        - {x: 400.5, y: 81.5}
+        - {x: 328.5, y: 81.5}
+        - {x: 325.5, y: 76.5}
+        - {x: 320.5, y: 65.5}
+        - {x: 316.5, y: 38.5}
+        - {x: 274.5, y: 75.5}
+        - {x: 259.5, y: 81.5}
+        - {x: 62.5, y: 81.5}
+        - {x: 36.5, y: 68.5}
+        - {x: -1.5, y: 81.5}
+        - {x: -37.5, y: 81.5}
+        - {x: -68.5, y: 44.5}
+        - {x: -93.5, y: 81.5}
+        - {x: -122.5, y: 81.5}
+        - {x: -135.5, y: 65.5}
+        - {x: -166.5, y: 38.5}
+        - {x: -174.5, y: 76.5}
+        - {x: -179.5, y: 81.5}
+        - {x: -209.5, y: 81.5}
+        - {x: -214.5, y: 80.5}
+        - {x: -231.5, y: 38.5}
+        - {x: -287.5, y: 72.5}
+        - {x: -306.5, y: 81.5}
+        - {x: -380.5, y: 81.5}
+        - {x: -402.5, y: -31.5}
+        - {x: -402.5, y: -81.5}
+        - {x: -236.5, y: -81.5}
+        - {x: -197.5, y: -63.5}
+        - {x: -188.5, y: -81.5}
+    - name: textsheet_41
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 375
+        width: 655
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 327.5, y: 31.5}
+        - {x: 295.5, y: 31.5}
+        - {x: 291.5, y: 30.5}
+        - {x: 293.5, y: 14.5}
+        - {x: 274.5, y: 14.5}
+        - {x: 282.5, y: 16.5}
+        - {x: 281.5, y: 31.5}
+        - {x: -324.5, y: 31.5}
+        - {x: -327.5, y: 21.5}
+        - {x: -327.5, y: -30.5}
+        - {x: -326.5, y: -31.5}
+        - {x: 327.5, y: -31.5}
+    - name: textsheet_42
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 304
+        width: 655
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 327.5, y: -27.5}
+        - {x: 327.5, y: 31.5}
+        - {x: 71.5, y: 31.5}
+        - {x: 69.5, y: 27.5}
+        - {x: 69.5, y: 31.5}
+        - {x: -318.5, y: 31.5}
+        - {x: -327.5, y: 19.5}
+        - {x: -327.5, y: -21.5}
+        - {x: -324.5, y: -31.5}
+        - {x: 322.5, y: -31.5}
+    - name: textsheet_43
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 233
+        width: 655
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 327.5, y: -16.5}
+        - {x: 327.5, y: 31.5}
+        - {x: -312.5, y: 31.5}
+        - {x: -327.5, y: 17.5}
+        - {x: -327.5, y: -20.5}
+        - {x: -317.5, y: -31.5}
+        - {x: 321.5, y: -31.5}
+    - name: textsheet_44
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 163
+        width: 655
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 327.5, y: -26.5}
+        - {x: 327.5, y: 31.5}
+        - {x: -309.5, y: 31.5}
+        - {x: -322.5, y: 25.5}
+        - {x: -327.5, y: 8.5}
+        - {x: -327.5, y: -20.5}
+        - {x: -318.5, y: -30.5}
+        - {x: -316.5, y: -31.5}
+        - {x: 324.5, y: -31.5}
+    - name: textsheet_45
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 23
+        width: 1702
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -417, y: -50.5}
+        - {x: -409, y: -53.5}
+        - {x: -338, y: -53.5}
+        - {x: -333, y: -51.5}
+        - {x: -323, y: -53.5}
+        - {x: -241, y: -53.5}
+        - {x: -233, y: -34.5}
+        - {x: -178, y: -53.5}
+        - {x: 25, y: -53.5}
+        - {x: 36, y: -36.5}
+        - {x: 75, y: -53.5}
+        - {x: 105, y: -53.5}
+        - {x: 134, y: -31.5}
+        - {x: 148, y: -49.5}
+        - {x: 156, y: -53.5}
+        - {x: 318, y: -53.5}
+        - {x: 329, y: -40.5}
+        - {x: 348, y: -53.5}
+        - {x: 403, y: -53.5}
+        - {x: 412, y: -46.5}
+        - {x: 433, y: -53.5}
+        - {x: 497, y: -53.5}
+        - {x: 517, y: -47.5}
+        - {x: 546, y: -53.5}
+        - {x: 595, y: -53.5}
+        - {x: 601, y: -51.5}
+        - {x: 626, y: -53.5}
+        - {x: 809, y: -53.5}
+        - {x: 829, y: -31.5}
+        - {x: 851, y: 17.5}
+        - {x: 851, y: 53.5}
+        - {x: 744, y: 53.5}
+        - {x: 738, y: 38.5}
+        - {x: 705, y: 53.5}
+        - {x: 559, y: 53.5}
+        - {x: 529, y: 40.5}
+        - {x: 512, y: 53.5}
+        - {x: -91, y: 53.5}
+        - {x: -95, y: 50.5}
+        - {x: -99, y: 41.5}
+        - {x: -117, y: 53.5}
+        - {x: -411, y: 53.5}
+        - {x: -422, y: 38.5}
+        - {x: -469, y: 53.5}
+        - {x: -840, y: 53.5}
+        - {x: -851, y: 38.5}
+        - {x: -851, y: -53.5}
+        - {x: -822, y: -53.5}
+        - {x: -809, y: -40.5}
+        - {x: -784, y: -53.5}
+        - {x: -423, y: -53.5}
+    outline: []
+  spritePackingTag: ui
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
