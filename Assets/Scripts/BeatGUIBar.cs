@@ -88,7 +88,23 @@ public class BeatGUIBar : MonoBehaviour
 				//current greater or equal to big (visual) beat time
 				if ( msBeatList[msCurrentIndex].time >= sBeatList[currentIndex].time )
 				{
-					gameManager.HitSubBeat();
+					if (sBeatList[msCurrentIndex].type == BarType.Special)
+					{
+						if (sBeatList[msCurrentIndex].pose == null)
+						{
+							Log.Weikie("pose is NULL");
+						}
+						else
+						{
+
+							Log.Weikie("THEREISAPOSE");
+						}
+						gameManager.HitFullBeat(sBeatList[msCurrentIndex].pose);
+					}
+					else
+					{
+						gameManager.HitSubBeat();
+					}
 				}
 				msCurrentIndex++;
 			}
@@ -159,7 +175,7 @@ public class BeatGUIBar : MonoBehaviour
 
 		BeatBarBehaviour behaviour2 = barSpecial.AddComponent<BeatBarBehaviour>();
 		behaviour2.barSpeed = barSpeed;
-		barSpecial.GetComponent<Image>().sprite = sBeatList[ index ].pose.data.uiTexture; 
+		barSpecial.GetComponent<Image>().sprite = sBeatList[ index ].pose.data.uiTexture;
 		barSpecial.GetComponent<Image>().SetNativeSize();
 	}
 
