@@ -1,0 +1,44 @@
+<poses>
+	<pose name="Pose 1" phases="1" texture="pose1">
+		<leftWing>
+			<target value="1"/>
+		</leftWing>
+		<rightWing>
+			<target value="1"/>
+		</rightWing>
+		<head>
+			<target x="1" y="0"/>
+		</head>
+		<tail>
+			<target x="-1" y="0"/>
+		</tail>
+	</pose>
+	<pose name="Pose 1" phases="1" texture="pose1">
+		<leftWing>
+			<target value="1"/>
+		</leftWing>
+		<rightWing>
+			<target value="1"/>
+		</rightWing>
+		<head>
+			<target x="1" y="0"/>
+		</head>
+		<tail>
+			<target x="-1" y="0"/>
+		</tail>
+	</pose>
+	<pose name="Pose 1" phases="1" texture="pose1">
+		<leftWing>
+			<target value="1"/>
+		</leftWing>
+		<rightWing>
+			<target value="1"/>
+		</rightWing>
+		<head>
+			<target x="1" y="0"/>
+		</head>
+		<tail>
+			<target x="-1" y="0"/>
+		</tail>
+	</pose>
+</poses>
