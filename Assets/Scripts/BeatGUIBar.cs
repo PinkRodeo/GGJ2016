@@ -76,8 +76,19 @@ public class BeatGUIBar : MonoBehaviour
 		SongTimer.StartSong(128f, 0.18f);
 	}
 
+	public bool IsPlayingAudio()
+	{
+		if (source == null) return true;
+		return source.isPlaying;
+	}
+
 	void Update ()
 	{
+		if (!IsPlayingAudio())
+		{
+			gameManager.End();
+		}
+
 		globalTime += Time.deltaTime;
 		while( msCurrentIndex < msBeatLength )
 		{

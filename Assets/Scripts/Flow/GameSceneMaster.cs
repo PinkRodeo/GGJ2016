@@ -7,6 +7,7 @@ public class GameSceneMaster : MonoBehaviour
 	public BeatGUIBar ui;
 	public BirdControl[] birds;
 	private PoseData[]	lastPose;
+	public bool end;
 
 	void Start ()
 	{
@@ -82,5 +83,10 @@ public class GameSceneMaster : MonoBehaviour
 		{
 			ScoreHandler.GetInstance().SetScore(i, 0);
 		}
+	}
+
+	public void End()
+	{
+		end = true;
 	}
 }

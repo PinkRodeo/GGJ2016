@@ -30,6 +30,7 @@ public class SceneChoreographer : MonoBehaviour
 	private Vector3 curtainDownPos;
 	private Vector3 initialLogoLocalPosition;
 	private GameSceneMaster gameManager;
+	private bool ended;
 
 	// Use this for initialization
 	void Start ()
@@ -62,8 +63,9 @@ public class SceneChoreographer : MonoBehaviour
 			gameManager.InitBirdControls();
 		}
 
-		if (debugControllerInput.GetKeyUp(ControllerAction.SELECT))
+		if (gameManager.end && !ended)
 		{
+			ended = true;
 			gameManager.ExitStage();
 			DoThingsExitStage();
 		}
