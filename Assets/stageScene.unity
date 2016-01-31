@@ -5950,10 +5950,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f83c9dd8c8e284fc39b9b7b598e396fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barSpeed: 300
+  barSpeed: 640
   BeatsPerMinute: 128
-  DelayForMusic: 3.9
-  startingAfter: 15
+  DelayForMusic: 2.2
+  startingAfter: 16
   timesTheAmountForSmallerChecks: 3
   sprites:
   - {fileID: 21300000, guid: 461419772754a4a2abc1698d624cdc99, type: 3}
