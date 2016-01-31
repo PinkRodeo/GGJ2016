@@ -31,7 +31,7 @@ public class Floater : MonoBehaviour
                                       uiHolder.transform.GetChild(ii).transform.position.y);
             Locations.Add(loc);
         }
-        SpawnFloater(2, spriteList[0]);
+       // SpawnFloater(2, spriteList[0]);
 
 
     }
@@ -41,12 +41,16 @@ public class Floater : MonoBehaviour
 	{
         //if (Input.GetKeyDown(KeyCode.Space)) SpawnFloater("FIETSBEL!!!!", 0, Color.red);
         //
+	    if (ScoreHandler.GetInstance().GetScore(1) > 10)
+	    {
+            guitime -= Time.deltaTime;
+        }
+	    
         
-	    guitime -= Time.deltaTime;
-	    if (guitime < 0)
+        if (guitime < 0)
 	    {
 	        guitime = 7;
-            SpawnFloater(Random.Range(1, 5), spriteList[Random.Range(0, 14)]);
+            SpawnFloater(Random.Range(1, 4), spriteList[Random.Range(0, 13)]);
         }
 
 	}

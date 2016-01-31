@@ -68,7 +68,6 @@ public class FloatingText : MonoBehaviour
 	                newcolor.a = normalCovered;
 	                gameObject.GetComponent<Text>().color = newcolor;
 	            }
-	            Debug.Log(normalCovered);
 	            if (normalCovered < 0 || normalCovered > 1.5)
 	            {
 	                Destroy(this.gameObject);
