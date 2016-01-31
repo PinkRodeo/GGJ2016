@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class Floater : MonoBehaviour
 {
+    public GameObject uiHolder;
     public Font quicksand;
     List<Vector2> Locations = new List<Vector2>();
     public GameObject locationHolder;
@@ -20,7 +21,14 @@ public class Floater : MonoBehaviour
                                       locationHolder.transform.GetChild(ii).transform.position.y);
 	        Locations.Add(loc);
 	    }
-	}
+        for (int ii = 0; ii < uiHolder.transform.childCount; ii++)
+        {
+            Vector2 loc = new Vector2(uiHolder.transform.GetChild(ii).transform.position.x,
+                                      uiHolder.transform.GetChild(ii).transform.position.y);
+            Locations.Add(loc);
+        }
+
+    }
 
 	// Update is called once per frame
 	void Update ()
@@ -39,7 +47,9 @@ public class Floater : MonoBehaviour
         myText.font = quicksand;
         myText.text = text;
         myText.color = color;
+        
         newGO.AddComponent<FloatingText>();
+        if (pos > 4) newGO.GetComponent<FloatingText>().isScore = true;
         newGO.GetComponent<RectTransform>().position = Locations[pos];
         newGO.GetComponent<RectTransform>().sizeDelta = new Vector2(100,20);
 
@@ -57,6 +67,7 @@ public class Floater : MonoBehaviour
         myText.text = text;
         myText.color = color;
         newGO.AddComponent<FloatingText>();
+        if (pos > 4) newGO.GetComponent<FloatingText>().isScore = true;
         newGO.GetComponent<RectTransform>().position = Locations[pos];
     }
 }
