@@ -1,24 +1,22 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System;
 
 public class BeatBarBehaviour : MonoBehaviour
 {
 
 	public float barSpeed;
 	public Vector2 barSize;
+	private RectTransform rectTransform;
 
 	void Start ()
 	{
-
+		rectTransform = GetComponent<RectTransform>();
 	}
 
-	void Update ()
+	void FixedUpdate ()
 	{
-		RectTransform rt = GetComponent<RectTransform>();
 		//rt.sizeDelta = barSize;
-		rt.transform.Translate( -transform.right * Time.deltaTime * barSpeed );
-		if ( rt.transform.position.x < 0.0 )
+		rectTransform.transform.Translate( -transform.right * Time.fixedDeltaTime * barSpeed );
+		if ( rectTransform.transform.position.x < 0.0 )
 		{
 			Destroy(this.gameObject);
 		}

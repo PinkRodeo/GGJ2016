@@ -28,9 +28,9 @@ public class BeatGUIBar : MonoBehaviour
 
 	public enum BarType
 	{
-		normal,
-		special,
-		empty
+		Normal,
+		Special,
+		Empty
 	}
 
 	public struct Beat
@@ -100,7 +100,7 @@ public class BeatGUIBar : MonoBehaviour
 		//}
 	}
 
-	void GenerateArray( float seconds )
+	private void GenerateArray( float seconds )
 	{
 		Initialization(seconds);
 		InitializeVisualBeatList();
@@ -127,7 +127,7 @@ public class BeatGUIBar : MonoBehaviour
 			Beat beat = sBeatList[ i ];
 			bar.GetComponent<Image>().sprite = beat.sprite;
 			bar.GetComponent<Image>().SetNativeSize();
-			if (beat.type == BarType.special)
+			if (beat.type == BarType.Special)
 			{
 				SpawnSpecialBeat(spawnOffSetX, i);
 			}
@@ -167,12 +167,12 @@ public class BeatGUIBar : MonoBehaviour
 		for (int i = 6 + startingAfter; i < sBeatLength; i += 8)
 		{
 			Beat b = sBeatList[i];
-			b.type = BarType.special;
+			b.type = BarType.Special;
 			b.sprite = sprites[1];
 			sBeatList[i] = b;
 
 			Beat c = sBeatList[i + 1];
-			c.type = BarType.empty;
+			c.type = BarType.Empty;
 			sBeatList[i + 1] = c;
 		}
 	}
@@ -194,15 +194,15 @@ public class BeatGUIBar : MonoBehaviour
 			if (i >= amount)
 			{
 				Beat b = sBeatList[i];
-				b.type = BarType.empty;
+				b.type = BarType.Empty;
 				b.sprite = null;
 				sBeatList[i] = b;
 			}
-			Beat c = sBeatList[i];
-			c.type = BarType.normal;
-			c.time = DelayForMusic + i*timer;
-			c.sprite = sprites[0];
-			sBeatList[i] = c;
+			Beat beat = sBeatList[i];
+			beat.type = BarType.Normal;
+			beat.time = DelayForMusic + i*timer;
+			beat.sprite = sprites[0];
+			sBeatList[i] = beat;
 		}
 	}
 }
