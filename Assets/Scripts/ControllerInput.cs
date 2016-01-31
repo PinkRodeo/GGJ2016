@@ -45,8 +45,8 @@ public class ControllerInput
 		string[] controllerNames = Input.GetJoystickNames();
 		if (controllerNames.Length < controllerPort)
 		{
-			Log.Weikie(string.Format("Controller {0} not assigned, only {1} controllers detected", controllerPort, controllerNames.Length));
-			Log.Weikie("Assigned to port 1 as default.");
+			//Log.Weikie(string.Format("Controller {0} not assigned, only {1} controllers detected", controllerPort, controllerNames.Length));
+			//Log.Weikie("Assigned to port 1 as default.");
 			this.controllerPort = 1;
 			if (controllerNames.Length == 0)
 				return;
