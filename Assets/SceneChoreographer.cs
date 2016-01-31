@@ -19,18 +19,29 @@ public class SceneChoreographer : MonoBehaviour
 	public SceneGeographerBalcony balconyObjects;
 
 
+	Vector3 targetBalconyBirdPos;
+	float targetBalconyLightIntensity;
+	float targetBalconyLightSpotAngle;
+
 	// Use this for initialization
 	void Start ()
 	{
 		stageCamera = GetComponent<StageCamera>();
 
-		Vector3 targetBalconyBirdPos = balconyObjects.balconyBird.transform.localPosition;
-		float targetBalconyLightIntensity = balconyObjects.balconySpotlight.intensity;
-		float targetBalconyLightSpotAngle = balconyObjects.balconySpotlight.spotAngle;
+		targetBalconyBirdPos = balconyObjects.balconyBird.transform.localPosition;
+		targetBalconyLightIntensity = balconyObjects.balconySpotlight.intensity;
+		targetBalconyLightSpotAngle = balconyObjects.balconySpotlight.spotAngle;
+
+
+		DoThingsEnterStage();
+
+
+	}
+
+	public void DoThingsEnterStage()
+	{
 
 		balconyObjects.balconyBird.gameObject.SetActive(false);
-
-
 		balconyObjects.balconySpotlight.intensity = 0f;
 
 
@@ -38,9 +49,9 @@ public class SceneChoreographer : MonoBehaviour
 		foreach (var sceneProp in GameObject.FindGameObjectsWithTag("TheaterProp"))
 		{
 			Vector3 curPosition = sceneProp.transform.localPosition;
-			sceneProp.transform.position = sceneProp.transform.position + Vector3.up*40f;
-			LeanTween.moveLocal(sceneProp, curPosition, 1f + Random.value*2f)
-				.setDelay(Random.value*0.5f+ 1f)
+			sceneProp.transform.position = sceneProp.transform.position + Vector3.up * 40f;
+			LeanTween.moveLocal(sceneProp, curPosition, 1f + Random.value * 2f)
+				.setDelay(Random.value * 0.5f + 1f)
 				.setEase(LeanTweenType.easeOutQuad);
 
 
@@ -52,14 +63,14 @@ public class SceneChoreographer : MonoBehaviour
 
 			balconyObjects.balconyBird.gameObject.SetActive(true);
 
-			balconyObjects.balconyBird.transform.localPosition += Vector3.up*40f;
+			balconyObjects.balconyBird.transform.localPosition += Vector3.up * 40f;
 
 
 			LeanTween.moveLocal(balconyObjects.balconyBird, targetBalconyBirdPos, 3f)
 				.setEase(LeanTweenType.easeOutCirc);
 
 			LeanTween.value(balconyObjects.balconySpotlight.gameObject, 0, 1, .8f)
-				.setOnUpdate((Action<float>) (f =>
+				.setOnUpdate((Action<float>)(f =>
 				{
 					balconyObjects.balconySpotlight.intensity = Mathf.Lerp(0, targetBalconyLightIntensity, f);
 					balconyObjects.balconySpotlight.spotAngle = Mathf.Lerp(0, targetBalconyLightSpotAngle, f);
@@ -68,7 +79,7 @@ public class SceneChoreographer : MonoBehaviour
 
 			LeanTween.value(gameObject, 0, 1, .8f)
 				.setEase(LeanTweenType.easeOutBack)
-				.setOnUpdate((Action<float>) (f =>
+				.setOnUpdate((Action<float>)(f =>
 				{
 					stageCamera.zoomedInOnVeranda = f;
 
@@ -76,7 +87,7 @@ public class SceneChoreographer : MonoBehaviour
 				.setOnComplete(() =>
 				{
 					LeanTween.value(gameObject, 1, 0, 1.5f)
-						.setOnUpdate((Action<float>) (f =>
+						.setOnUpdate((Action<float>)(f =>
 						{
 							stageCamera.zoomedInOnVeranda = f;
 
@@ -94,8 +105,10 @@ public class SceneChoreographer : MonoBehaviour
 						});
 				});
 		});
+	}
 
-
-
+	public void DoThingsExitStage()
+	{
+		
 	}
 }
