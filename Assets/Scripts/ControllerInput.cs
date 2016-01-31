@@ -22,7 +22,7 @@ public class ControllerInput
 	private readonly Dictionary<ControllerAction, List<KeyCode>> buttonKeymap = new Dictionary<ControllerAction, List<KeyCode>>();
 	private readonly Dictionary<ControllerAction, List<string>> axisKeymap = new Dictionary<ControllerAction, List<string>>();
 	private readonly CurrentPlatform currentPlatform;
-	private readonly ControllerType controllerType = ControllerType.Unknown;
+	private ControllerType controllerType = ControllerType.Unknown;
 	private int controllerPort;
 
 	#region Public accessors
@@ -53,26 +53,40 @@ public class ControllerInput
 		}
 		//else
 		{
-			string name = controllerNames[this.controllerPort - 1];
-
-			if (name.ToLower().Contains("xbox"))
-			{
-				controllerType = ControllerType.Xbox;
-				Log.Weikie("Assigned xbox controller");
-				XboxBindings();
-			}
-			else if (name == "Wireless Controller")
-			{
-				controllerType = ControllerType.Playstation;
-				//commented because seems to work pretty good after 5 hours of testing
-				//Log.Weikie("Assigned playstation controller");
-				PlaystationBinding();
-			}
-			else
-			{
-				Log.Weikie("Unknown controller, go fix. Name is " + name);
-			}
+			DoBindings(controllerNames);
 		}
+	}
+
+	private void DoBindings(string[] controllerNames)
+	{
+		string name = controllerNames[this.controllerPort - 1];
+
+		if (name.ToLower().Contains("xbox"))
+		{
+			controllerType = ControllerType.Xbox;
+			Log.Weikie("Assigned xbox controller");
+			XboxBindings();
+		}
+		else if (name == "Wireless Controller")
+		{
+			controllerType = ControllerType.Playstation;
+			//commented because seems to work pretty good after 5 hours of testing
+			//Log.Weikie("Assigned playstation controller");
+			PlaystationBinding();
+		}
+		else
+		{
+			Log.Weikie("Unknown controller, go fix. Name is " + name);
+		}
+	}
+
+	public void RedoBindings()
+	{
+		buttonKeymap.Clear();
+		axisKeymap.Clear();
+
+		string[] controllerNames = Input.GetJoystickNames();
+		DoBindings(controllerNames);
 	}
 
 	public void SetHackPortNumberModifier(int port)

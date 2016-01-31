@@ -18,7 +18,7 @@ public class BirdControl : MonoBehaviour
 
 	public bool _isInitialized = false;
 
-	private ControllerInput input;
+	public ControllerInput input;
 
 
 	public ControllerInput GetInput()
