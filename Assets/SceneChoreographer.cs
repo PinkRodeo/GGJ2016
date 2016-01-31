@@ -50,6 +50,10 @@ public class SceneChoreographer : MonoBehaviour
 
 	void Update()
 	{
+		if (Input.GetKeyDown(KeyCode.E))
+		{
+			DoThingsEnterStage();
+		}
 		if (debugControllerInput.GetKeyUp(ControllerAction.START))
 		{
 			DoThingsEnterStage();
