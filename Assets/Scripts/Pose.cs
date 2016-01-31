@@ -11,7 +11,7 @@ public struct PoseData {
 
 	public Vector2[] head;
 	public Vector2[] tail;
-}
+};
 
 public class Pose {
 
