@@ -63,7 +63,7 @@ public class BirdHead
 		neck.bone.localRotation = neck.initialLocalRotation * Quaternion.AngleAxis(Mathf.Lerp(0, 5f * r3_held, stick.magnitude), new Vector2(normalized.y, normalized.x));
 
 
-		if (input.GetKey(ControllerAction.R1) || input.GetKey(ControllerAction.L1) || input.GetKey(ControllerAction.A))
+		if (input.GetKey(ControllerAction.L1) || input.GetKey(ControllerAction.A))
 		{
 			beak_held += dt * 10f;
 			beak_held = Mathf.Min(beak_held, 1f);

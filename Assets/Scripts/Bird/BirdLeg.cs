@@ -44,9 +44,16 @@ public class BirdLeg
 
 	public void Update(float dt)
 	{
-		float moveDown = Mathf.Cos(2 * Mathf.PI * FREQUENCY * (Time.time - initialTime));
+		if (!SongTimer.isSongRunning)
+		{
+			return;
+		}
 
-		float moveSideway = Mathf.Sin(2 * Mathf.PI * FREQUENCY / 4f * (Time.time - initialTime));
+		float leadin = SongTimer.leadInRatio();
+
+		float moveDown = Mathf.Cos( SongTimer.timedValue() ) * leadin;
+
+		float moveSideway = Mathf.Sin(SongTimer.timedValue(4f)) * leadin;
 
 
 		hip.bone.position = hip.initialWorldPosition + new Vector3(moveSideway * .1f, moveDown * .1f, 0);
@@ -59,7 +66,7 @@ public class BirdLeg
 
 		if (isLeft)
 		{
-			float tap = Mathf.Sin(2 * Mathf.PI * FREQUENCY / 8f * (Time.time - initialTime));
+			float tap = Mathf.Sin(SongTimer.timedValue(8f)) * leadin;
 
 			tap -= 1f-1f/36f;
 

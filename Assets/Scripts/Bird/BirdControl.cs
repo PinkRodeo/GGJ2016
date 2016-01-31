@@ -14,6 +14,8 @@ public class BirdControl : MonoBehaviour
 	private BirdLeg leftLeg;
 	private BirdLeg rightLeg;
 
+	private BirdTail tail;
+
 	private bool _isInitialized = false;
 
 	private ControllerInput input;
@@ -21,8 +23,8 @@ public class BirdControl : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		SongTimer.StartSong(128f);
-
+		//		SongTimer.StartSong(128f);
+		_initializeController();
 
 	}
 
@@ -45,13 +47,15 @@ public class BirdControl : MonoBehaviour
 
 		body = new BirdBody(transform.FindInChildren("Body"), input);
 
+		tail = new BirdTail(transform.FindInChildren("Tail_1"), input);
+
 		_isInitialized = true;
 	}
 
 	// Update is called once per frame
 	void Update ()
 	{
-		if (!_isInitialized && SongTimer.isSongRunning)
+		if (!_isInitialized)
 		{
 			_initializeController();
 		}
@@ -69,6 +73,8 @@ public class BirdControl : MonoBehaviour
 
 			leftLeg.Update(dt);
 			rightLeg.Update(dt);
+
+			tail.Update(dt);
 		}
 	}
 }
