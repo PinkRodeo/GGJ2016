@@ -139,8 +139,8 @@ public class ControllerInput
 	/// <returns>A 0 to 1 normalized value, where 0.5 is idle</returns>
 	public Vector2 GetLeftStick()
 	{
-		return new Vector2((GetAxis(ControllerAction.LEFT_STICK_X)),
-						   (GetAxis(ControllerAction.LEFT_STICK_Y)));
+		return new Vector2(GetAxis(ControllerAction.LEFT_STICK_X),
+						   GetAxis(ControllerAction.LEFT_STICK_Y));
 	}
 
 	/// <summary>
@@ -149,8 +149,8 @@ public class ControllerInput
 	/// <returns>A 0 to 1 normalized value, where 0.5 is idle</returns>
 	public Vector2 GetRightStick()
 	{
-		return new Vector2((GetAxis(ControllerAction.RIGHT_STICK_X)),
-						   (GetAxis(ControllerAction.RIGHT_STICK_Y)));
+		return new Vector2(GetAxis(ControllerAction.RIGHT_STICK_X),
+						   GetAxis(ControllerAction.RIGHT_STICK_Y));
 	}
 
 	/// <summary>
@@ -228,9 +228,7 @@ public class ControllerInput
 
 	private bool IsAxisMapped(ControllerAction action)
 	{
-		List<string> keycodeList;
-
-		if (axisKeymap.TryGetValue(action, out keycodeList) && keycodeList != null)
+		if (axisKeymap.ContainsKey(action) && axisKeymap[action] != null)
 		{
 			return true;
 		}
@@ -239,9 +237,7 @@ public class ControllerInput
 
 	private bool IsActionMapped(ControllerAction action)
 	{
-		List<KeyCode> keycodeList;
-
-		if (buttonKeymap.TryGetValue(action, out keycodeList) && keycodeList != null)
+		if (buttonKeymap.ContainsKey(action) && buttonKeymap[action] != null)
 		{
 			return true;
 		}
