@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class Floater : MonoBehaviour
 {
+    public List<Sprite> spriteList= new List<Sprite>(); 
+    private float guitime = 6;
+
     public GameObject uiHolder;
     public Font quicksand;
     List<Vector2> Locations = new List<Vector2>();
@@ -14,6 +17,7 @@ public class Floater : MonoBehaviour
 	// Use this for initialization
 
 	void Start () {
+        
 	    Locations.Add(locationHolder.transform.position);
 	    for (int ii = 0; ii < locationHolder.transform.childCount; ii++)
 	    {
@@ -27,6 +31,8 @@ public class Floater : MonoBehaviour
                                       uiHolder.transform.GetChild(ii).transform.position.y);
             Locations.Add(loc);
         }
+        SpawnFloater(2, spriteList[0]);
+
 
     }
 
@@ -34,7 +40,33 @@ public class Floater : MonoBehaviour
 	void Update ()
 	{
         //if (Input.GetKeyDown(KeyCode.Space)) SpawnFloater("FIETSBEL!!!!", 0, Color.red);
+        //
+        
+	    guitime -= Time.deltaTime;
+	    if (guitime < 0)
+	    {
+	        guitime = 7;
+            SpawnFloater(Random.Range(1, 5), spriteList[Random.Range(0, 14)]);
+        }
+
 	}
+
+    public void SpawnFloater(int pos, Sprite img)
+    {
+        GameObject newGO = new GameObject("myTextGO");
+        newGO.transform.SetParent(this.transform, false);
+
+        newGO.AddComponent<Outline>();
+
+        Image myText = newGO.AddComponent<Image>();
+        myText.sprite = img;
+
+        newGO.AddComponent<FloatingText>();
+        if (pos > 4) newGO.GetComponent<FloatingText>().isScore = true;
+        newGO.GetComponent<RectTransform>().position = Locations[pos];
+        newGO.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 20);
+
+    }
 
     public void SpawnFloater(string text, int pos, Color color)
     {

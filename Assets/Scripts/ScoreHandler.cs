@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 struct ScoreEntry
 {
@@ -27,7 +28,9 @@ public class ScoreHandler
 
 	public void AddScore(int playerNumber, int amount)
 	{
-		ScoreEntry entry = scoreEntryList[playerNumber - 1];
+        Floater myfloat = GameObject.Find("Canvas").GetComponent<Floater>();
+        if (amount > 100) myfloat.SpawnFloater(amount + "", playerNumber + 4, Color.cyan);
+        ScoreEntry entry = scoreEntryList[playerNumber - 1];
 		entry.score += amount;
 		entry.latestEarned = amount;
 		scoreEntryList[playerNumber - 1] = entry;
