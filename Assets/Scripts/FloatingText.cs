@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Net.Mime;
 using System.Text;
+using UnityEditor;
 using UnityEngine.UI;
 
 public class FloatingText : MonoBehaviour
@@ -59,11 +60,16 @@ public class FloatingText : MonoBehaviour
 	            t = t*t*t;
 	            transform.position = Vector3.Lerp(startpos, endpos, t);
 	            float normalCovered = distCovered/journeyLength;
-	            Color newcolor = gameObject.GetComponent<Text>().color;
-	            normalCovered = 1 - normalCovered;
-	            newcolor.a = normalCovered;
-	            gameObject.GetComponent<Text>().color = newcolor;
-	            if (normalCovered < 0)
+	            Color newcolor = new Color();
+	            if (transform.GetComponent<Text>())
+	            {
+	                newcolor = gameObject.GetComponent<Text>().color;
+	                normalCovered = 1 - normalCovered;
+	                newcolor.a = normalCovered;
+	                gameObject.GetComponent<Text>().color = newcolor;
+	            }
+	            Debug.Log(normalCovered);
+	            if (normalCovered < 0 || normalCovered > 1.5)
 	            {
 	                Destroy(this.gameObject);
 	            }
