@@ -81,7 +81,7 @@ public class SceneChoreographer : MonoBehaviour
 							stageCamera.zoomedInOnVeranda = f;
 
 						}))
-						.setEase(LeanTweenType.easeInElastic)
+						.setEase(LeanTweenType.easeInExpo)
 
 						.setDelay(2.9f)
 
