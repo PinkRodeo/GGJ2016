@@ -18,18 +18,33 @@ public class GameSceneMaster : MonoBehaviour
 
 	}
 
+	public void InitBirdControls()
+	{
+		int count = ControllerInput.GetConnectedControllersCount();
+		for (int i = 0; i < count; i++)
+		{
+			birds[i]._initializeController();
+		}
+		for (int i = count; i < birds.Length; i++)
+		{
+			birds[i].transform.position += Vector3.up*200;
+		}
+	}
+
 	//To be called from BeatGUIBar
 	public void HitFullBeat(Pose data)
 	{
 		for (int i = 0; i < birds.Length; i++)
 		{
-			var input = birds[i].GetInput();
+			if (!birds[i].IsInitialized()) continue;
+
+			ControllerInput input = birds[i].GetInput();
 			PoseData currentPose = Pose.CalculateFromController(input);
 
 			//compare
 			PoseDiff poseDiff = data.CompareWithController(input, 0);
 
-			int randomScoreModifier = Random.Range(80, 120);
+			int randomScoreModifier = Random.Range(30, 50);
 			ScoreHandler.GetInstance().AddScore(i + 1, Mathf.FloorToInt(poseDiff.totalDiff) * randomScoreModifier);
 
 			lastPose[i] = currentPose;
@@ -47,13 +62,15 @@ public class GameSceneMaster : MonoBehaviour
 	{
 		for (int i = 0; i < birds.Length; i++)
 		{
+			if (!birds[i].IsInitialized()) continue;
+
 			PoseData currentPose = Pose.CalculateFromController(birds[i].GetInput());
 			PoseData prevPose = lastPose[i];
 
 			//compare
 			PoseDiff poseDiff = Pose.CalculatePoseDiffs(currentPose, prevPose);
 
-			int randomScoreModifier = Random.Range(20, 100);
+			int randomScoreModifier = Random.Range(10, 40);
 			ScoreHandler.GetInstance().AddScore(i + 1, Mathf.FloorToInt(poseDiff.totalDiff)*randomScoreModifier);
 
 			lastPose[i] = currentPose;

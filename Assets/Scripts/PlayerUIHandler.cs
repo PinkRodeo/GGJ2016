@@ -31,8 +31,16 @@ public class PlayerUIHandler : MonoBehaviour
 	{
 		for (var i = 0; i < playerCount; i++)
 		{
-			uiHolder[i].textUI.text = ScoreHandler.GetInstance().GetScore(i + 1).ToString();
-			// get the score to display for in items
+			int score = ScoreHandler.GetInstance().GetScore(i + 1);
+			uiHolder[i].textUI.text = score.ToString();
+			if (score == 0)
+			{
+				uiHolder[i].gameObject.SetActive(false);
+			}
+			else
+			{
+				uiHolder[i].gameObject.SetActive(true);
+			}
 		}
 	}
 

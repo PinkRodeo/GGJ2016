@@ -26,15 +26,20 @@ public class BirdControl : MonoBehaviour
 		return input;
 	}
 
+	public bool IsInitialized()
+	{
+		return _isInitialized;
+	}
+
 	// Use this for initialization
 	void Start ()
 	{
 		//		SongTimer.StartSong(128f);
-		_initializeController();
+		//_initializeController();
 
 	}
 
-	private void _initializeController()
+	public void _initializeController()
 	{
 		input = new ControllerInput(playerId);
 
@@ -63,7 +68,8 @@ public class BirdControl : MonoBehaviour
 	{
 		if (!_isInitialized)
 		{
-			_initializeController();
+			return;
+			//_initializeController();
 		}
 
 		if (_isInitialized)

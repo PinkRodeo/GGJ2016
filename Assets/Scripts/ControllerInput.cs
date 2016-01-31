@@ -176,7 +176,7 @@ public class ControllerInput
 		return controllerPort;
 	}
 
-	public static int GetConnectedControllers()
+	public static int GetConnectedControllersCount()
 	{
 		return Input.GetJoystickNames().Length;
 	}
