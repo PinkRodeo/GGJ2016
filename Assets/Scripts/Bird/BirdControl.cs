@@ -23,8 +23,8 @@ public class BirdControl : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-	//		SongTimer.StartSong(128f);
-
+		//		SongTimer.StartSong(128f);
+		_initializeController();
 
 	}
 

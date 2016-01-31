@@ -6,7 +6,7 @@ public class BeatGUIBar : MonoBehaviour
 {
 	public float barSpeed = 300.0f;
 	public int BeatsPerMinute = 128;
-	public float DelayForMusic = 3.9f;
+	public float DelayForMusic = 0.0f;
 	public int startingAfter = 15;
 	public int timesTheAmountForSmallerChecks = 3;
 	public Sprite[] sprites;
@@ -46,7 +46,7 @@ public class BeatGUIBar : MonoBehaviour
 		public Beat mainBeat;
 	};
 
-	void Start ()
+	public void StartTheMusic()
 	{
 		timeBetweenBeats = 60.0f / BeatsPerMinute;
 		canvas = GameObject.Find("Canvas");
@@ -63,7 +63,7 @@ public class BeatGUIBar : MonoBehaviour
 	// ReSharper disable once UnusedMember.Local
 	private  void delayedSongStart()
 	{
-		SongTimer.StartSong(128f);
+		SongTimer.StartSong(128f, 0.18f);
 	}
 
 	void Update ()
