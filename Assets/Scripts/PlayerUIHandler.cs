@@ -24,8 +24,18 @@ public class PlayerUIHandler : MonoBehaviour
 
 	void Update ()
 	{
-		DebugKeys();
+		UpdateText();
 	}
+
+	private void UpdateText()
+	{
+		for (var i = 0; i < playerCount; i++)
+		{
+			uiHolder[i].textUI.text = ScoreHandler.GetInstance().GetScore(i + 1).ToString();
+			// get the score to display for in items
+		}
+	}
+
 
 	private static void DebugKeys()
 	{

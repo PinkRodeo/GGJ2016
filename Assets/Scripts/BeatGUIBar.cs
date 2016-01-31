@@ -8,7 +8,7 @@ public class BeatGUIBar : MonoBehaviour
 	public int BeatsPerMinute = 128;
 	public float DelayForMusic = 0.0f;
 	public int startingAfter = 15;
-	public int timesTheAmountForSmallerChecks = 3;
+	public int timesTheAmountForSmallerChecks = 1;
 	public Sprite[] sprites;
 	public Sprite[] poseSprites;
 
@@ -88,12 +88,7 @@ public class BeatGUIBar : MonoBehaviour
 				//current greater or equal to big (visual) beat time
 				if ( msBeatList[msCurrentIndex].time >= sBeatList[currentIndex].time )
 				{
-					Vector3 position = sBeatList[ currentIndex ].position;
-					if ( position.x < -350.0f )
-					{
-						// Check if it is in pose?
-						gameManager.HitSubBeat();
-					}
+					gameManager.HitSubBeat();
 				}
 				msCurrentIndex++;
 			}
