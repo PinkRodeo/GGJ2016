@@ -14,6 +14,7 @@ public struct SceneGeographerBalcony
 public class SceneChoreographer : MonoBehaviour
 {
 	public Transform Curtain;
+	public GameObject LogoGameObject;
 
 	public BeatGUIBar beatGUIBar;
 	private StageCamera stageCamera;
