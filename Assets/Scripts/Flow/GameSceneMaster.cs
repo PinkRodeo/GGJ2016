@@ -19,9 +19,22 @@ public class GameSceneMaster : MonoBehaviour
 	}
 
 	//To be called from BeatGUIBar
-	public void HitFullBeat()
+	public void HitFullBeat(Pose data)
 	{
-		DoScore();
+		for (int i = 0; i < birds.Length; i++)
+		{
+			var input = birds[i].GetInput();
+			PoseData currentPose = Pose.CalculateFromController(input);
+
+			//compare
+			PoseDiff poseDiff = data.CompareWithController(input, 0);
+
+			int randomScoreModifier = Random.Range(80, 120);
+			ScoreHandler.GetInstance().AddScore(i + 1, Mathf.FloorToInt(poseDiff.totalDiff) * randomScoreModifier);
+
+			lastPose[i] = currentPose;
+			Log.Weikie("full beat");
+		}
 	}
 
 	//To be called from BeatGUIBar
