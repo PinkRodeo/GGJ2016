@@ -8,18 +8,20 @@ public class BeatBarBehaviour : MonoBehaviour
 	//private RectTransform rectTransform;
 	private Vector2 left;
 	private Transform myTransform;
+	private Vector3 translation;
 
 	void Start ()
 	{
 		//rectTransform = GetComponent<RectTransform>();
-		left = -transform.right;
 		myTransform = transform;
+		left = -myTransform.right;
+		translation = left*Time.fixedDeltaTime*barSpeed;
 	}
 
 	void FixedUpdate ()
 	{
 		//rt.sizeDelta = barSize;
-		myTransform.Translate( left * Time.fixedDeltaTime * barSpeed );
+		myTransform.Translate( translation );
 		if (myTransform.position.x < -100.0 )
 		{
 			Destroy(this.gameObject);
