@@ -33,8 +33,7 @@ public class BeatGUIBar : MonoBehaviour
 	public enum BarType
 	{
 		Normal,
-		Special,
-		Empty
+		Special
 	}
 
 	public struct Beat
@@ -125,8 +124,6 @@ public class BeatGUIBar : MonoBehaviour
 
 		for( int i = 0; i < sBeatLength; i++ )
 		{
-			if (sBeatList [i].type == BarType.Empty)
-				continue;
 
 			GameObject bar = new GameObject( "beatBar", typeof( RectTransform ) );
 			bar.AddComponent<CanvasRenderer>();
@@ -137,7 +134,7 @@ public class BeatGUIBar : MonoBehaviour
 			Vector3 p = rt.position;
 			int spawnOffSetX = 1500;
 
-			rt.transform.position = new Vector3( p.x + spawnOffSetX + i * 300.0f, p.y + 50.0f, p.z );
+			rt.transform.position = new Vector3( p.x + spawnOffSetX + i * 300.0f, p.y + 20.0f, p.z );
 
 			BeatBarBehaviour behaviour = bar.AddComponent<BeatBarBehaviour>();
 			behaviour.barSpeed = barSpeed;
@@ -181,7 +178,7 @@ public class BeatGUIBar : MonoBehaviour
 
 	private void InitializeSpecialVisualBeats()
 	{
-		for (int i = 6 + startingAfter; i < sBeatLength; i += 8)
+		for (int i = 6 + startingAfter; i < sBeatLength; i += 7)
 		{
 			Beat b = sBeatList[i];
 			b.type = BarType.Special;
@@ -189,10 +186,6 @@ public class BeatGUIBar : MonoBehaviour
 			b.pose = new Pose( Globals.poses[ poseIndex ] );
 			b.sprite = sprites[1];
 			sBeatList[i] = b;
-
-			Beat c = sBeatList[i + 1];
-			c.type = BarType.Empty;
-			sBeatList[i + 1] = c;
 		}
 	}
 
