@@ -44,8 +44,8 @@ public class BirdBody
 		body.bone.localRotation = body.initialLocalRotation * Quaternion.AngleAxis(Mathf.Lerp(-10f, 20f, (stick.y+1f)/2f), Vector3.right)
 		* Quaternion.AngleAxis(Mathf.Lerp(-SIDWAYSROTATE, SIDWAYSROTATE, (stick.x + 1f) / 2f), Vector3.forward);
 
-		float moveDown = Mathf.Cos(2 * Mathf.PI * FREQUENCY * (Time.time - initialTime));
-		float moveSideway = Mathf.Sin(2 * Mathf.PI * FREQUENCY / 4f * (Time.time - initialTime));
+		float moveDown = Mathf.Cos(SongTimer.timedValue());
+		float moveSideway = Mathf.Sin(SongTimer.timedValue(4f));
 
 		body.bone.position = body.initialWorldPosition + new Vector3(moveSideway * .1f, moveDown * .1f, 0);
 
