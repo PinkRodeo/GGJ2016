@@ -6,49 +6,50 @@ using UnityEngine.UI;
 public class Floater : MonoBehaviour
 {
 	// Use this for initialization
-	void Start () {
-	    //TextInMiddle("FIETSBEL!!!!", new Vector2(100,100),Color.red);
-       // SongTimer.getInstance().startTimer();
+	void Start ()
+	{
+		//TextInMiddle("FIETSBEL!!!!", new Vector2(100,100),Color.red);
+		// SongTimer.getInstance().startTimer();
 	}
-	
+
 	// Update is called once per frame
 	void Update ()
 	{
-        Log.Arny(SongTimer.frequency);
+		//Log.Arny(SongTimer.frequency);
 	}
 
-    public void TextInMiddle(string text, Vector2 pos, Color color)
-    {
-        GameObject newGO = new GameObject("myTextGO");
-        newGO.transform.SetParent(this.transform, false);
-        
-        newGO.AddComponent<Outline>();
+	public void TextInMiddle(string text, Vector2 pos, Color color)
+	{
+		GameObject newGO = new GameObject("myTextGO");
+		newGO.transform.SetParent(this.transform, false);
+
+		newGO.AddComponent<Outline>();
 
 
 
-        Text myText = newGO.AddComponent<Text>();
-        myText.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
-        myText.text = text;
-        myText.color = color;
-        newGO.AddComponent<FloatingText>();
-        newGO.GetComponent<RectTransform>().position = pos;
-        newGO.GetComponent<RectTransform>().sizeDelta = new Vector2(100,20);
-    }
+		Text myText = newGO.AddComponent<Text>();
+		myText.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+		myText.text = text;
+		myText.color = color;
+		newGO.AddComponent<FloatingText>();
+		newGO.GetComponent<RectTransform>().position = pos;
+		newGO.GetComponent<RectTransform>().sizeDelta = new Vector2(100,20);
+	}
 
 
-    public void TextInMiddle(string text, Vector2 pos, Color color, Color outlineColor)
-    {
+	public void TextInMiddle(string text, Vector2 pos, Color color, Color outlineColor)
+	{
 
-        GameObject newGO = new GameObject("myTextGO");
-        newGO.transform.SetParent(this.transform, false);
-        newGO.AddComponent<Outline>();
+		GameObject newGO = new GameObject("myTextGO");
+		newGO.transform.SetParent(this.transform, false);
+		newGO.AddComponent<Outline>();
 
-        Text myText = newGO.AddComponent<Text>();
-        myText.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
-        GetComponent<Outline>().effectColor = outlineColor;
-        myText.text = text;
-        myText.color = color;
-        newGO.AddComponent<FloatingText>();
-        newGO.GetComponent<RectTransform>().position = pos;
-    }
+		Text myText = newGO.AddComponent<Text>();
+		myText.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+		GetComponent<Outline>().effectColor = outlineColor;
+		myText.text = text;
+		myText.color = color;
+		newGO.AddComponent<FloatingText>();
+		newGO.GetComponent<RectTransform>().position = pos;
+	}
 }

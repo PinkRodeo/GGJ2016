@@ -188,21 +188,11 @@ public class BeatGUIBar : MonoBehaviour
 		int amount = sBeatLength - (sBeatLength/8);
 		for (int i = 0; i < sBeatLength; i++)
 		{
-			if (i >= amount)
-			{
-				Beat b = sBeatList[i];
-				b.type = BarType.Empty;
-				b.sprite = null;
-				sBeatList[i] = b;
-			}
-			else
-			{
-				Beat beat = sBeatList[i];
-				beat.type = BarType.Normal;
-				beat.time = DelayForMusic + i*timeBetweenBeats;
-				beat.sprite = sprites[0];
-				sBeatList[i] = beat;
-			}
+			Beat beat = sBeatList[i];
+			beat.type = BarType.Normal;
+			beat.time = DelayForMusic + i*timeBetweenBeats;
+			beat.sprite = sprites[0];
+			sBeatList[i] = beat;
 		}
 	}
 }
