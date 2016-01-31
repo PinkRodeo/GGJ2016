@@ -162,7 +162,7 @@ public class BeatGUIBar : MonoBehaviour
 
 	private void InitializeSpecialVisualBeats()
 	{
-		for (int i = 6 + startingAfter; i < sBeatLength; i += 7)
+		for (int i = 6 + startingAfter; i < sBeatLength; i += 8)
 		{
 			Beat b = sBeatList[i];
 			b.type = BarType.Special;
