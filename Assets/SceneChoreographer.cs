@@ -79,7 +79,7 @@ public class SceneChoreographer : MonoBehaviour
 
 		}
 
-		LeanTween.moveLocalX(LogoGameObject, initialLogoLocalPosition.x + 50f, 1f)
+		LeanTween.moveLocalX(LogoGameObject, initialLogoLocalPosition.x + 20f, 1f)
 			.setEase(LeanTweenType.easeInBack)
 			.setOnComplete(() =>
 			{
