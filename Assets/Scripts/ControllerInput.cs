@@ -177,6 +177,11 @@ public class ControllerInput
 		return controllerPort;
 	}
 
+	public static int GetConnectedControllers()
+	{
+		return Input.GetJoystickNames().Length;
+	}
+
 	#endregion
 
 	#region Private stuff
