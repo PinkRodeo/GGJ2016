@@ -77,7 +77,7 @@ public class SceneChoreographer : MonoBehaviour
 		{
 			ended = true;
 			crowd.StartEndCheer();
-			Invoke("Outro", 5);
+			Invoke("Outro", 8);
 		}
 	}
 
