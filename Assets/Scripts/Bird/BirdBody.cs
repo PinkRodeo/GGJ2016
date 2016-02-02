@@ -14,13 +14,8 @@ public class BirdBody
 
 		body = BirdBone.CreateBirdBone(temp);
 	}
-
-	const float HEAD_POS_MOD = -0.005f;
-	const float BODY_POS_MOD = -0.004f;
-
-	const float FREQUENCY = 128f / 60f / 1f;
-
-	const float SIDWAYSROTATE = 25f;
+	
+	private const float ROTATE_SIDEWAYS = 25f;
 
 	public void Update(float dt)
 	{
@@ -37,7 +32,7 @@ public class BirdBody
 
 		//body.bone.localPosition = body.initialLocalPosition + new Vector3(stick.x * BODY_POS_MOD, stick.y * BODY_POS_MOD);
 		body.bone.localRotation = body.initialLocalRotation * Quaternion.AngleAxis(Mathf.Lerp(-10f, 20f, (stick.y+1f)/2f), Vector3.right)
-		* Quaternion.AngleAxis(Mathf.Lerp(-SIDWAYSROTATE, SIDWAYSROTATE, (stick.x + 1f) / 2f), Vector3.forward);
+		* Quaternion.AngleAxis(Mathf.Lerp(-ROTATE_SIDEWAYS, ROTATE_SIDEWAYS, (stick.x + 1f) / 2f), Vector3.forward);
 
 		if (SongTimer.isSongRunning)
 		{

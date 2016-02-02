@@ -10,8 +10,6 @@ public class BirdLeg
 
 	private ControllerInput input;
 
-	private float initialTime;
-
 	private float sign = 1f;
 	private bool isLeft = false;
 
@@ -22,9 +20,7 @@ public class BirdLeg
 			isLeft = true;
 			sign = -1f;
 		}
-
-		initialTime = Time.time;
-
+		
 		this.input = input;
 
 		leg_feet = BirdBone.CreateBirdBone(feetTransform);
@@ -39,8 +35,6 @@ public class BirdLeg
 
 		
 	}
-
-	private const float FREQUENCY = 128f/60f/ 1f;
 
 	public void Update(float dt)
 	{

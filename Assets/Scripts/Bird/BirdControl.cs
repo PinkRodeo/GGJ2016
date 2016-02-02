@@ -31,12 +31,18 @@ public class BirdControl : MonoBehaviour
 		return _isInitialized;
 	}
 
+	public bool DEBUG_StartSongTimer = false;
+	public bool DEBUG_InitControllerOnStart = false;
+
+
 	// Use this for initialization
 	void Start ()
-	{
-		//		SongTimer.StartSong(128f);
-		//_initializeController();
-
+	{	
+		if (DEBUG_StartSongTimer)
+			SongTimer.StartSong(128f);
+	
+		if (DEBUG_InitControllerOnStart)
+			_initializeController();
 	}
 
 	public void _initializeController()
@@ -74,21 +80,21 @@ public class BirdControl : MonoBehaviour
 			//_initializeController();
 		}
 
-		if (_isInitialized)
-		{
-			float dt = Time.deltaTime;
+		if (!_isInitialized) return;
 
-			leftWing.Update(dt);
-			rightWing.Update(dt);
+		float dt = Time.deltaTime;
 
-			head.Update(dt);
+		leftWing.Update(dt);
+		rightWing.Update(dt);
 
-			body.Update(dt);
+		head.Update(dt);
 
-			leftLeg.Update(dt);
-			rightLeg.Update(dt);
+		body.Update(dt);
 
-			tail.Update(dt);
+		leftLeg.Update(dt);
+		rightLeg.Update(dt);
+
+		tail.Update(dt);
+	
 		}
-	}
 }

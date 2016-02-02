@@ -30,8 +30,8 @@ public class BirdHead
 
 	}
 
-	const float HEAD_POS_MOD = -0.005f * .3f;
-	const float NECK_POS_MOD = -0.002f * .3f;
+	private const float HEAD_POS_MOD = -0.005f * .3f;
+	private const float NECK_POS_MOD = -0.002f * .3f;
 
 	
 	public void Update(float dt)

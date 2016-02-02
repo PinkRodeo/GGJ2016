@@ -98,16 +98,22 @@ public class SceneChoreographer : MonoBehaviour
 
 		}
 
+
+		LeanTween.move(stageCamera.cameraFocalPoint.gameObject, stageCamera.MainStageFocustPoint.transform.position, 2.5f)
+		.setEase(LeanTweenType.easeOutCirc)
+		.setDelay(0.2f);
+
 		LeanTween.moveLocalX(LogoGameObject, initialLogoLocalPosition.x + 20f, 1f)
 		.setEase(LeanTweenType.easeInBack)
 		.setOnComplete(() =>
 		{
 
+
+
 			LeanTween.moveY(curtainTransform.gameObject, 11.1f, 1f)
 			.setEase(LeanTweenType.easeInBack)
 			.setOnComplete(() =>
 			{
-
 
 
 
