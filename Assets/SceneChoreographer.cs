@@ -107,7 +107,7 @@ public class SceneChoreographer : MonoBehaviour
 		.setEase(LeanTweenType.easeInBack)
 		.setOnComplete(() =>
 		{
-
+			
 
 
 			LeanTween.moveY(curtainTransform.gameObject, 11.1f, 1f)

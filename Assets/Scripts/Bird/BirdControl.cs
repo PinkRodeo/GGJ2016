@@ -34,12 +34,13 @@ public class BirdControl : MonoBehaviour
 	public bool DEBUG_StartSongTimer = false;
 	public bool DEBUG_InitControllerOnStart = false;
 
+	[Range(0, 400f)] public float DEBUG_BPM = 128f;
 
 	// Use this for initialization
 	void Start ()
 	{	
 		if (DEBUG_StartSongTimer)
-			SongTimer.StartSong(128f);
+			SongTimer.StartSong(DEBUG_BPM);
 	
 		if (DEBUG_InitControllerOnStart)
 			_initializeController();
