@@ -1,8 +1,6 @@
 ﻿using System;
 using UnityEngine;
-using System.Collections.Generic;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
 
 [Serializable]
@@ -16,115 +14,83 @@ public struct HitFeedbackSprites
 
 public class Floater : MonoBehaviour
 {
-	[Obsolete]
-	public List<Sprite> spriteList= new List<Sprite>();
 	public HitFeedbackSprites sprites;
-
-	private float guitime = 6;
-
-	public GameObject uiHolder;
-	public Font quicksand;
-	List<Vector2> locations = new List<Vector2>();
-	public GameObject locationHolder;
 	private GameSceneMaster gameManager;
-	// Use this for initialization
+
+	//these 2 should be combined
+	private readonly Pulse[] pulses = new Pulse[4];
+	private readonly Vector3[] pulsePosition = new Vector3[4];
 
 	void Start ()
 	{
 		gameManager = GameObject.Find("GameManager").GetComponent<GameSceneMaster>();
+		for (int i = 0; i < gameManager.birds.Length; i++)
+		{
+			const float offset = 7;
+			Vector3 position = gameManager.birds[i].transform.position + Vector3.up*offset;
 
-		locations.Add(locationHolder.transform.position);
-		for (int i = 0; i < locationHolder.transform.childCount; i++)
-		{
-			Vector3 position = locationHolder.transform.GetChild(i).transform.position;
-			Vector2 loc = new Vector2(position.x, position.y);
-			locations.Add(loc);
+			pulsePosition[i] = Camera.main.WorldToScreenPoint(position);
 		}
-		for (int i = 0; i < uiHolder.transform.childCount; i++)
+
+		for (int i = 0; i < 4; i++)
 		{
-			Vector3 position = uiHolder.transform.GetChild(i).transform.position;
-			Vector2 loc = new Vector2(position.x, position.y);
-			locations.Add(loc);
+			SpawnPrecisionFeedback(i);
 		}
 	}
 
-	// Update is called once per frame
 	void Update ()
 	{
-		if (!gameManager.end && ScoreHandler.GetInstance().GetScore(1) > 0)
-		{
-			guitime -= Time.deltaTime;
-		}
-
-
 		if (Input.GetKeyDown(KeyCode.Alpha1))
 		{
-			SpawnFloater(1, sprites.bad);
+			SetPulse(0, sprites.bad);
 		}
 		if (Input.GetKeyDown(KeyCode.Alpha2))
 		{
-			SpawnFloater(2, sprites.good);
+			SetPulse(0, sprites.good);
 		}
 		if (Input.GetKeyDown(KeyCode.Alpha3))
 		{
-			SpawnFloater(3, sprites.great);
+			SetPulse(0, sprites.great);
 		}
 		if (Input.GetKeyDown(KeyCode.Alpha4))
 		{
-			SpawnFloater(4, sprites.perfect);
+			SetPulse(0, sprites.perfect);
 		}
-
 	}
 
-	public void SpawnFloater(int pos, Sprite img)
+	public void SetPulse(int playerNumber, Sprite img)
 	{
-		GameObject newGO = new GameObject("myTextGO");
-		newGO.transform.SetParent(this.transform, false);
+		var pulse = pulses[playerNumber];
+		pulse.GetComponent<Image>().sprite = img;
+		pulse.DoIt();
+	}
 
-		newGO.AddComponent<Outline>();
+	public void SpawnFloater(int playerNumber, Sprite img)
+	{
+		var obj = CreateFeedbackTextObject(playerNumber, img);
+		obj.AddComponent<FloatingText>();
+	}
 
-		Image myText = newGO.AddComponent<Image>();
+	private void SpawnPrecisionFeedback(int playerNumber)
+	{
+		var obj = CreateFeedbackTextObject(playerNumber, null);
+		var pulse = obj.AddComponent<Pulse>();
+		pulses[playerNumber] = pulse;
+		pulse.Hide();
+	}
+
+	private GameObject CreateFeedbackTextObject(int playerNumber, Sprite img)
+	{
+		GameObject obj = new GameObject("myTextGO");
+		obj.transform.SetParent(transform, false);
+
+		obj.AddComponent<Outline>();
+
+		Image myText = obj.AddComponent<Image>();
 		myText.sprite = img;
 
-		newGO.AddComponent<FloatingText>();
-		if (pos > 4) newGO.GetComponent<FloatingText>().isScore = true;
-		newGO.GetComponent<RectTransform>().position = locations[pos];
-		newGO.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 20);
-
-	}
-
-	public void SpawnFloater(string text, int pos, Color color)
-	{
-		GameObject newGO = new GameObject("myTextGO");
-		newGO.transform.SetParent(this.transform, false);
-
-		newGO.AddComponent<Outline>();
-
-		Text myText = newGO.AddComponent<Text>();
-		myText.font = quicksand;
-		myText.text = text;
-		myText.color = color;
-
-		newGO.AddComponent<FloatingText>();
-		if (pos > 4) newGO.GetComponent<FloatingText>().isScore = true;
-		newGO.GetComponent<RectTransform>().position = locations[pos];
-		newGO.GetComponent<RectTransform>().sizeDelta = new Vector2(100,20);
-
-	}
-
-	public void SpawnFloater(string text, int pos, Color color, Color outlineColor)
-	{
-		GameObject newGO = new GameObject("myTextGO");
-		newGO.transform.SetParent(this.transform, false);
-		newGO.AddComponent<Outline>();
-
-		Text myText = newGO.AddComponent<Text>();
-		myText.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
-		GetComponent<Outline>().effectColor = outlineColor;
-		myText.text = text;
-		myText.color = color;
-		newGO.AddComponent<FloatingText>();
-		if (pos > 4) newGO.GetComponent<FloatingText>().isScore = true;
-		newGO.GetComponent<RectTransform>().position = locations[pos];
+		obj.GetComponent<RectTransform>().position = pulsePosition[playerNumber];
+		obj.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 20);
+		return obj;
 	}
 }

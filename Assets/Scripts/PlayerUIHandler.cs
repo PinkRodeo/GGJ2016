@@ -32,7 +32,7 @@ public class PlayerUIHandler : MonoBehaviour
 	{
 		for (var i = 0; i < playerCount; i++)
 		{
-			int score = ScoreHandler.GetInstance().GetScore(i + 1);
+			int score = ScoreHandler.GetInstance().GetScore(i);
 			uiHolder[i].textUI.text = score.ToString();
 			if (score == 0)
 			{
@@ -42,27 +42,6 @@ public class PlayerUIHandler : MonoBehaviour
 			{
 				uiHolder[i].gameObject.SetActive(true);
 			}
-		}
-	}
-
-
-	private static void DebugKeys()
-	{
-		if (Input.GetKeyDown(KeyCode.Alpha1))
-		{
-			ScoreHandler.GetInstance().AddScore(1, 100);
-		}
-		if (Input.GetKeyDown(KeyCode.Alpha2))
-		{
-			ScoreHandler.GetInstance().AddScore(2, 100);
-		}
-		if (Input.GetKeyDown(KeyCode.Alpha3))
-		{
-			ScoreHandler.GetInstance().AddScore(3, 100);
-		}
-		if (Input.GetKeyDown(KeyCode.Alpha4))
-		{
-			ScoreHandler.GetInstance().AddScore(4, 100);
 		}
 	}
 }

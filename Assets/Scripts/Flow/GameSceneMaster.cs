@@ -49,7 +49,7 @@ public class GameSceneMaster : MonoBehaviour
 			PoseDiff poseDiff = data.CompareWithController(input, 0);
 
 			int randomScoreModifier = Random.Range(10, 15);
-			ScoreHandler.GetInstance().AddScore(i + 1, Mathf.FloorToInt(poseDiff.totalDiff) * randomScoreModifier);
+			ScoreHandler.GetInstance().AddScore(i, Mathf.FloorToInt(poseDiff.totalDiff) * randomScoreModifier);
 
 			lastPose[i] = currentPose;
 		}
@@ -75,7 +75,7 @@ public class GameSceneMaster : MonoBehaviour
 			PoseDiff poseDiff = Pose.CalculatePoseDiffs(currentPose, prevPose);
 
 			int randomScoreModifier = Random.Range(5, 10);
-			ScoreHandler.GetInstance().AddScore(i + 1, Mathf.FloorToInt(poseDiff.totalDiff)*randomScoreModifier);
+			ScoreHandler.GetInstance().AddScore(i, Mathf.FloorToInt(poseDiff.totalDiff)*randomScoreModifier);
 
 			lastPose[i] = currentPose;
 		}
@@ -97,7 +97,7 @@ public class GameSceneMaster : MonoBehaviour
 
 		for (int i = 0; i < birds.Length; i++)
 		{
-			int score = ScoreHandler.GetInstance().GetScore(i + 1);
+			int score = ScoreHandler.GetInstance().GetScore(i);
 			if (score > highestScore)
 			{
 				highestScore = score;
@@ -105,10 +105,9 @@ public class GameSceneMaster : MonoBehaviour
 			}
 		}
 
-		//Log.Weikie("Mistress: " + player);
+		
 		mistress.input.SetHackPortNumberModifier(player + 1);
 		mistress.input.RedoBindings();
-		//Log.Weikie(mistress.GetInput().GetControllerPort() + " port numb");
 	}
 
 	public void End()
