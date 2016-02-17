@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class GameSceneMaster : MonoBehaviour
 {
@@ -9,6 +8,7 @@ public class GameSceneMaster : MonoBehaviour
 	private PoseData[]	lastPose;
 	public bool end;
 	public BirdControl mistress;
+	public Floater floater;
 
 	void Start ()
 	{
@@ -48,8 +48,33 @@ public class GameSceneMaster : MonoBehaviour
 			//compare
 			PoseDiff poseDiff = data.CompareWithController(input, 0);
 
-			int randomScoreModifier = Random.Range(10, 15);
-			ScoreHandler.GetInstance().AddScore(i, Mathf.FloorToInt(poseDiff.totalDiff) * randomScoreModifier);
+			//int randomScoreModifier = Random.Range(10, 15);
+			if (i == 0)
+			{
+				Log.Weikie("pose difference:" + poseDiff.totalDiff);
+				float diff = poseDiff.totalDiff;
+				if (diff < 0.15f)
+				{
+					floater.SetPulse(i, Grade.Perfect);
+				}
+				else if (diff < 0.3f)
+				{
+					floater.SetPulse(i, Grade.Great);
+				}
+				else if (diff < .8f)
+				{
+					floater.SetPulse(i, Grade.Good);
+				}
+				else
+				{
+					floater.SetPulse(i, Grade.Bad);
+				}
+
+			}
+
+			ScoreHandler.GetInstance().AddScore(i, Mathf.FloorToInt(poseDiff.totalDiff));
+
+
 
 			lastPose[i] = currentPose;
 		}
@@ -59,7 +84,7 @@ public class GameSceneMaster : MonoBehaviour
 	//To be called from BeatGUIBar
 	public void HitSubBeat()
 	{
-		DoScore();
+		//DoScore();
 	}
 
 	private void DoScore()
@@ -75,7 +100,8 @@ public class GameSceneMaster : MonoBehaviour
 			PoseDiff poseDiff = Pose.CalculatePoseDiffs(currentPose, prevPose);
 
 			int randomScoreModifier = Random.Range(5, 10);
-			ScoreHandler.GetInstance().AddScore(i, Mathf.FloorToInt(poseDiff.totalDiff)*randomScoreModifier);
+			int amount = Mathf.FloorToInt(poseDiff.totalDiff)*randomScoreModifier;
+			ScoreHandler.GetInstance().AddScore(i, amount);
 
 			lastPose[i] = currentPose;
 		}
@@ -90,7 +116,7 @@ public class GameSceneMaster : MonoBehaviour
 		}
 	}
 
-	public void ScoreChanged()
+	private void ScoreChanged()
 	{
 		int highestScore = 0;
 		int player = 0;
@@ -105,9 +131,11 @@ public class GameSceneMaster : MonoBehaviour
 			}
 		}
 
-		
-		mistress.input.SetHackPortNumberModifier(player + 1);
-		mistress.input.RedoBindings();
+		if (mistress.input.GetControllerPort() != player + 1)
+		{
+			mistress.input.SetHackPortNumberModifier(player + 1);
+			mistress.input.RedoBindings();
+		}
 	}
 
 	public void End()
