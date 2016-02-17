@@ -710,6 +710,11 @@ MonoBehaviour:
   - {fileID: 21300080, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
   - {fileID: 21300044, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
   - {fileID: 21300080, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
+  sprites:
+    bad: {fileID: 21300000, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
+    good: {fileID: 21300004, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
+    great: {fileID: 21300010, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
+    perfect: {fileID: 21300016, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
   uiHolder: {fileID: 1428581838}
   quicksand: {fileID: 12800000, guid: 64c40348d5195e242a33efb1b0fc9d19, type: 3}
   locationHolder: {fileID: 579272407}
