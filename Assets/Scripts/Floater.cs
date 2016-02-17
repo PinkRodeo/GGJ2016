@@ -3,18 +3,17 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-[Serializable]
-public struct HitFeedbackSprites
+public enum Grade
 {
-	public Sprite bad;
-	public Sprite good;
-	public Sprite great;
-	public Sprite perfect;
+	Bad,
+	Good,
+	Great,
+	Perfect
 }
 
 public class Floater : MonoBehaviour
 {
-	public HitFeedbackSprites sprites;
+	public Sprite[] sprites;
 	private GameSceneMaster gameManager;
 
 	//these 2 should be combined
@@ -24,6 +23,8 @@ public class Floater : MonoBehaviour
 	void Start ()
 	{
 		gameManager = GameObject.Find("GameManager").GetComponent<GameSceneMaster>();
+		gameManager.floater = this;
+
 		for (int i = 0; i < gameManager.birds.Length; i++)
 		{
 			const float offset = 7;
@@ -42,24 +43,25 @@ public class Floater : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.Alpha1))
 		{
-			SetPulse(0, sprites.bad);
+			SetPulse(0, Grade.Bad);
 		}
 		if (Input.GetKeyDown(KeyCode.Alpha2))
 		{
-			SetPulse(0, sprites.good);
+			SetPulse(0, Grade.Good);
 		}
 		if (Input.GetKeyDown(KeyCode.Alpha3))
 		{
-			SetPulse(0, sprites.great);
+			SetPulse(0, Grade.Great);
 		}
 		if (Input.GetKeyDown(KeyCode.Alpha4))
 		{
-			SetPulse(0, sprites.perfect);
+			SetPulse(0, Grade.Perfect);
 		}
 	}
 
-	public void SetPulse(int playerNumber, Sprite img)
+	public void SetPulse(int playerNumber, Grade grade)
 	{
+		Sprite img = sprites[(int)grade];
 		var pulse = pulses[playerNumber];
 		pulse.GetComponent<Image>().sprite = img;
 		pulse.DoIt();
