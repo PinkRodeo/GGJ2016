@@ -73,6 +73,20 @@ public class SceneChoreographer : MonoBehaviour
 			gameManager.InitBirdControls();
 		}
 
+		if (( Input.GetKeyDown(KeyCode.V)) && !startPressed)
+		{
+			startPressed = true;
+
+	
+
+			gameManager.InitBirdControls();
+
+			stageCamera.setZoomedInOnVeranda(0);
+
+			beatGUIBar.StartTheMusic();
+			crowd.canPlayCheers = true;
+		}
+
 		if (gameManager.end && !ended)
 		{
 			ended = true;

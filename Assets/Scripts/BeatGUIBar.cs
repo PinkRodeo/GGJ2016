@@ -4,9 +4,9 @@ using System;
 
 public class BeatGUIBar : MonoBehaviour
 {
-	public float barSpeed = 300.0f;
 	public int BeatsPerMinute = 128;
 	public float DelayForMusic = 0.0f;
+	public float DelayForBeats = 0f;
 	public int startingAfter = 15;
 	public int timesTheAmountForSmallerChecks = 1;
 	public Sprite[] sprites;
@@ -14,7 +14,8 @@ public class BeatGUIBar : MonoBehaviour
 
 
 	private float timeBetweenBeats;
-	private float globalTime;
+	public float globalTime;
+	private float? _rhythmStartTime = null;
 
 	private int currentIndex = 0;
 	private int msCurrentIndex = 0;
@@ -42,6 +43,7 @@ public class BeatGUIBar : MonoBehaviour
 		public BarType type;
 		public Sprite sprite;
 		public Pose pose;
+		public int count;
 	};
 
 	public struct AccurateBeat
@@ -66,14 +68,23 @@ public class BeatGUIBar : MonoBehaviour
 		{
 			source.PlayDelayed( DelayForMusic );
 			Invoke("delayedSongStart", DelayForMusic);
+			Invoke("delayedBeatStart", DelayForBeats);
+
 		}
 	}
+
 
 	// Called with Invoke() in Start()
 	// ReSharper disable once UnusedMember.Local
 	private  void delayedSongStart()
 	{
 		SongTimer.StartSong(128f, 0.18f);
+	}
+
+	// ReSharper disable once UnusedMember.Local
+	private void delayedBeatStart()
+	{
+		_rhythmStartTime = Time.time;
 	}
 
 	public bool IsPlayingAudio()
@@ -88,9 +99,20 @@ public class BeatGUIBar : MonoBehaviour
 		{
 			gameManager.End();
 		}
+		else
+		{
+		//	globalTime += Time.deltaTime;
 
-		globalTime += Time.deltaTime;
-		while( msCurrentIndex < msBeatLength )
+		}
+
+		if (_rhythmStartTime.HasValue)
+		{
+			globalTime = Time.time - _rhythmStartTime.Value;
+
+		}
+
+
+		while ( msCurrentIndex < msBeatLength )
 		{
 			//current index time lesser than global time
 			if ( msBeatList[msCurrentIndex].time <= globalTime )
@@ -116,6 +138,8 @@ public class BeatGUIBar : MonoBehaviour
 		}
 	}
 
+	private static readonly Vector2 RegularBeatPivot = new Vector2(0.5f, 0);
+
 	private void GenerateArray( float seconds )
 	{
 		Initialization(seconds);
@@ -124,10 +148,12 @@ public class BeatGUIBar : MonoBehaviour
 
 		SetBeatTimes();
 
+		//TODO:
+//		for( int i = 0; i < sBeatLength; i++ )
 		for( int i = 0; i < sBeatLength; i++ )
 		{
 
-			GameObject bar = new GameObject( "beatBar", typeof( RectTransform ) );
+				GameObject bar = new GameObject( "beatBar", typeof( RectTransform ) );
 			bar.AddComponent<CanvasRenderer>();
 			bar.AddComponent<Image>();
 
@@ -135,17 +161,26 @@ public class BeatGUIBar : MonoBehaviour
 			bar.transform.SetParent( canvas.transform );
 			Vector3 p = rt.position;
 			int spawnOffSetX = 1500;
+			rt.anchorMax = Vector2.zero;
+			rt.anchorMin = Vector2.zero;
+			rt.pivot = RegularBeatPivot;
 
-			rt.transform.position = new Vector3( p.x + spawnOffSetX + i * 300.0f, p.y + 20.0f, p.z );
+			rt.transform.position = new Vector3( p.x + spawnOffSetX + i * 300.0f, 0f, p.z );
+
+
+			Beat beat = sBeatList[i];
 
 			BeatBarBehaviour behaviour = bar.AddComponent<BeatBarBehaviour>();
-			behaviour.barSpeed = barSpeed;
-			Beat beat = sBeatList[ i ];
+			behaviour.beatController = this;
+			behaviour.beat = beat;
+
+			behaviour.Initialize();
+
 			bar.GetComponent<Image>().sprite = beat.sprite;
 			bar.GetComponent<Image>().SetNativeSize();
 			if (beat.type == BarType.Special)
 			{
-				SpawnSpecialBeat(spawnOffSetX, i);
+				SpawnSpecialBeat(spawnOffSetX, i, beat);
 			}
 		}
 	}
@@ -160,7 +195,7 @@ public class BeatGUIBar : MonoBehaviour
 		}
 	}
 
-	private void SpawnSpecialBeat(int spawnOffSetX, int index)
+	private void SpawnSpecialBeat(int spawnOffSetX, int index, Beat beat)
 	{
 		GameObject barSpecial = new GameObject("beatBar", typeof (RectTransform));
 		barSpecial.AddComponent<CanvasRenderer>();
@@ -173,7 +208,13 @@ public class BeatGUIBar : MonoBehaviour
 		rtSpecial.transform.position = new Vector3(pSpecial.x + spawnOffSetX + index*300.0f-100.0f, pSpecial.y + 120.0f, pSpecial.z);
 
 		BeatBarBehaviour behaviour2 = barSpecial.AddComponent<BeatBarBehaviour>();
-		behaviour2.barSpeed = barSpeed;
+		
+		behaviour2.beatController = this;
+		behaviour2.beat = beat;
+
+		behaviour2.Initialize();
+
+
 		barSpecial.GetComponent<Image>().sprite = sBeatList[ index ].pose.data.uiTexture;
 		barSpecial.GetComponent<Image>().SetNativeSize();
 	}
@@ -193,7 +234,7 @@ public class BeatGUIBar : MonoBehaviour
 
 	private void Initialization(float seconds)
 	{
-		float beatsPerSecond = BeatsPerMinute/60.0f;
+		float beatsPerSecond = ((float)BeatsPerMinute)/60.0f;
 		sBeatLength = (int) (seconds*beatsPerSecond);
 		msBeatLength = sBeatLength*timesTheAmountForSmallerChecks;
 		sBeatList = new Beat[sBeatLength];
@@ -208,6 +249,7 @@ public class BeatGUIBar : MonoBehaviour
 			beat.type = BarType.Normal;
 			beat.time = DelayForMusic + i*timeBetweenBeats;
 			beat.sprite = sprites[0];
+			beat.count = i%8;
 			sBeatList[i] = beat;
 		}
 	}

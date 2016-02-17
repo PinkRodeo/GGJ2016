@@ -67,7 +67,7 @@ public class ControllerInput
 		if (name.ToLower().Contains("xbox"))
 		{
 			controllerType = ControllerType.Xbox;
-			Log.Weikie("Assigned xbox controller");
+			//Log.Weikie("Assigned xbox controller");
 			XboxBindings();
 		}
 		else if (name == "Wireless Controller")
