@@ -1,18 +1,30 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
+
+[Serializable]
+public struct HitFeedbackSprites
+{
+	public Sprite bad;
+	public Sprite good;
+	public Sprite great;
+	public Sprite perfect;
+}
 
 public class Floater : MonoBehaviour
 {
+	[Obsolete]
 	public List<Sprite> spriteList= new List<Sprite>();
+	public HitFeedbackSprites sprites;
+
 	private float guitime = 6;
 
 	public GameObject uiHolder;
 	public Font quicksand;
-	List<Vector2> Locations = new List<Vector2>();
+	List<Vector2> locations = new List<Vector2>();
 	public GameObject locationHolder;
 	private GameSceneMaster gameManager;
 	// Use this for initialization
@@ -21,39 +33,45 @@ public class Floater : MonoBehaviour
 	{
 		gameManager = GameObject.Find("GameManager").GetComponent<GameSceneMaster>();
 
-		Locations.Add(locationHolder.transform.position);
-		for (int ii = 0; ii < locationHolder.transform.childCount; ii++)
+		locations.Add(locationHolder.transform.position);
+		for (int i = 0; i < locationHolder.transform.childCount; i++)
 		{
-			Vector2 loc = new Vector2(locationHolder.transform.GetChild(ii).transform.position.x,
-									  locationHolder.transform.GetChild(ii).transform.position.y);
-			Locations.Add(loc);
+			Vector3 position = locationHolder.transform.GetChild(i).transform.position;
+			Vector2 loc = new Vector2(position.x, position.y);
+			locations.Add(loc);
 		}
-		for (int ii = 0; ii < uiHolder.transform.childCount; ii++)
+		for (int i = 0; i < uiHolder.transform.childCount; i++)
 		{
-			Vector2 loc = new Vector2(uiHolder.transform.GetChild(ii).transform.position.x,
-									  uiHolder.transform.GetChild(ii).transform.position.y);
-			Locations.Add(loc);
+			Vector3 position = uiHolder.transform.GetChild(i).transform.position;
+			Vector2 loc = new Vector2(position.x, position.y);
+			locations.Add(loc);
 		}
-		// SpawnFloater(2, spriteList[0]);
-
-
 	}
 
 	// Update is called once per frame
 	void Update ()
 	{
-		//if (Input.GetKeyDown(KeyCode.Space)) SpawnFloater("FIETSBEL!!!!", 0, Color.red);
-		//
 		if (!gameManager.end && ScoreHandler.GetInstance().GetScore(1) > 0)
 		{
 			guitime -= Time.deltaTime;
 		}
 
 
-		if (guitime < 0)
+		if (Input.GetKeyDown(KeyCode.Alpha1))
 		{
-			guitime = 7;
-			SpawnFloater(Random.Range(1, 4), spriteList[Random.Range(0, 13)]);
+			SpawnFloater(1, sprites.bad);
+		}
+		if (Input.GetKeyDown(KeyCode.Alpha2))
+		{
+			SpawnFloater(2, sprites.good);
+		}
+		if (Input.GetKeyDown(KeyCode.Alpha3))
+		{
+			SpawnFloater(3, sprites.great);
+		}
+		if (Input.GetKeyDown(KeyCode.Alpha4))
+		{
+			SpawnFloater(4, sprites.perfect);
 		}
 
 	}
@@ -70,7 +88,7 @@ public class Floater : MonoBehaviour
 
 		newGO.AddComponent<FloatingText>();
 		if (pos > 4) newGO.GetComponent<FloatingText>().isScore = true;
-		newGO.GetComponent<RectTransform>().position = Locations[pos];
+		newGO.GetComponent<RectTransform>().position = locations[pos];
 		newGO.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 20);
 
 	}
@@ -89,7 +107,7 @@ public class Floater : MonoBehaviour
 
 		newGO.AddComponent<FloatingText>();
 		if (pos > 4) newGO.GetComponent<FloatingText>().isScore = true;
-		newGO.GetComponent<RectTransform>().position = Locations[pos];
+		newGO.GetComponent<RectTransform>().position = locations[pos];
 		newGO.GetComponent<RectTransform>().sizeDelta = new Vector2(100,20);
 
 	}
@@ -107,6 +125,6 @@ public class Floater : MonoBehaviour
 		myText.color = color;
 		newGO.AddComponent<FloatingText>();
 		if (pos > 4) newGO.GetComponent<FloatingText>().isScore = true;
-		newGO.GetComponent<RectTransform>().position = Locations[pos];
+		newGO.GetComponent<RectTransform>().position = locations[pos];
 	}
 }
