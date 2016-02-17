@@ -105,10 +105,10 @@ public class GameSceneMaster : MonoBehaviour
 			}
 		}
 
-		Log.Weikie("Mistress: " + player);
+		//Log.Weikie("Mistress: " + player);
 		mistress.input.SetHackPortNumberModifier(player + 1);
 		mistress.input.RedoBindings();
-		Log.Weikie(mistress.GetInput().GetControllerPort() + " port numb");
+		//Log.Weikie(mistress.GetInput().GetControllerPort() + " port numb");
 	}
 
 	public void End()
