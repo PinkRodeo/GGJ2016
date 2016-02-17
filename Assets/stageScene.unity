@@ -702,28 +702,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b007deee868115d4a8446881f09efed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteList:
-  - {fileID: 21300000, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
-  - {fileID: 21300010, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
-  - {fileID: 21300004, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
-  - {fileID: 21300010, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
-  - {fileID: 21300028, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
-  - {fileID: 21300044, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
-  - {fileID: 21300016, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
-  - {fileID: 21300046, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
-  - {fileID: 21300070, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
-  - {fileID: 21300062, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
-  - {fileID: 21300080, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
-  - {fileID: 21300044, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
-  - {fileID: 21300080, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
   sprites:
     bad: {fileID: 21300000, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
     good: {fileID: 21300004, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
     great: {fileID: 21300010, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
     perfect: {fileID: 21300016, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
-  uiHolder: {fileID: 1428581838}
-  quicksand: {fileID: 12800000, guid: 64c40348d5195e242a33efb1b0fc9d19, type: 3}
-  locationHolder: {fileID: 579272407}
 --- !u!114 &238892591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6870,7 +6853,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BeatsPerMinute: 128
   DelayForMusic: 2.2
-  DelayForBeats: 0.3
+  DelayForBeats: 0.35
   startingAfter: 16
   timesTheAmountForSmallerChecks: 1
   sprites:
