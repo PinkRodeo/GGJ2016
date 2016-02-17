@@ -17,6 +17,7 @@ public class PlayerUIHandler : MonoBehaviour
 			nextplayer.transform.localPosition = Vector3.zero;
 			nextplayer.GetComponent<RectTransform>().sizeDelta = Vector2.zero;
 
+			nextplayer.transform.localScale = Vector3.one;
 
 			uiHolder[i] = holder[i].transform.GetChild(0).GetComponent<PlayerUI>();
 		}
