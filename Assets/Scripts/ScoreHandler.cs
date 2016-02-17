@@ -28,9 +28,13 @@ public class ScoreHandler
 
 	public void AddScore(int playerNumber, int amount)
 	{
-        Floater myfloat = GameObject.Find("Canvas").GetComponent<Floater>();
-        if (amount > 100) myfloat.SpawnFloater(amount + "", playerNumber + 4, Color.cyan);
-        ScoreEntry entry = scoreEntryList[playerNumber - 1];
+		Floater myfloat = GameObject.Find("Canvas").GetComponent<Floater>();
+		if (amount > 100)
+		{
+			//WEIKIE: Whats this? should probably not even be here
+			//myfloat.SpawnFloater(amount + "", playerNumber + 4, Color.cyan);
+		}
+		ScoreEntry entry = scoreEntryList[playerNumber - 1];
 		entry.score += amount;
 		entry.latestEarned = amount;
 		scoreEntryList[playerNumber - 1] = entry;
@@ -39,16 +43,6 @@ public class ScoreHandler
 	public int GetScore(int playerNumber)
 	{
 		return scoreEntryList[playerNumber - 1].score;
-	}
-
-	public void generateTotalGameScore()
-	{
-		int score = 0;
-		score += scoreEntryList[0].score;
-		score += scoreEntryList[1].score;
-		score += scoreEntryList[2].score;
-		score += scoreEntryList[3].score;
-		gameScores.Add(score);
 	}
 
 	public void SetScore(int i, int amount)
