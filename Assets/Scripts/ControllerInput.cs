@@ -94,31 +94,30 @@ public class ControllerInput
 		controllerPort = port;
 	}
 
+	private List<KeyCode> _keyCodeList; 
+
 	public bool GetKeyDown(ControllerAction action)
 	{
 		TransformCrossControllerButton(ref action);
-		List<KeyCode> keycodeList;
-		if (!IsActionMapped(action, out keycodeList)) return false;
+		if (!IsActionMapped(action, out _keyCodeList)) return false;
 
-		return keycodeList.Any(Input.GetKeyDown);
+		return _keyCodeList.Any(Input.GetKeyDown);
 	}
 
 	public bool GetKey(ControllerAction action)
 	{
 		TransformCrossControllerButton(ref action);
-		List<KeyCode> keycodeList;
-		if (!IsActionMapped(action, out keycodeList)) return false;
+		if (!IsActionMapped(action, out _keyCodeList)) return false;
 
-		return keycodeList.Any(Input.GetKey);
+		return _keyCodeList.Any(Input.GetKey);
 	}
 
 	public bool GetKeyUp(ControllerAction action)
 	{
 		TransformCrossControllerButton(ref action);
-		List<KeyCode> keycodeList;
-		if (!IsActionMapped(action, out keycodeList)) return false;
+		if (!IsActionMapped(action, out _keyCodeList)) return false;
 
-		return keycodeList.Any(Input.GetKeyUp);
+		return _keyCodeList.Any(Input.GetKeyUp);
 	}
 
 	public float GetAxis(ControllerAction action)
