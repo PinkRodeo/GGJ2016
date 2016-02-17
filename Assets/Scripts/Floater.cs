@@ -2,7 +2,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
 
 [Serializable]
@@ -16,22 +15,29 @@ public struct HitFeedbackSprites
 
 public class Floater : MonoBehaviour
 {
-	[Obsolete]
-	public List<Sprite> spriteList= new List<Sprite>();
 	public HitFeedbackSprites sprites;
-
-	private float guitime = 6;
 
 	public GameObject uiHolder;
 	[Obsolete]
-	public Font quicksand;
 	private readonly List<Vector2> locations = new List<Vector2>();
 	public GameObject locationHolder;
+	private GameSceneMaster gameManager;
 
-	private Pulse[] pulses = new Pulse[4];
+	//these 2 should be combined
+	private readonly Pulse[] pulses = new Pulse[4];
+	private readonly Vector3[] pulsePosition = new Vector3[4];
 
 	void Start ()
 	{
+		gameManager = GameObject.Find("GameManager").GetComponent<GameSceneMaster>();
+		for (int i = 0; i < gameManager.birds.Length; i++)
+		{
+			const float offset = 7;
+			Vector3 position = gameManager.birds[i].transform.position + Vector3.up*offset;
+
+			pulsePosition[i] = Camera.main.WorldToScreenPoint(position);
+		}
+
 		//locations.Add(locationHolder.transform.position);
 		for (int i = 0; i < locationHolder.transform.childCount; i++)
 		{
@@ -93,7 +99,7 @@ public class Floater : MonoBehaviour
 		obj.AddComponent<FloatingText>();
 	}
 
-	public void SpawnPrecisionFeedback(int playerNumber)
+	private void SpawnPrecisionFeedback(int playerNumber)
 	{
 		var obj = CreateFeedbackTextObject(playerNumber, null);
 		var pulse = obj.AddComponent<Pulse>();
@@ -104,7 +110,7 @@ public class Floater : MonoBehaviour
 	private GameObject CreateFeedbackTextObject(int playerNumber, Sprite img)
 	{
 		GameObject obj = new GameObject("myTextGO");
-		obj.transform.SetParent(this.transform, false);
+		obj.transform.SetParent(transform, false);
 
 		obj.AddComponent<Outline>();
 
@@ -112,7 +118,7 @@ public class Floater : MonoBehaviour
 		myText.sprite = img;
 
 		//if (playerNumber > 4) newGO.GetComponent<FloatingText>().isScore = true;
-		obj.GetComponent<RectTransform>().position = locations[playerNumber];
+		obj.GetComponent<RectTransform>().position = pulsePosition[playerNumber];//locations[playerNumber];
 		obj.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 20);
 		return obj;
 	}

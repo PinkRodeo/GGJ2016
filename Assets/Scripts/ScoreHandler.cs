@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 struct ScoreEntry
 {
@@ -11,12 +10,10 @@ struct ScoreEntry
 public class ScoreHandler
 {
 	private readonly ScoreEntry[] scoreEntryList;
-	private readonly List<int> gameScores;
 	private static ScoreHandler instance;
 
 	private ScoreHandler()
 	{
-		gameScores = new List<int>();
 		scoreEntryList = new ScoreEntry[4];
 	}
 
@@ -28,21 +25,15 @@ public class ScoreHandler
 
 	public void AddScore(int playerNumber, int amount)
 	{
-		Floater myfloat = GameObject.Find("Canvas").GetComponent<Floater>();
-		if (amount > 100)
-		{
-			//WEIKIE: Whats this? should probably not even be here
-			//myfloat.SpawnFloater(amount + "", playerNumber + 4, Color.cyan);
-		}
-		ScoreEntry entry = scoreEntryList[playerNumber - 1];
+		ScoreEntry entry = scoreEntryList[playerNumber];
 		entry.score += amount;
 		entry.latestEarned = amount;
-		scoreEntryList[playerNumber - 1] = entry;
+		scoreEntryList[playerNumber] = entry;
 	}
 
 	public int GetScore(int playerNumber)
 	{
-		return scoreEntryList[playerNumber - 1].score;
+		return scoreEntryList[playerNumber].score;
 	}
 
 	public void SetScore(int i, int amount)
