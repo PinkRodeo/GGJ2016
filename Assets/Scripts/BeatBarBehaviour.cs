@@ -60,7 +60,7 @@ public class BeatBarBehaviour : MonoBehaviour
 
 	void LateUpdate()
 	{
-		_originalLocalPos.x = (beat.time - beatController.globalTime) * 100f + XoffsetFromLeft;
+		_originalLocalPos.x = (beat.time - beatController.globalTime) * 300f + XoffsetFromLeft;
 		//_originalLocalPos.x = XoffsetFromLeft;
 
 		myTransform.anchoredPosition3D = _originalLocalPos;

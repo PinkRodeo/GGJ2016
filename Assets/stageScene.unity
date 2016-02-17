@@ -3808,6 +3808,19 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 8224252, guid: 9ee1ba7f1c5b0466e97152e415da1300, type: 2}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24312884, guid: 943fcc8394d418448a491106bf44b751,
+        type: 2}
+    - target: {fileID: 8224252, guid: 9ee1ba7f1c5b0466e97152e415da1300, type: 2}
+      propertyPath: Priority
+      value: 142
+      objectReference: {fileID: 0}
+    - target: {fileID: 8224252, guid: 9ee1ba7f1c5b0466e97152e415da1300, type: 2}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9ee1ba7f1c5b0466e97152e415da1300, type: 2}
   m_IsPrefabParent: 0
@@ -6853,7 +6866,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BeatsPerMinute: 128
   DelayForMusic: 2.2
-  DelayForBeats: 0.35
+  DelayForBeats: -1.84
   startingAfter: 16
   timesTheAmountForSmallerChecks: 1
   sprites:
@@ -6892,15 +6905,15 @@ AudioSource:
   Loop: 0
   Mute: 0
   Spatialize: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
-  BypassEffects: 0
+  BypassEffects: 1
   BypassListenerEffects: 0
-  BypassReverbZones: 0
+  BypassReverbZones: 1
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -6938,7 +6951,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:

@@ -8,17 +8,18 @@ public class SongTimer
 	public static float bpm;
 	public static float frequency;
 
+	public static AudioSource sourceToSampleTimeFrom;
 
-	public static float delay;
+	//public static float delay;
 
 	public static void StartSong(float newBPM, float delay = 0.0f)
 	{
-		SongTimer.delay = delay;
+		//SongTimer.delay = delay;
 
 		bpm = newBPM;
 		frequency = newBPM / 60f;
 
-		initialTime = Time.time;
+		initialTime = GetCurrentTime() + delay + frequency/4f;
 
 		isSongRunning = true;
 	}
@@ -33,6 +34,16 @@ public class SongTimer
 		initialTime = 0f;
 	}
 
+	private static float GetCurrentTime()
+	{
+		if (sourceToSampleTimeFrom != null)
+		{
+			return sourceToSampleTimeFrom.time;
+		}
+		else
+			return Time.time;
+	}
+
 	/// <summary>
 	/// Get a value that'll be timed to the current beat.
 	/// Should be divided by a factor of 2, then run through Cos or Sin.
@@ -42,7 +53,7 @@ public class SongTimer
 	{
 		if (isSongRunning)
 		{
-			return (2f*Mathf.PI*frequency/ multiplier * (Time.time - initialTime+ delay));
+			return (2f*Mathf.PI*frequency/ multiplier * (GetCurrentTime() - initialTime));
 		}
 		else
 		{
@@ -51,13 +62,13 @@ public class SongTimer
 		}
 	}
 
-	private const float LEADIN_DURATION = 6f;
+	private const float LEADIN_DURATION = 12f;
 
 	public static float leadInRatio(float multiplier = 1f)
 	{
-		if (Time.time - initialTime < LEADIN_DURATION)
+		if (GetCurrentTime() - initialTime < LEADIN_DURATION)
 		{
-			return (Time.time - initialTime) /LEADIN_DURATION;
+			return (GetCurrentTime() - initialTime) /LEADIN_DURATION;
 		}
 		else
 		{
@@ -65,7 +76,7 @@ public class SongTimer
 		}
 		if (isSongRunning)
 		{
-			return (2f * Mathf.PI * frequency / multiplier * (Time.time - initialTime));
+			return (2f * Mathf.PI * frequency / multiplier * (GetCurrentTime() - initialTime));
 		}
 		else
 		{

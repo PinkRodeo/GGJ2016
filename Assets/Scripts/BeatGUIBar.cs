@@ -66,9 +66,11 @@ public class BeatGUIBar : MonoBehaviour
 		GenerateArray( source.clip.length );
 		if( source != null )
 		{
-			source.PlayDelayed( DelayForMusic );
+			//source.PlayDelayed( DelayForMusic );
+
+			
 			Invoke("delayedSongStart", DelayForMusic);
-			Invoke("delayedBeatStart", DelayForBeats);
+			//Invoke("delayedBeatStart", DelayForBeats);
 
 		}
 	}
@@ -78,13 +80,17 @@ public class BeatGUIBar : MonoBehaviour
 	// ReSharper disable once UnusedMember.Local
 	private  void delayedSongStart()
 	{
-		SongTimer.StartSong(128f, 0.18f);
+		source.Play();
+
+		SongTimer.sourceToSampleTimeFrom = source;
+		SongTimer.StartSong(128f, DelayForBeats);
+
+		_rhythmStartTime = source.time - DelayForBeats;
 	}
 
 	// ReSharper disable once UnusedMember.Local
 	private void delayedBeatStart()
 	{
-		_rhythmStartTime = Time.time;
 	}
 
 	public bool IsPlayingAudio()
@@ -107,7 +113,7 @@ public class BeatGUIBar : MonoBehaviour
 
 		if (_rhythmStartTime.HasValue)
 		{
-			globalTime = Time.time - _rhythmStartTime.Value;
+			globalTime = source.time - _rhythmStartTime.Value;
 
 		}
 
