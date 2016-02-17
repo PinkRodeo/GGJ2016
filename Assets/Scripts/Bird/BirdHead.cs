@@ -1,19 +1,19 @@
 ﻿using UnityEngine;
 
-public class BirdHead 
+public class BirdHead
 {
 
 	private BirdBone neck;
 	private BirdBone head;
 
 	private BirdBone beack;
-	private BirdBone headFeather;
+	//private BirdBone headFeather;
 
 	private ControllerInput input;
 
-	private float r3_held = 0f;
+	private float r3_held;
 
-	private float beak_held = 0f;
+	private float beak_held;
 
 
 	public BirdHead(Transform neckTransfrom, ControllerInput input)
@@ -26,14 +26,14 @@ public class BirdHead
 
 		beack = BirdBone.CreateBirdBone(neckTransfrom.FindInChildren("Head_Beak_Lower"));
 
-		headFeather = BirdBone.CreateBirdBone(neckTransfrom.FindInChildren("Head_Feather"));
+		//headFeather = BirdBone.CreateBirdBone(neckTransfrom.FindInChildren("Head_Feather"));
 
 	}
 
 	private const float HEAD_POS_MOD = -0.005f * .3f;
 	private const float NECK_POS_MOD = -0.002f * .3f;
 
-	
+
 	public void Update(float dt)
 	{
 
@@ -54,7 +54,7 @@ public class BirdHead
 		{
 			r3_held -= dt*5f;
 			r3_held = Mathf.Max(r3_held, 0f);
-			
+
 		}*/
 		r3_held = 1f;
 		var normalized = -stick.normalized;
@@ -75,6 +75,6 @@ public class BirdHead
 		}
 
 		beack.bone.localRotation = beack.initialLocalRotation *
-					   Quaternion.AngleAxis(-35f * beak_held, Vector3.right);
+								   Quaternion.AngleAxis(-35f * beak_held, Vector3.right);
 	}
 }

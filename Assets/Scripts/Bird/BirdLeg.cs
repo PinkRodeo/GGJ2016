@@ -8,23 +8,23 @@ public class BirdLeg
 	private BirdBone leg_heel;
 	private BirdBone leg_feet;
 
-	private ControllerInput input;
+	//private ControllerInput input;
 
-	private float sign = 1f;
-	private bool isLeft = false;
+	//private float sign = 1f;
+	private bool isLeft;
 
 	public BirdLeg(Transform feetTransform, string suffix, ControllerInput input)
 	{
 		if (suffix == "_L")
 		{
 			isLeft = true;
-			sign = -1f;
+			//sign = -1f;
 		}
-		
-		this.input = input;
+
+		//this.input = input;
 
 		leg_feet = BirdBone.CreateBirdBone(feetTransform);
-		
+
 		leg_heel = BirdBone.CreateBirdBone(feetTransform.FindInChildren("Leg_Heel" + suffix));
 
 		leg_lower = BirdBone.CreateBirdBone(feetTransform.FindInChildren("Leg_Lower" + suffix));
@@ -33,7 +33,7 @@ public class BirdLeg
 
 		hip = BirdBone.CreateBirdBone(feetTransform.FindInChildren("Hip" + suffix));
 
-		
+
 	}
 
 	public void Update(float dt)
