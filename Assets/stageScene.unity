@@ -250,7 +250,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1749582945}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!1 &58189841
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,6 +390,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerId: 1
   _isInitialized: 0
+  DEBUG_StartSongTimer: 0
+  DEBUG_InitControllerOnStart: 0
+  DEBUG_BPM: 128
 --- !u!1001 &89365123
 Prefab:
   m_ObjectHideFlags: 0
@@ -469,6 +472,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerId: 1
   _isInitialized: 0
+  DEBUG_StartSongTimer: 0
+  DEBUG_InitControllerOnStart: 0
+  DEBUG_BPM: 128
 --- !u!1 &111347629
 GameObject:
   m_ObjectHideFlags: 0
@@ -1692,7 +1698,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1749582945}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!1 &579272407
 GameObject:
   m_ObjectHideFlags: 0
@@ -2092,7 +2098,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1749582945}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!1 &656273235
 GameObject:
   m_ObjectHideFlags: 0
@@ -2424,7 +2430,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 32
+    m_Bits: 4294967295
   m_Lightmapping: 4
   m_BounceIntensity: 1
   m_ShadowRadius: 0
@@ -3173,67 +3179,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 28971345}
   m_RootOrder: 11
---- !u!1 &1175641662
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1175641664}
-  - 108: {fileID: 1175641663}
-  m_Layer: 0
-  m_Name: Point light (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!108 &1175641663
-Light:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1175641662}
-  m_Enabled: 0
-  serializedVersion: 6
-  m_Type: 2
-  m_Color: {r: 0.30785036, g: 0.44204155, b: 0.53676474, a: 1}
-  m_Intensity: 1.49
-  m_Range: 67.75092
-  m_SpotAngle: 30
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 1
-  m_Flare: {fileID: 0}
-  m_RenderMode: 2
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Lightmapping: 4
-  m_BounceIntensity: 0
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
-  m_AreaSize: {x: 1, y: 1}
---- !u!4 &1175641664
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1175641662}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.7, y: -8.2, z: -1.8}
-  m_LocalScale: {x: 1.564764, y: 1.564764, z: 1.564764}
-  m_Children: []
-  m_Father: {fileID: 1749582945}
-  m_RootOrder: 1
 --- !u!1001 &1186326495
 Prefab:
   m_ObjectHideFlags: 0
@@ -3313,6 +3258,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerId: 2
   _isInitialized: 0
+  DEBUG_StartSongTimer: 0
+  DEBUG_InitControllerOnStart: 0
+  DEBUG_BPM: 128
 --- !u!1001 &1191827406
 Prefab:
   m_ObjectHideFlags: 0
@@ -3430,6 +3378,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerId: 3
   _isInitialized: 0
+  DEBUG_StartSongTimer: 0
+  DEBUG_InitControllerOnStart: 0
+  DEBUG_BPM: 128
 --- !u!1 &1287399383
 GameObject:
   m_ObjectHideFlags: 0
@@ -4542,6 +4493,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerId: 4
   _isInitialized: 0
+  DEBUG_StartSongTimer: 0
+  DEBUG_InitControllerOnStart: 0
+  DEBUG_BPM: 128
 --- !u!4 &1697074630 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 2e5a33368fd7ad040a1986a9698a69d3, type: 3}
@@ -4694,7 +4648,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 213977144}
-  - {fileID: 1175641664}
   - {fileID: 648068786}
   - {fileID: 568247136}
   - {fileID: 41914466}
