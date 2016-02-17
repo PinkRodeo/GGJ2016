@@ -22,7 +22,7 @@ public class BeatBarBehaviour : MonoBehaviour
 	{
 		//rt.sizeDelta = barSize;
 		myTransform.Translate( translation );
-		if (myTransform.position.x < -100.0 )
+		if (myTransform.position.x < -100.0f )
 		{
 			Destroy(this.gameObject);
 		}
