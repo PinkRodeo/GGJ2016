@@ -1,4 +1,7 @@
-﻿using System;
+﻿
+//#define DEBUG_CONTROL
+
+using System;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
@@ -96,37 +99,42 @@ public class ControllerInput
 		controllerPort = port;
 	}
 
+	#if DEBUG_CONTROL
+	private List<KeyCode> _keyCodeList; 
+	#endif
+
 	public bool GetKeyDown(ControllerAction action)
 	{
 		TransformCrossControllerButton(ref action);
-		List<KeyCode> keycodeList;
-		if (!IsActionMapped(action, out keycodeList)) return false;
-
-		return keycodeList.Any(Input.GetKeyDown);
+		#if DEBUG_CONTROL
+		if (!IsActionMapped(action, out _keyCodeList)) return false;
+		#endif
+		return buttonKeymap[action].Any(Input.GetKeyDown);
 	}
 
 	public bool GetKey(ControllerAction action)
 	{
 		TransformCrossControllerButton(ref action);
-		List<KeyCode> keycodeList;
-		if (!IsActionMapped(action, out keycodeList)) return false;
-
-		return keycodeList.Any(Input.GetKey);
+		#if DEBUG_CONTROL
+		if (!IsActionMapped(action, out _keyCodeList)) return false;
+		#endif
+		return buttonKeymap[action].Any(Input.GetKey);
 	}
 
 	public bool GetKeyUp(ControllerAction action)
 	{
 		TransformCrossControllerButton(ref action);
-		List<KeyCode> keycodeList;
-		if (!IsActionMapped(action, out keycodeList)) return false;
-
-		return keycodeList.Any(Input.GetKeyUp);
+		#if DEBUG_CONTROL
+		if (!IsActionMapped(action, out _keyCodeList)) return false;
+		#endif
+		return buttonKeymap[action].Any(Input.GetKeyUp);
 	}
 
 	public float GetAxis(ControllerAction action)
 	{
+		#if DEBUG_CONTROL
 		if (!IsAxisMapped(action)) return 0;
-
+		#endif
 		List<string> keycodeList = axisKeymap[action];
 		foreach (var axisName in keycodeList)
 		{

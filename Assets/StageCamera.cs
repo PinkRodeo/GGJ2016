@@ -6,7 +6,7 @@ using UnityStandardAssets.ImageEffects;
 [RequireComponent(typeof(Camera))]
 public class StageCamera : MonoBehaviour
 {
-	private Camera camera;
+	private Camera _camera;
 
 	public Transform cameraFocalPoint;
 
@@ -28,8 +28,8 @@ public class StageCamera : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		camera = GetComponent<Camera>();
-		initialFOV = camera.fieldOfView;
+		_camera = GetComponent<Camera>();
+		initialFOV = _camera.fieldOfView;
 
 		initialRotation = transform.localRotation;
 
@@ -48,6 +48,6 @@ public class StageCamera : MonoBehaviour
 
 		transform.localRotation = Quaternion.LerpUnclamped(initialRotation, fullLookatQuaternion, zoomedInOnVeranda);
 
-		camera.fieldOfView = Mathf.LerpUnclamped(initialFOV, balconyTargetPOV, zoomedInOnVeranda);
+		_camera.fieldOfView = Mathf.LerpUnclamped(initialFOV, balconyTargetPOV, zoomedInOnVeranda);
 	}
 }

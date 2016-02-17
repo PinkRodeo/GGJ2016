@@ -8,20 +8,18 @@ public struct BirdBone
 	public Vector3 initialWorldPosition;
 
 	public Quaternion initialLocalRotation;
-	public Quaternion initialWorldRotation;
+	//public Quaternion initialWorldRotation;
 
 	public static BirdBone CreateBirdBone(Transform bone)
 	{
-		var birdBone = new BirdBone
+		return new BirdBone
 		{
 			bone = bone,
 			initialLocalPosition = bone.localPosition,
 			initialWorldPosition = bone.position,
 			initialLocalRotation = bone.localRotation,
-			initialWorldRotation = bone.rotation
+			//initialWorldRotation = bone.rotation
 		};
-
-		return birdBone;
 	}
 
 }
