@@ -47,12 +47,12 @@ public class GameSceneMaster : MonoBehaviour
 
 			//compare
 			PoseDiff poseDiff = data.CompareWithController(input, 0);
+			float diff = poseDiff.totalDiff;
 
 			//int randomScoreModifier = Random.Range(10, 15);
 			if (i == 0)
 			{
-				Log.Weikie("pose difference:" + poseDiff.totalDiff);
-				float diff = poseDiff.totalDiff;
+				//Log.Weikie("pose difference:" + diff);
 				if (diff < 0.15f)
 				{
 					floater.SetPulse(i, Grade.Perfect);
@@ -72,7 +72,7 @@ public class GameSceneMaster : MonoBehaviour
 
 			}
 
-			ScoreHandler.GetInstance().AddScore(i, Mathf.FloorToInt(poseDiff.totalDiff));
+			ScoreHandler.GetInstance().AddScore(i, Mathf.FloorToInt(diff * 15));
 
 
 

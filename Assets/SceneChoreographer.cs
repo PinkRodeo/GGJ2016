@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using System.Collections;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
@@ -30,7 +29,7 @@ public class SceneChoreographer : MonoBehaviour
 	float targetBalconyLightIntensity;
 	float targetBalconyLightSpotAngle;
 
-	private Vector3 curtainDownPos;
+	//private Vector3 curtainDownPos;
 	private Vector3 initialLogoLocalPosition;
 	private GameSceneMaster gameManager;
 	private bool ended;
@@ -41,7 +40,7 @@ public class SceneChoreographer : MonoBehaviour
 	{
 		gameManager = GameObject.Find("GameManager").GetComponent<GameSceneMaster>();
 		initialLogoLocalPosition = LogoGameObject.transform.localPosition;
-		curtainDownPos = curtainTransform.position;
+		//curtainDownPos = curtainTransform.position;
 
 		debugControllerInput = new ControllerInput(1);
 
@@ -59,32 +58,16 @@ public class SceneChoreographer : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.Y))
 		{
-			ScoreHandler.GetInstance().SetScore(1, 0);
-			ScoreHandler.GetInstance().SetScore(2, 0);
-			ScoreHandler.GetInstance().SetScore(3, 0);
-			ScoreHandler.GetInstance().SetScore(4, 0);
-			SceneManager.LoadScene(0);
+			ResetScene();
 		}
 		if ((debugControllerInput.GetKeyUp(ControllerAction.START) || Input.GetKeyDown(KeyCode.E)) && !startPressed)
 		{
-			startPressed = true;
-
-			DoThingsEnterStage();
-			gameManager.InitBirdControls();
+			StartGame();
 		}
 
-		if (( Input.GetKeyDown(KeyCode.V)) && !startPressed)
+		if (Input.GetKeyDown(KeyCode.V) && !startPressed)
 		{
-			startPressed = true;
-
-	
-
-			gameManager.InitBirdControls();
-
-			stageCamera.setZoomedInOnVeranda(0);
-
-			beatGUIBar.StartTheMusic();
-			crowd.canPlayCheers = true;
+			StartGameSkipAnimation();
 		}
 
 		if (gameManager.end && !ended)
@@ -93,6 +76,35 @@ public class SceneChoreographer : MonoBehaviour
 			crowd.StartEndCheer();
 			Invoke("Outro", 8);
 		}
+	}
+
+	private void StartGameSkipAnimation()
+	{
+		startPressed = true;
+
+		gameManager.InitBirdControls();
+
+		stageCamera.setZoomedInOnVeranda(0);
+
+		beatGUIBar.StartTheMusic();
+		crowd.canPlayCheers = true;
+	}
+
+	private void StartGame()
+	{
+		startPressed = true;
+
+		DoThingsEnterStage();
+		gameManager.InitBirdControls();
+	}
+
+	private static void ResetScene()
+	{
+		ScoreHandler.GetInstance().SetScore(1, 0);
+		ScoreHandler.GetInstance().SetScore(2, 0);
+		ScoreHandler.GetInstance().SetScore(3, 0);
+		ScoreHandler.GetInstance().SetScore(4, 0);
+		SceneManager.LoadScene(0);
 	}
 
 	private void Outro()
@@ -109,10 +121,8 @@ public class SceneChoreographer : MonoBehaviour
 
 	public void DoThingsEnterStage()
 	{
-
 		balconyObjects.balconyBird.gameObject.SetActive(false);
 		balconyObjects.balconySpotlight.intensity = 0f;
-
 
 		foreach (var sceneProp in GameObject.FindGameObjectsWithTag("TheaterProp"))
 		{
@@ -121,8 +131,6 @@ public class SceneChoreographer : MonoBehaviour
 			LeanTween.moveLocal(sceneProp, curPosition, 1f + Random.value * 2f)
 			.setDelay(Random.value * 0.5f + 1f)
 			.setEase(LeanTweenType.easeOutQuad);
-
-
 		}
 
 
@@ -134,20 +142,12 @@ public class SceneChoreographer : MonoBehaviour
 		.setEase(LeanTweenType.easeInBack)
 		.setOnComplete(() =>
 		{
-			
-
-
 			LeanTween.moveY(curtainTransform.gameObject, 11.1f, 1f)
 			.setEase(LeanTweenType.easeInBack)
 			.setOnComplete(() =>
 			{
-
-
-
 				LeanTween.delayedCall(3f, () =>
 				{
-
-
 					balconyObjects.balconyBird.gameObject.SetActive(true);
 
 					balconyObjects.balconyBird.transform.localPosition += Vector3.up * 40f;
@@ -196,15 +196,11 @@ public class SceneChoreographer : MonoBehaviour
 
 			});
 		});
-
-
-
-
 	}
 
 	public void DoThingsExitStage()
 	{
-
+		Log.Weikie("asd");
 		LeanTween.reset();
 
 		float currentCameraZoom = stageCamera.zoomedInOnVeranda;
@@ -229,8 +225,5 @@ public class SceneChoreographer : MonoBehaviour
 				});
 			});
 		});
-
-
-
 	}
 }
