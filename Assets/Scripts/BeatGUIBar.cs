@@ -105,19 +105,12 @@ public class BeatGUIBar : MonoBehaviour
 	{
 		if (IsSongFinished())
 		{
-			Log.Weikie("Ending the game");
 			gameManager.End();
-		}
-		else
-		{
-			//	globalTime += Time.deltaTime;
-
 		}
 
 		if (_rhythmStartTime.HasValue)
 		{
 			globalTime = source.time - _rhythmStartTime.Value;
-
 		}
 
 

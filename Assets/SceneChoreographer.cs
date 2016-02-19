@@ -200,7 +200,6 @@ public class SceneChoreographer : MonoBehaviour
 
 	public void DoThingsExitStage()
 	{
-		Log.Weikie("asd");
 		LeanTween.reset();
 
 		float currentCameraZoom = stageCamera.zoomedInOnVeranda;
