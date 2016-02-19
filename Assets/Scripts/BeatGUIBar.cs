@@ -85,7 +85,7 @@ public class BeatGUIBar : MonoBehaviour
 		SongTimer.sourceToSampleTimeFrom = source;
 		SongTimer.StartSong(128f, DelayForBeats);
 
-		_rhythmStartTime = source.time - DelayForBeats;
+		_rhythmStartTime = source.time;
 	}
 
 	// ReSharper disable once UnusedMember.Local
@@ -113,7 +113,7 @@ public class BeatGUIBar : MonoBehaviour
 
 		if (_rhythmStartTime.HasValue)
 		{
-			globalTime = source.time - _rhythmStartTime.Value;
+			globalTime = source.time - _rhythmStartTime.Value + DelayForBeats;
 
 		}
 
@@ -196,7 +196,7 @@ public class BeatGUIBar : MonoBehaviour
 		for (int i = 0; i < msBeatLength; i++)
 		{
 			AccurateBeat beat = msBeatList[i];
-			beat.time = DelayForMusic + i*(timeBetweenBeats/timesTheAmountForSmallerChecks);
+			beat.time = i*(timeBetweenBeats/timesTheAmountForSmallerChecks);
 			msBeatList[i] = beat;
 		}
 	}
@@ -253,7 +253,7 @@ public class BeatGUIBar : MonoBehaviour
 		{
 			Beat beat = sBeatList[i];
 			beat.type = BarType.Normal;
-			beat.time = DelayForMusic + i*timeBetweenBeats;
+			beat.time = i*timeBetweenBeats;
 			beat.sprite = sprites[0];
 			beat.count = i%8;
 			sBeatList[i] = beat;

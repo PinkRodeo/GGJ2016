@@ -703,10 +703,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-    bad: {fileID: 21300000, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
-    good: {fileID: 21300004, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
-    great: {fileID: 21300010, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
-    perfect: {fileID: 21300016, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
+  - {fileID: 21300058, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
+  - {fileID: 21300022, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
+  - {fileID: 21300028, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
+  - {fileID: 21300002, guid: 851dd967b7e534d429a77b17d6ff2074, type: 3}
 --- !u!114 &238892591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1238,6 +1238,7 @@ MonoBehaviour:
   - {fileID: 1666594384}
   end: 0
   mistress: {fileID: 0}
+  floater: {fileID: 0}
 --- !u!4 &469581346
 Transform:
   m_ObjectHideFlags: 0
@@ -3388,7 +3389,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 2e5a33368fd7ad040a1986a9698a69d3, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2e5a33368fd7ad040a1986a9698a69d3, type: 3}
@@ -6865,9 +6866,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BeatsPerMinute: 128
-  DelayForMusic: 2.2
-  DelayForBeats: -1.84
-  startingAfter: 16
+  DelayForMusic: 2
+  DelayForBeats: -0.08875
+  startingAfter: 8
   timesTheAmountForSmallerChecks: 1
   sprites:
   - {fileID: 21300000, guid: 51b7b2b0f69261b49bfa2661caf70008, type: 3}
