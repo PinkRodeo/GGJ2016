@@ -108,8 +108,10 @@ public class ControllerInput
 		TransformCrossControllerButton(ref action);
 #if DEBUG_CONTROL
 		if (!IsActionMapped(action, out keyCodeList)) return false;
-#endif
+		return keyCodeList.Any(Input.GetKeyDown);
+#else
 		return buttonKeymap[action].Any(Input.GetKeyDown);
+#endif
 	}
 
 	public bool GetKey(ControllerAction action)
@@ -117,8 +119,10 @@ public class ControllerInput
 		TransformCrossControllerButton(ref action);
 #if DEBUG_CONTROL
 		if (!IsActionMapped(action, out keyCodeList)) return false;
-#endif
+		return keyCodeList.Any(Input.GetKey);
+#else
 		return buttonKeymap[action].Any(Input.GetKey);
+#endif
 	}
 
 	public bool GetKeyUp(ControllerAction action)
@@ -126,8 +130,10 @@ public class ControllerInput
 		TransformCrossControllerButton(ref action);
 #if DEBUG_CONTROL
 		if (!IsActionMapped(action, out keyCodeList)) return false;
-#endif
+		return keyCodeList.Any(Input.GetKeyUp);
+#else
 		return buttonKeymap[action].Any(Input.GetKeyUp);
+#endif
 	}
 
 	public float GetAxis(ControllerAction action)

@@ -43,11 +43,11 @@ public class BirdLeg
 			return;
 		}
 
-		float leadin = SongTimer.leadInRatio();
+		float leadin = SongTimer.LeadInRatio();
 
-		float moveDown = Mathf.Cos( SongTimer.timedValue() ) * leadin;
+		float moveDown = Mathf.Cos( SongTimer.TimedValue() ) * leadin;
 
-		float moveSideway = Mathf.Sin(SongTimer.timedValue(4f)) * leadin;
+		float moveSideway = Mathf.Sin(SongTimer.TimedValue(4f)) * leadin;
 
 
 		hip.bone.position = hip.initialWorldPosition + new Vector3(moveSideway * .1f, moveDown * .1f, 0);
@@ -60,7 +60,7 @@ public class BirdLeg
 
 		if (isLeft)
 		{
-			float tap = Mathf.Sin(SongTimer.timedValue(8f)) * leadin;
+			float tap = Mathf.Sin(SongTimer.TimedValue(8f)) * leadin;
 
 			tap -= 1f-1f/36f;
 
