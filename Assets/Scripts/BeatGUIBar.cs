@@ -17,6 +17,7 @@ public class BeatGUIBar : MonoBehaviour
 	public float globalTime;
 	private float? _rhythmStartTime = null;
 
+	private bool songStarted;
 	private int currentIndex = 0;
 	private int msCurrentIndex = 0;
 	private int sBeatLength = 0;
@@ -68,7 +69,7 @@ public class BeatGUIBar : MonoBehaviour
 		{
 			//source.PlayDelayed( DelayForMusic );
 
-			
+
 			Invoke("delayedSongStart", DelayForMusic);
 			//Invoke("delayedBeatStart", DelayForBeats);
 
@@ -81,6 +82,7 @@ public class BeatGUIBar : MonoBehaviour
 	private  void delayedSongStart()
 	{
 		source.Play();
+		songStarted = true;
 
 		SongTimer.sourceToSampleTimeFrom = source;
 		SongTimer.StartSong(128f, DelayForBeats);
@@ -93,28 +95,22 @@ public class BeatGUIBar : MonoBehaviour
 	{
 	}
 
-	public bool IsPlayingAudio()
+	public bool IsSongFinished()
 	{
-		if (source == null) return true;
-		return source.isPlaying;
+		if (!songStarted) return false;
+		return !source.isPlaying;
 	}
 
 	void Update ()
 	{
-		if (!IsPlayingAudio())
+		if (IsSongFinished())
 		{
 			gameManager.End();
-		}
-		else
-		{
-		//	globalTime += Time.deltaTime;
-
 		}
 
 		if (_rhythmStartTime.HasValue)
 		{
-			globalTime = source.time - _rhythmStartTime.Value + DelayForBeats;
-
+			globalTime = source.time - _rhythmStartTime.Value  + DelayForBeats;
 		}
 
 
@@ -159,7 +155,7 @@ public class BeatGUIBar : MonoBehaviour
 		for( int i = 0; i < sBeatLength; i++ )
 		{
 
-				GameObject bar = new GameObject( "beatBar", typeof( RectTransform ) );
+			GameObject bar = new GameObject( "beatBar", typeof( RectTransform ) );
 			bar.AddComponent<CanvasRenderer>();
 			bar.AddComponent<Image>();
 
@@ -214,7 +210,7 @@ public class BeatGUIBar : MonoBehaviour
 		rtSpecial.transform.position = new Vector3(pSpecial.x + spawnOffSetX + index*300.0f-100.0f, pSpecial.y + 120.0f, pSpecial.z);
 
 		BeatBarBehaviour behaviour2 = barSpecial.AddComponent<BeatBarBehaviour>();
-		
+
 		behaviour2.beatController = this;
 		behaviour2.beat = beat;
 
@@ -227,7 +223,8 @@ public class BeatGUIBar : MonoBehaviour
 
 	private void InitializeSpecialVisualBeats()
 	{
-		for (int i = 6 + startingAfter; i < sBeatLength; i += 8)
+		int specialBeatInterval = 4;
+		for (int i = 6 + startingAfter; i < sBeatLength; i += specialBeatInterval)
 		{
 			Beat b = sBeatList[i];
 			b.type = BarType.Special;

@@ -2,8 +2,8 @@
 
 public class SongTimer
 {
-	public static bool isSongRunning = false;
-	
+	public static bool isSongRunning;
+
 	public static float initialTime;
 	public static float bpm;
 	public static float frequency;
@@ -49,7 +49,7 @@ public class SongTimer
 	/// Should be divided by a factor of 2, then run through Cos or Sin.
 	/// </summary>
 	/// <returns></returns>
-	public static float timedValue(float multiplier = 1f)
+	public static float TimedValue(float multiplier = 1f)
 	{
 		if (isSongRunning)
 		{
@@ -64,7 +64,7 @@ public class SongTimer
 
 	private const float LEADIN_DURATION = 12f;
 
-	public static float leadInRatio(float multiplier = 1f)
+	public static float LeadInRatio(float multiplier = 1f)
 	{
 		if (GetCurrentTime() - initialTime < LEADIN_DURATION)
 		{
@@ -74,14 +74,14 @@ public class SongTimer
 		{
 			return 1f;
 		}
-		if (isSongRunning)
-		{
-			return (2f * Mathf.PI * frequency / multiplier * (GetCurrentTime() - initialTime));
-		}
-		else
-		{
-			Debug.LogError("[SongTimer] something tried to timedValue() without a song being started");
-			return 0f;
-		}
+		//if (isSongRunning)
+		//{
+		//	return (2f * Mathf.PI * frequency / multiplier * (GetCurrentTime() - initialTime));
+		//}
+		//else
+		//{
+		//	Debug.LogError("[SongTimer] something tried to timedValue() without a song being started");
+		//	return 0f;
+		//}
 	}
 }
