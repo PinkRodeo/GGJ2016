@@ -60,7 +60,7 @@ public class SceneChoreographer : MonoBehaviour
 		{
 			ResetScene();
 		}
-		if ((debugControllerInput.GetKeyUp(ControllerAction.START) || Input.GetKeyDown(KeyCode.E)) && !startPressed)
+		if ((debugControllerInput.GetKeyUp(ControllerAction.START) || Input.GetKeyDown(KeyCode.E) || Input.touchCount > 2) && !startPressed)
 		{
 			StartGame();
 		}

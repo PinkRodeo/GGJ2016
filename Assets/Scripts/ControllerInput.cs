@@ -45,6 +45,7 @@ public class ControllerInput
 #else
 		currentPlatform = CurrentPlatform.Unknown;
 #endif
+		
 
 		this.controllerPort = controllerPort;
 		string[] controllerNames = Input.GetJoystickNames();
@@ -66,13 +67,15 @@ public class ControllerInput
 	{
 		string name = controllerNames[this.controllerPort - 1];
 
-		if (name.ToLower().Contains("xbox"))
+
+
+		if (name.ToLower().Contains("xbox") && false)
 		{
 			controllerType = ControllerType.Xbox;
 			//Log.Weikie("Assigned xbox controller");
 			XboxBindings();
 		}
-		else if (name == "Wireless Controller")
+		else if (name == "Wireless Controller" || true)
 		{
 			controllerType = ControllerType.Playstation;
 			//commented because seems to work pretty good after 5 hours of testing

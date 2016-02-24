@@ -44,25 +44,14 @@ public class BeatBarBehaviour : MonoBehaviour
 		}
 	}
 
-	void FixedUpdate ()
-	{
-		/*
-		myTransform.Translate( translation );
-		if (myTransform.position.x < -100.0f )
-		{
-			Destroy(this.gameObject);
-		}
-		*/
-	}
-
 	const float OffsetToHighlight = 100f;
 	const float XoffsetFromLeft = 100f;
 
+	/*
 	void LateUpdate()
 	{
 		_originalLocalPos.x = (beat.time - beatController.globalTime) * 300f + XoffsetFromLeft;
-		//_originalLocalPos.x = XoffsetFromLeft;
-
+		
 		myTransform.anchoredPosition3D = _originalLocalPos;
 
 		float xPos = _originalLocalPos.x - XoffsetFromLeft;
@@ -78,6 +67,7 @@ public class BeatBarBehaviour : MonoBehaviour
 			Destroy(this.gameObject);
 		}
 	}
+	*/
 
 	
 }

@@ -12,6 +12,7 @@ public class GameSceneMaster : MonoBehaviour
 
 	void Start ()
 	{
+	
 		lastPose = new PoseData[birds.Length];
 		mistress = GameObject.Find("BalconyBird").GetComponent<BirdControl>();
 		mistress._initializeController();

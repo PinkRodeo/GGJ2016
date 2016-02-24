@@ -56,7 +56,6 @@ AudioMixerGroupController:
   m_Pitch: db230a37b3d8b7a40a62776d736b5f66
   m_Effects:
   - {fileID: 24458118}
-  - {fileID: 24491006}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -74,7 +73,6 @@ AudioMixerGroupController:
   m_Pitch: bae844aea08777347af8c011a9bcf05e
   m_Effects:
   - {fileID: 24421760}
-  - {fileID: 24451734}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -122,33 +120,6 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
---- !u!244 &24451734
-AudioMixerEffectController:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_EffectID: c85772ba63cf0a44098b1dc77d474317
-  m_EffectName: Duck Volume
-  m_MixLevel: 0ab629696beea704bae4c6d5314bc016
-  m_Parameters:
-  - m_ParameterName: Threshold
-    m_GUID: 0f56940c5713dfe499d923621151108c
-  - m_ParameterName: Ratio
-    m_GUID: 80b76b268c2abb14da580a2853e4dff2
-  - m_ParameterName: Attack Time
-    m_GUID: e892d74db16ce2d45a79c26cc6dde87c
-  - m_ParameterName: Release Time
-    m_GUID: 27c3bfe0e2409e14bb2bd83d1eecb964
-  - m_ParameterName: Make-up Gain
-    m_GUID: 6ac6942d9cb910449b668d99360e3527
-  - m_ParameterName: Knee
-    m_GUID: c944078750f9bb14d9276f1c04ce6b22
-  - m_ParameterName: Sidechain Mix
-    m_GUID: 0a2c8defeb8ec604b9b6f3f6798e1a04
-  m_SendTarget: {fileID: 0}
-  m_EnableWetMix: 0
-  m_Bypass: 0
 --- !u!244 &24458118
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -173,19 +144,6 @@ AudioMixerEffectController:
   m_MixLevel: 5dfda25910fad924299fa6bce319ab46
   m_Parameters: []
   m_SendTarget: {fileID: 0}
-  m_EnableWetMix: 0
-  m_Bypass: 0
---- !u!244 &24491006
-AudioMixerEffectController:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_EffectID: 41d41c9985f561a49bd73ed90c525236
-  m_EffectName: Send
-  m_MixLevel: cb8db97352e777241ac44a4bd0c68ce1
-  m_Parameters: []
-  m_SendTarget: {fileID: 24451734}
   m_EnableWetMix: 0
   m_Bypass: 0
 --- !u!244 &24498374
