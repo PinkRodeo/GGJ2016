@@ -64,7 +64,7 @@ public class ControllerInput
 
 	private void DoBindings(string[] controllerNames)
 	{
-		string name = controllerNames[this.controllerPort - 1];
+		string name = controllerNames[controllerPort - 1];
 
 		if (name.ToLower().Contains("xbox"))
 		{
@@ -81,7 +81,8 @@ public class ControllerInput
 		}
 		else
 		{
-			Log.Weikie("Unknown controller, go fix. Name is " + name);
+			controllerType = ControllerType.Unknown;
+			Log.Weikie("Unknown controller, go fix. Name is \"" + name + "\"");
 		}
 	}
 

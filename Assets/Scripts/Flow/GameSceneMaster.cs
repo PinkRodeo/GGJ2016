@@ -49,36 +49,35 @@ public class GameSceneMaster : MonoBehaviour
 			PoseDiff poseDiff = data.CompareWithController(input, 0);
 			float diff = poseDiff.totalDiff;
 
-			//int randomScoreModifier = Random.Range(10, 15);
-			if (i == 0)
-			{
-				//Log.Weikie("pose difference:" + diff);
-				if (diff < 0.15f)
-				{
-					floater.SetPulse(i, Grade.Perfect);
-				}
-				else if (diff < 0.3f)
-				{
-					floater.SetPulse(i, Grade.Great);
-				}
-				else if (diff < .8f)
-				{
-					floater.SetPulse(i, Grade.Good);
-				}
-				else
-				{
-					floater.SetPulse(i, Grade.Bad);
-				}
 
-			}
+			//Log.Weikie("pose difference:" + diff);
+			PlayerScoreFeedback(diff, i);
 
 			ScoreHandler.GetInstance().AddScore(i, Mathf.FloorToInt(diff * 15));
-
-
 
 			lastPose[i] = currentPose;
 		}
 		ScoreChanged();
+	}
+
+	private void PlayerScoreFeedback(float difference, int playerNumber)
+	{
+		if (difference < 0.15f)
+		{
+			floater.SetPulse(playerNumber, Grade.Perfect);
+		}
+		else if (difference < 0.3f)
+		{
+			floater.SetPulse(playerNumber, Grade.Great);
+		}
+		else if (difference < .8f)
+		{
+			floater.SetPulse(playerNumber, Grade.Good);
+		}
+		else
+		{
+			floater.SetPulse(playerNumber, Grade.Bad);
+		}
 	}
 
 	//To be called from BeatGUIBar
