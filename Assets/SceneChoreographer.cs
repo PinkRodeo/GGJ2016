@@ -119,6 +119,8 @@ public class SceneChoreographer : MonoBehaviour
 
 	private void StopCheer()
 	{
+		GameObject.FindObjectOfType<PlayerUIHandler>().SetPlayerUIVisible(false);
+
 		crowd.StopEndCheer();
 	}
 
