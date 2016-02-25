@@ -12,7 +12,7 @@ public class PlayerUIHandler : MonoBehaviour
 	{
 		for (int i = 0; i < playerCount; i++)
 		{
-			GameObject nextplayer = (GameObject)Instantiate(prefab, new Vector3(0,0,0), Quaternion.identity);
+			GameObject nextplayer = holder[i].transform.GetChild(0).gameObject;
 			nextplayer.transform.SetParent(holder[i].transform);
 			nextplayer.transform.localPosition = Vector3.zero;
 			nextplayer.GetComponent<RectTransform>().sizeDelta = Vector2.zero;
@@ -33,15 +33,7 @@ public class PlayerUIHandler : MonoBehaviour
 		for (var i = 0; i < playerCount; i++)
 		{
 			int score = ScoreHandler.GetInstance().GetScore(i);
-			uiHolder[i].textUI.text = score.ToString();
-			if (score == 0)
-			{
-				uiHolder[i].gameObject.SetActive(false);
-			}
-			else
-			{
-				uiHolder[i].gameObject.SetActive(true);
-			}
+			uiHolder[i].UpdateScore(score, 1);
 		}
 	}
 }
