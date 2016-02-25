@@ -68,6 +68,9 @@ public class SceneChoreographer : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.V) && !startPressed)
 		{
 			StartGameSkipAnimation();
+
+			curtainTransform.Translate(0,100,0);
+			LogoGameObject.transform.Translate(50f,0,0);
 		}
 
 		if (gameManager.end && !ended)

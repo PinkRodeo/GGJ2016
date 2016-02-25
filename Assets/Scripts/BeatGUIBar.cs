@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.Runtime.Remoting.Messaging;
 
 public class BeatGUIBar : MonoBehaviour
 {
@@ -32,12 +33,17 @@ public class BeatGUIBar : MonoBehaviour
 	public TextAsset poses;
 	private GameSceneMaster gameManager;
 
+	public Image timingGradient;
+
+	public static BeatGUIBar stebGlobal;
+
 	public enum BarType
 	{
 		Normal,
 		Special
 	}
 
+	[System.Serializable]
 	public struct Beat
 	{
 		public float time;
@@ -55,6 +61,7 @@ public class BeatGUIBar : MonoBehaviour
 
 	private void Start()
 	{
+		stebGlobal = this;
 		Globals.Init( poses );
 		gameManager = GameObject.Find("GameManager").GetComponent<GameSceneMaster>();
 	}
@@ -142,6 +149,8 @@ public class BeatGUIBar : MonoBehaviour
 
 	private static readonly Vector2 RegularBeatPivot = new Vector2(0.5f, 0);
 
+	private static readonly Vector2 SpecialBeatPivot = new Vector2(0.5f, 0);
+	
 	private void GenerateArray( float seconds )
 	{
 		Initialization(seconds);
@@ -150,9 +159,11 @@ public class BeatGUIBar : MonoBehaviour
 
 		SetBeatTimes();
 
+		int spawnOffSetX = 1500;
+
 		//TODO:
-//		for( int i = 0; i < sBeatLength; i++ )
-		for( int i = 0; i < sBeatLength; i++ )
+		//		for( int i = 0; i < sBeatLength; i++ )
+		for ( int i = 0; i < sBeatLength; i++ )
 		{
 
 			GameObject bar = new GameObject( "beatBar", typeof( RectTransform ) );
@@ -162,15 +173,25 @@ public class BeatGUIBar : MonoBehaviour
 			RectTransform rt = bar.GetComponent<RectTransform>();
 			bar.transform.SetParent( canvas.transform );
 			Vector3 p = rt.position;
-			int spawnOffSetX = 1500;
+
+			Beat beat = sBeatList[i];
+
+
 			rt.anchorMax = Vector2.zero;
 			rt.anchorMin = Vector2.zero;
-			rt.pivot = RegularBeatPivot;
+
+			if (beat.type == BarType.Normal)
+			{
+				rt.pivot = RegularBeatPivot;
+			}
+			else if (beat.type == BarType.Special)
+			{
+				rt.pivot = SpecialBeatPivot;
+			}
 
 			rt.transform.position = new Vector3( p.x + spawnOffSetX + i * 300.0f, 0f, p.z );
 
 
-			Beat beat = sBeatList[i];
 
 			BeatBarBehaviour behaviour = bar.AddComponent<BeatBarBehaviour>();
 			behaviour.beatController = this;
@@ -199,32 +220,42 @@ public class BeatGUIBar : MonoBehaviour
 
 	private void SpawnSpecialBeat(int spawnOffSetX, int index, Beat beat)
 	{
+
 		GameObject barSpecial = new GameObject("beatBar", typeof (RectTransform));
 		barSpecial.AddComponent<CanvasRenderer>();
-		barSpecial.AddComponent<Image>();
+		var imageComponent = barSpecial.AddComponent<Image>();
 
-		RectTransform rtSpecial = barSpecial.GetComponent<RectTransform>();
+		imageComponent.sprite = sBeatList[index].pose.data.uiTexture;
+		imageComponent.SetNativeSize();
+
+		RectTransform rt = barSpecial.GetComponent<RectTransform>();
 		barSpecial.transform.SetParent(canvas.transform);
-		Vector3 pSpecial = rtSpecial.position;
+		Vector3 p = rt.position;
 
-		rtSpecial.transform.position = new Vector3(pSpecial.x + spawnOffSetX + index*300.0f-100.0f, pSpecial.y + 120.0f, pSpecial.z);
+		
+		rt.anchorMax = Vector2.zero;
+		rt.anchorMin = Vector2.zero;
+
+		rt.pivot = new Vector2(imageComponent.sprite.pivot.x / 256f, 0.1f);
+
+		rt.transform.position = new Vector3(p.x + spawnOffSetX + index*300.0f-100.0f, p.y + 30.0f, p.z);
 
 		BeatBarBehaviour behaviour2 = barSpecial.AddComponent<BeatBarBehaviour>();
 
 		behaviour2.beatController = this;
 		behaviour2.beat = beat;
+		behaviour2.isPose = true;
 
 		behaviour2.Initialize();
 
 
-		barSpecial.GetComponent<Image>().sprite = sBeatList[ index ].pose.data.uiTexture;
-		barSpecial.GetComponent<Image>().SetNativeSize();
+
 	}
 
 	private void InitializeSpecialVisualBeats()
 	{
-		int specialBeatInterval = 4;
-		for (int i = 6 + startingAfter; i < sBeatLength; i += specialBeatInterval)
+		int specialBeatInterval = 2;
+		for (int i = 7 + startingAfter; i < sBeatLength; i += specialBeatInterval)
 		{
 			Beat b = sBeatList[i];
 			b.type = BarType.Special;

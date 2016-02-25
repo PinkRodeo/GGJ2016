@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
 public struct PoseData
 {
 	public float leftWing;		//0 to 1
@@ -10,6 +11,7 @@ public struct PoseData
 	public Vector2 tail;
 };
 
+[System.Serializable]
 public struct PoseList
 {
 	public PoseData[] poses;
@@ -24,6 +26,7 @@ public struct PoseDiff
 	public float totalDiff;
 };
 
+[System.Serializable]
 public class Pose
 {
 
