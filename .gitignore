@@ -33,3 +33,6 @@ Assets/Procore/**/*.dll
 Assets/Procore/**/*.cs*
 Assets/Procore/**/*.dll*
 Assets/Procore/**/*.pdf*
+
+# Windows pls
+*.db*
