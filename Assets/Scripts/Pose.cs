@@ -71,7 +71,7 @@ public class Pose
 		desiredPose.head.y = firstPose.head.y + (secondPose.head.y - firstPose.head.y) * subProgress;
 
 		desiredPose.tail.x = firstPose.tail.x + (secondPose.tail.x - firstPose.tail.x) * subProgress;
-		desiredPose.head.y = firstPose.tail.y + (secondPose.tail.y - firstPose.tail.y) * subProgress;
+		desiredPose.tail.y = firstPose.tail.y + (secondPose.tail.y - firstPose.tail.y) * subProgress;
 
 		PoseData controllerPose = CalculateFromController(controller);
 
@@ -110,7 +110,7 @@ public class Pose
 		result.leftWing = controller.GetAxis (ControllerAction.L2);
 		result.rightWing = controller.GetAxis (ControllerAction.R2);
 		result.head.x = controller.GetAxis (ControllerAction.LEFT_STICK_X);
-		result.head.y = controller.GetAxis (ControllerAction.LEFT_STICK_X);
+		result.head.y = controller.GetAxis (ControllerAction.LEFT_STICK_Y);
 		result.tail.x = controller.GetAxis (ControllerAction.RIGHT_STICK_X);
 		result.tail.y = controller.GetAxis (ControllerAction.RIGHT_STICK_Y);
 
