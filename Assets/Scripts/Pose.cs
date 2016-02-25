@@ -95,10 +95,10 @@ public class Pose
 
 		result = CalculateDiffs (a.leftWing, b.leftWing, result);
 		result = CalculateDiffs (a.rightWing, b.rightWing, result);
-		result = CalculateDiffs (a.head.x, b.head.x, result);
-		result = CalculateDiffs (a.head.y, b.head.y, result);
-		result = CalculateDiffs (a.tail.x, b.tail.x, result);
-		result = CalculateDiffs (a.tail.y, b.tail.y, result);
+		//result = CalculateDiffs (a.head.x, b.head.x, result);
+		//result = CalculateDiffs (a.head.y, b.head.y, result);
+		//result = CalculateDiffs (a.tail.x, b.tail.x, result);
+		//result = CalculateDiffs (a.tail.y, b.tail.y, result);
 
 		return result;
 	}
