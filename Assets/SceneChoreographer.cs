@@ -107,6 +107,10 @@ public class SceneChoreographer : MonoBehaviour
 		ScoreHandler.GetInstance().SetScore(2, 0);
 		ScoreHandler.GetInstance().SetScore(3, 0);
 		ScoreHandler.GetInstance().SetScore(4, 0);
+		ScoreHandler.GetInstance().SetComboCount(1, 0);
+		ScoreHandler.GetInstance().SetComboCount(2, 0);
+		ScoreHandler.GetInstance().SetComboCount(3, 0);
+		ScoreHandler.GetInstance().SetComboCount(4, 0);
 		SceneManager.LoadScene(0);
 	}
 
