@@ -261,7 +261,7 @@ public class BeatGUIBar : MonoBehaviour
 		for (int i = 7 + startingAfter; i < sBeatLength; i += specialBeatInterval)
 		{
 			CreateSpecialVisualBeatAtIndex(i);
-			if (Random.value > 0.75f)
+			if (Random.value > 0.75f && i+2 < sBeatList.Length)
 			{
 				CreateSpecialVisualBeatAtIndex(i+2);
 

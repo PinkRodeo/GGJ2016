@@ -65,7 +65,7 @@ public class SceneChoreographer : MonoBehaviour
 			StartGame();
 		}
 
-		if (Input.GetKeyDown(KeyCode.V) && !startPressed)
+		if (Input.GetKeyDown(KeyCode.V) && !startPressed && false)
 		{
 			StartGameSkipAnimation();
 
