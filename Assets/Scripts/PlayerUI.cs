@@ -15,18 +15,19 @@ public class PlayerUI : MonoBehaviour
 
 	public Gradient comboGradient;
 
+	public void Start()
+	{
+		gameObject.SetActive(false);
+	}
+
 	public void UpdateScore(int newScore, int newMultiplier)
 	{
-
 		if (newScore > 0)
 		{
 			gameObject.SetActive(true);
-		}
-		else
-		{
-			gameObject.SetActive(false);
 
 		}
+
 		if (newScore != currentScore)
 		{
 

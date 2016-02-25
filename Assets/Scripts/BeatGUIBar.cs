@@ -68,6 +68,8 @@ public class BeatGUIBar : MonoBehaviour
 
 	public void StartTheMusic()
 	{
+		GameObject.FindObjectOfType<PlayerUIHandler>().SetPlayerUIVisible(true);
+
 		timeBetweenBeats = 60.0f / BeatsPerMinute;
 		canvas = GameObject.Find("Canvas");
 		source = GetComponent<AudioSource>();

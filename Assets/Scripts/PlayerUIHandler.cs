@@ -23,6 +23,14 @@ public class PlayerUIHandler : MonoBehaviour
 		}
 	}
 
+	public void SetPlayerUIVisible(bool isVisible)
+	{
+		for (var i = 0; i < playerCount; i++)
+		{
+			uiHolder[i].gameObject.SetActive(isVisible);
+		}
+	}
+
 	void Update ()
 	{
 		UpdateText();
