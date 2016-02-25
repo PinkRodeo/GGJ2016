@@ -52,8 +52,8 @@ public class GameSceneMaster : MonoBehaviour
 
 			//Log.Weikie("pose difference:" + diff);
 			PlayerScoreFeedback(diff, i);
-
-			ScoreHandler.GetInstance().AddScore(i, Mathf.FloorToInt(diff * 15));
+			int score = Mathf.FloorToInt(diff*15*ScoreHandler.GetInstance().GetComboMultiplier(i));
+			ScoreHandler.GetInstance().AddScore(i, score);
 
 			lastPose[i] = currentPose;
 		}
@@ -65,18 +65,22 @@ public class GameSceneMaster : MonoBehaviour
 		if (difference < 0.15f)
 		{
 			floater.SetPulse(playerNumber, Grade.Perfect);
+			ScoreHandler.GetInstance().IncrementCombo(playerNumber);
 		}
 		else if (difference < 0.3f)
 		{
 			floater.SetPulse(playerNumber, Grade.Great);
+			ScoreHandler.GetInstance().IncrementCombo(playerNumber);
 		}
 		else if (difference < .8f)
 		{
 			floater.SetPulse(playerNumber, Grade.Good);
+			ScoreHandler.GetInstance().IncrementCombo(playerNumber);
 		}
 		else
 		{
 			floater.SetPulse(playerNumber, Grade.Bad);
+			ScoreHandler.GetInstance().SetComboCount(playerNumber, 0);
 		}
 	}
 

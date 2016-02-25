@@ -9,18 +9,46 @@ struct ScoreEntry
 
 public class ScoreHandler
 {
+	//should be struct
 	private readonly ScoreEntry[] scoreEntryList;
+	private int[] comboTracker;
+
 	private static ScoreHandler instance;
 
 	private ScoreHandler()
 	{
 		scoreEntryList = new ScoreEntry[4];
+		comboTracker = new int[4];
 	}
 
 	public static ScoreHandler GetInstance()
 	{
 		if (instance == null) instance = new ScoreHandler();
 		return instance;
+	}
+
+	public void SetComboCount(int playerNumber, int comboCount)
+	{
+		comboTracker[playerNumber] = comboCount;
+	}
+
+	public void IncrementCombo(int playerNumber)
+	{
+		comboTracker[playerNumber]++;
+	}
+
+	public float GetComboMultiplier(int playerNumber)
+	{
+		float comboMultiplier = 1;
+		int comboCount = comboTracker[playerNumber];
+		float prevComboModAddition = 1;
+		for (int n = 0; n < comboCount; ++n)
+		{
+			prevComboModAddition *= 0.5f;
+			comboMultiplier += prevComboModAddition;
+		}
+
+		return comboMultiplier;
 	}
 
 	public void AddScore(int playerNumber, int amount)
