@@ -25,7 +25,22 @@ public class PlayerUIHandler : MonoBehaviour
 
 	public void SetPlayerUIVisible(bool isVisible)
 	{
-		for (var i = 0; i < playerCount; i++)
+		int numberOfPlayersActive = 0;
+
+		foreach (var birdController in GameObject.FindObjectsOfType<BirdControl>())
+		{
+			if (birdController.IsInitialized())
+			{
+				numberOfPlayersActive = Mathf.Max(numberOfPlayersActive, birdController.playerId);
+			}
+		}
+
+		if (isVisible == false)
+		{
+			numberOfPlayersActive = playerCount;
+		}
+
+		for (var i = 0; i < numberOfPlayersActive; i++)
 		{
 			uiHolder[i].gameObject.SetActive(isVisible);
 		}
@@ -41,7 +56,8 @@ public class PlayerUIHandler : MonoBehaviour
 		for (var i = 0; i < playerCount; i++)
 		{
 			int score = ScoreHandler.GetInstance().GetScore(i);
-			uiHolder[i].UpdateScore(score, 1);
+			int multiplier = ScoreHandler.GetInstance().GetComboCount(i);
+			uiHolder[i].UpdateScore(score, multiplier);
 		}
 	}
 }

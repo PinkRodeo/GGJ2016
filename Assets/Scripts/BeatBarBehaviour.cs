@@ -50,6 +50,7 @@ public class BeatBarBehaviour : MonoBehaviour
 		}
 		else
 		{
+			regularColor = new Color(1f, 1f, 1f, 0.4f);
 
 			myTransform.localScale = OtherBarScale;
 		}
