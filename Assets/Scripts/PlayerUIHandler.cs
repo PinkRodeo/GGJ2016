@@ -35,6 +35,11 @@ public class PlayerUIHandler : MonoBehaviour
 			}
 		}
 
+		if (isVisible == false)
+		{
+			numberOfPlayersActive = playerCount;
+		}
+
 		for (var i = 0; i < numberOfPlayersActive; i++)
 		{
 			uiHolder[i].gameObject.SetActive(isVisible);
@@ -51,7 +56,8 @@ public class PlayerUIHandler : MonoBehaviour
 		for (var i = 0; i < playerCount; i++)
 		{
 			int score = ScoreHandler.GetInstance().GetScore(i);
-			uiHolder[i].UpdateScore(score, 1);
+			int multiplier = ScoreHandler.GetInstance().GetComboCount(i);
+			uiHolder[i].UpdateScore(score, multiplier);
 		}
 	}
 }

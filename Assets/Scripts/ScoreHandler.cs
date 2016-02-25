@@ -40,7 +40,7 @@ public class ScoreHandler
 	public float GetComboMultiplier(int playerNumber)
 	{
 		float comboMultiplier = 1;
-		int comboCount = comboTracker[playerNumber];
+		int comboCount = GetComboCount(playerNumber);
 		float prevComboModAddition = 1;
 		for (int n = 0; n < comboCount; ++n)
 		{
@@ -49,6 +49,12 @@ public class ScoreHandler
 		}
 
 		return comboMultiplier;
+	}
+
+	public int GetComboCount(int playerNumber)
+	{
+		var comboCount = Mathf.Min(comboTracker[playerNumber], 4);
+		return comboCount;
 	}
 
 	public void AddScore(int playerNumber, int amount)
