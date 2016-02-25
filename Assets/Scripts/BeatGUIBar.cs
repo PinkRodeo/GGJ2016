@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System;
 using System.Runtime.Remoting.Messaging;
+using Random = UnityEngine.Random;
 
 public class BeatGUIBar : MonoBehaviour
 {
@@ -256,16 +257,27 @@ public class BeatGUIBar : MonoBehaviour
 
 	private void InitializeSpecialVisualBeats()
 	{
-		int specialBeatInterval = 2;
+		int specialBeatInterval = 4;
 		for (int i = 7 + startingAfter; i < sBeatLength; i += specialBeatInterval)
 		{
-			Beat b = sBeatList[i];
-			b.type = BarType.Special;
-			int poseIndex = UnityEngine.Random.Range( 0, Globals.poses.Length );
-			b.pose = new Pose( Globals.poses[ poseIndex ] );
-			b.sprite = sprites[1];
-			sBeatList[i] = b;
+			CreateSpecialVisualBeatAtIndex(i);
+			if (Random.value > 0.75f)
+			{
+				CreateSpecialVisualBeatAtIndex(i+2);
+
+			}
 		}
+	}
+
+	private void CreateSpecialVisualBeatAtIndex(int index)
+	{
+		Beat b = sBeatList[index];
+		b.type = BarType.Special;
+		int poseIndex = UnityEngine.Random.Range(0, Globals.poses.Length);
+		b.pose = new Pose(Globals.poses[poseIndex]);
+		b.sprite = sprites[1];
+		sBeatList[index] = b;
+
 	}
 
 	private void Initialization(float seconds)

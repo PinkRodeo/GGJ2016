@@ -39,9 +39,9 @@ public class ScoreHandler
 
 	public float GetComboMultiplier(int playerNumber)
 	{
-		float comboMultiplier = 1;
+		float comboMultiplier = 1f;
 		int comboCount = GetComboCount(playerNumber);
-		float prevComboModAddition = 1;
+		float prevComboModAddition = 0.5f;
 		for (int n = 0; n < comboCount; ++n)
 		{
 			prevComboModAddition *= 0.5f;

@@ -42,7 +42,8 @@ public class PlayerUI : MonoBehaviour
 					}));
 				});
 
-			textUI.text = newScore.ToString();
+			
+			textUI.text = (newScore).ToString();
 
 
 			currentScore = newScore;

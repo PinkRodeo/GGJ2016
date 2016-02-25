@@ -3944,8 +3944,8 @@ GameObject:
   - 124: {fileID: 1417769170}
   - 81: {fileID: 1417769169}
   - 114: {fileID: 1417769168}
-  - 114: {fileID: 1417769167}
   - 114: {fileID: 1417769174}
+  - 114: {fileID: 1417769167}
   - 114: {fileID: 1417769175}
   - 114: {fileID: 1417769176}
   - 114: {fileID: 1417769177}
@@ -6815,7 +6815,7 @@ MonoBehaviour:
   BeatsPerMinute: 128
   DelayForMusic: 2
   DelayForBeats: -0.08875
-  startingAfter: 4
+  startingAfter: 12
   timesTheAmountForSmallerChecks: 1
   sprites:
   - {fileID: 21300000, guid: 51b7b2b0f69261b49bfa2661caf70008, type: 3}
@@ -7379,6 +7379,26 @@ Prefab:
     - target: {fileID: 22434170, guid: b7e61c17b7e0d9644b6b4140b443d75a, type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 22424666, guid: b7e61c17b7e0d9644b6b4140b443d75a, type: 2}
+      propertyPath: m_LocalScale.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22424666, guid: b7e61c17b7e0d9644b6b4140b443d75a, type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22424666, guid: b7e61c17b7e0d9644b6b4140b443d75a, type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0.21220273
+      objectReference: {fileID: 0}
+    - target: {fileID: 22424666, guid: b7e61c17b7e0d9644b6b4140b443d75a, type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0.5932337
+      objectReference: {fileID: 0}
+    - target: {fileID: 22424666, guid: b7e61c17b7e0d9644b6b4140b443d75a, type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b7e61c17b7e0d9644b6b4140b443d75a, type: 2}
