@@ -27,8 +27,6 @@ public class ControllerInput
 	private readonly CurrentPlatform currentPlatform;
 	private ControllerType controllerType = ControllerType.Unknown;
 	private int controllerPort;
-	private const int UnityJoystickButtonCount = 20;
-
 
 	#region Public accessors
 
@@ -318,7 +316,7 @@ public class ControllerInput
 	private void PlaystationBinding()
 	{
 		//TERRARIA STYLE HACKS HELL YEAH
-		int joystickNumber = UnityJoystickButtonCount * (controllerPort - 1);
+		int joystickNumber = 20 * (controllerPort - 1);
 
 		AddButtonBinding(ControllerAction.SQUARE,	KeyCode.Joystick1Button0  + joystickNumber);
 		AddButtonBinding(ControllerAction.CROSS,	KeyCode.Joystick1Button1  + joystickNumber);
@@ -364,7 +362,7 @@ public class ControllerInput
 
 	private void XboxBindings()
 	{
-		int joystickNumber = UnityJoystickButtonCount * (controllerPort - 1);
+		int joystickNumber = 20 * (controllerPort - 1);
 
 		if (currentPlatform == CurrentPlatform.Windows)
 		{
