@@ -123,7 +123,6 @@ public class SceneChoreographer : MonoBehaviour
 
 	private void StopCheer()
 	{
-		GameObject.FindObjectOfType<PlayerUIHandler>().SetPlayerUIVisible(false);
 
 		crowd.StopEndCheer();
 	}
@@ -212,6 +211,8 @@ public class SceneChoreographer : MonoBehaviour
 		LeanTween.reset();
 
 		float currentCameraZoom = stageCamera.zoomedInOnVeranda;
+
+		GameObject.FindObjectOfType<PlayerUIHandler>().SetPlayerUIVisible(false);
 
 		LeanTween.value(gameObject, currentCameraZoom, 0f, currentCameraZoom)
 		.setEase(LeanTweenType.easeOutBack)
