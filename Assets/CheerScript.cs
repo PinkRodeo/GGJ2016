@@ -16,7 +16,7 @@ public class CheerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Random.value < 0.002 && canPlayCheers) {
+		if (Random.value < 0.001f && canPlayCheers) {
 			PlayCheer();
 		}
 	}
@@ -26,12 +26,31 @@ public class CheerScript : MonoBehaviour {
 			return;
 		}
 		int idx = Random.Range(0, cheers.Length -1);
+
+		audioSource.volume = Random.Range(0.15f, 0.2f);
+
 		audioSource.clip = cheers [idx];
 		audioSource.Play ();
 	}
 
+	public void PlayCheerForExcellent()
+	{
+		if (audioSource.isPlaying)
+		{
+			return;
+		}
+		int idx = Random.Range(0, cheers.Length - 1);
+
+		audioSource.volume = Random.Range(0.3f, 0.35f);
+
+		audioSource.clip = cheers[idx];
+		audioSource.Play();
+	}
+
 	public void StartEndCheer () {
 		audioSource.Stop ();
+		audioSource.volume = 0.3f;
+
 		audioSource.clip = endCheer;
 		audioSource.loop = true;
 		audioSource.Play ();

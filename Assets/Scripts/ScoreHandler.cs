@@ -3,22 +3,40 @@
 struct ScoreEntry
 {
 	public int score;
-	public int highscore;
+	public int prevScore;
+
 	public int latestEarned;
+
+	public int highscore;
 }
 
 public class ScoreHandler
 {
 	//should be struct
 	private readonly ScoreEntry[] scoreEntryList;
-	private int[] comboTracker;
+	private readonly int[] comboTracker;
 
 	private static ScoreHandler instance;
 
+	private const int NumberOfPlayers = 4;
+
 	private ScoreHandler()
 	{
-		scoreEntryList = new ScoreEntry[4];
-		comboTracker = new int[4];
+		scoreEntryList = new ScoreEntry[NumberOfPlayers];
+		comboTracker = new int[NumberOfPlayers];
+	}
+
+	public void Reset()
+	{
+		for (int i = 0; i < NumberOfPlayers; i++)
+		{
+			scoreEntryList[i].score = 0;
+			scoreEntryList[i].prevScore = 0;
+
+			scoreEntryList[i].latestEarned = 0;
+
+			comboTracker[i] = 0;
+		}
 	}
 
 	public static ScoreHandler GetInstance()
@@ -60,8 +78,14 @@ public class ScoreHandler
 	public void AddScore(int playerNumber, int amount)
 	{
 		ScoreEntry entry = scoreEntryList[playerNumber];
+		
+		entry.prevScore = entry.score;
+
 		entry.score += amount;
 		entry.latestEarned = amount;
+		
+		entry.highscore = Mathf.Max(entry.score, entry.highscore);
+
 		scoreEntryList[playerNumber] = entry;
 	}
 
@@ -73,8 +97,14 @@ public class ScoreHandler
 	public void SetScore(int i, int amount)
 	{
 		ScoreEntry entry = scoreEntryList[i];
+
+		entry.prevScore = entry.score;
+
 		entry.score = amount;
 		entry.latestEarned = amount;
+
+		entry.highscore = Mathf.Max(entry.score, entry.highscore);
+
 		scoreEntryList[i] = entry;
 	}
 }

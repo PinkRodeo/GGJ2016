@@ -33,11 +33,15 @@ public class SceneChoreographer : MonoBehaviour
 	private Vector3 initialLogoLocalPosition;
 	private GameSceneMaster gameManager;
 	private bool ended;
-	private bool startPressed;
+	private bool startPressed = false;
+
+	private bool _keepPlayingAfterMusicEnded = false;
 
 	// Use this for initialization
 	void Start ()
 	{
+		startPressed = false;
+
 		gameManager = GameObject.Find("GameManager").GetComponent<GameSceneMaster>();
 		initialLogoLocalPosition = LogoGameObject.transform.localPosition;
 		//curtainDownPos = curtainTransform.position;
@@ -65,15 +69,28 @@ public class SceneChoreographer : MonoBehaviour
 			StartGame();
 		}
 
-		if (Input.GetKeyDown(KeyCode.V) && !startPressed && false)
+		if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) || Input.GetKey(KeyCode.LeftAlt))
 		{
-			StartGameSkipAnimation();
+			if (Input.GetKeyDown(KeyCode.V) && !startPressed)
+			{
+				StartGameSkipAnimation();
 
-			curtainTransform.Translate(0,100,0);
-			LogoGameObject.transform.Translate(50f,0,0);
+				curtainTransform.Translate(0, 100, 0);
+				LogoGameObject.transform.Translate(50f, 0, 0);
+			}
+
+			if (Input.GetKeyDown(KeyCode.S))
+			{
+				beatGUIBar.GetComponent<AudioSource>().Stop();
+			}
+
+			if (Input.GetKeyDown(KeyCode.A))
+			{
+				_keepPlayingAfterMusicEnded = !_keepPlayingAfterMusicEnded;
+			}
 		}
 
-		if (gameManager.end && !ended)
+		if (gameManager.end && !ended && !_keepPlayingAfterMusicEnded)
 		{
 			ended = true;
 			crowd.StartEndCheer();
@@ -103,15 +120,9 @@ public class SceneChoreographer : MonoBehaviour
 
 	private static void ResetScene()
 	{
-		ScoreHandler.GetInstance().SetScore(1, 0);
-		ScoreHandler.GetInstance().SetScore(2, 0);
-		ScoreHandler.GetInstance().SetScore(3, 0);
-		ScoreHandler.GetInstance().SetScore(4, 0);
-		ScoreHandler.GetInstance().SetComboCount(1, 0);
-		ScoreHandler.GetInstance().SetComboCount(2, 0);
-		ScoreHandler.GetInstance().SetComboCount(3, 0);
-		ScoreHandler.GetInstance().SetComboCount(4, 0);
-		SceneManager.LoadScene(0);
+		ScoreHandler.GetInstance().Reset();
+
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 
 	private void Outro()
