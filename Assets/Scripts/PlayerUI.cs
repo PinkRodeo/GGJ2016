@@ -50,14 +50,14 @@ public class PlayerUI : MonoBehaviour
 		}
 		if (newMultiplier != currentMultiplier)
 		{
-			LeanTween.value(gameObject, textUI.color, Color.white, 0.1f).setOnUpdate((Action<Color>)(newColor =>
+			LeanTween.value(gameObject, multiplierTextUI.color, Color.white, 0.1f).setOnUpdate((Action<Color>)(newColor =>
 			{
-				textUI.color = newColor;
+				multiplierTextUI.color = newColor;
 			})).setOnComplete(() =>
 			{
-				LeanTween.value(gameObject, textUI.color, comboGradient.Evaluate((newMultiplier -1f)/ 3f), 0.5f).setOnUpdate((Action<Color>)(newColor =>
+				LeanTween.value(gameObject, multiplierTextUI.color, comboGradient.Evaluate((newMultiplier -1f)/ 3f), 0.5f).setOnUpdate((Action<Color>)(newColor =>
 				{
-					textUI.color = newColor;
+					multiplierTextUI.color = newColor;
 				}));
 			});
 
