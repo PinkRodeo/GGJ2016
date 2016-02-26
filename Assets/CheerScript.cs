@@ -41,7 +41,7 @@ public class CheerScript : MonoBehaviour {
 		}
 		int idx = Random.Range(0, cheers.Length - 1);
 
-		audioSource.volume = Random.Range(0.3f, 0.35f);
+		audioSource.volume = Random.Range(0.5f, 0.6f);
 
 		audioSource.clip = cheers[idx];
 		audioSource.Play();

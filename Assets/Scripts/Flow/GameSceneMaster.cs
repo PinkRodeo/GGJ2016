@@ -67,12 +67,9 @@ public class GameSceneMaster : MonoBehaviour
 
 			int score = Mathf.FloorToInt(10 * ScoreHandler.GetInstance().GetComboMultiplier(playerNumber));
 			ScoreHandler.GetInstance().AddScore(playerNumber, score * 10);
-
-			if (Random.value < 0.3f)
-			{
+			
+			if (ScoreHandler.GetInstance().GetComboCount(playerNumber) > 3)
 				GameObject.FindObjectOfType<CheerScript>().PlayCheerForExcellent();
-
-			}
 		}
 		else if (difference < 0.3f)
 		{
