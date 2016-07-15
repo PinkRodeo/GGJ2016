@@ -18,12 +18,14 @@ public class BirdWing
 	private float currentApplied;
 
 	private ControllerInput input;
+	private BirdControl birdControl;
 
 	public ControllerAction trigger = ControllerAction.R2;
 
-	public BirdWing(Transform shoulderTransform, string suffix, ControllerInput input)
+	public BirdWing(Transform shoulderTransform, string suffix, ControllerInput input, BirdControl birdControl)
 	{
 		this.input = input;
+		this.birdControl = birdControl;
 
 		if (suffix == "_L")
 			sign = -1f;
@@ -42,13 +44,26 @@ public class BirdWing
 		//wing_3_f = BirdBone.CreateBirdBone(shoulderTransform.FindInChildren("Wing_F_3" + suffix));
 	}
 
+	private float _keyboardInput = 0f;
+
 	public void Update(float dt)
 	{
 		float currentInput = input.GetAxis(trigger);
-
-
-		currentInput = Mathf.MoveTowards(currentApplied, currentInput, 9f*dt);
+		currentInput = Mathf.MoveTowards(currentApplied, currentInput, 9f * dt);
 		currentApplied = currentInput;
+
+		if (birdControl.DEBUG_ENABLE_KEYBOARD)
+		{
+			const float MOV_AMOUNT = 0.2f;
+
+			if (trigger == ControllerAction.L2 && Input.GetKey(KeyCode.A))
+				_keyboardInput += MOV_AMOUNT;
+			if (trigger == ControllerAction.R2 && Input.GetKey(KeyCode.D))
+				_keyboardInput += MOV_AMOUNT;
+
+			currentInput = _keyboardInput;
+			_keyboardInput *= 0.9f;
+		}
 
 		shoulder.bone.localRotation = shoulder.initialLocalRotation * Quaternion.AngleAxis(Mathf.Lerp(-20f * sign, 0, currentInput), Vector3.up)
 									  * Quaternion.AngleAxis(Mathf.Lerp(20f * sign, 0, currentInput), Vector3.forward);

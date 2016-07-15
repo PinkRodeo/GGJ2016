@@ -10,15 +10,17 @@ public class BirdHead
 	//private BirdBone headFeather;
 
 	private ControllerInput input;
+	private BirdControl birdControl;
 
 	private float r3_held;
 
 	private float beak_held;
 
 
-	public BirdHead(Transform neckTransfrom, ControllerInput input)
+	public BirdHead(Transform neckTransfrom, ControllerInput input, BirdControl birdControl)
 	{
 		this.input = input;
+		this.birdControl = birdControl;
 
 		neck = BirdBone.CreateBirdBone(neckTransfrom);
 
@@ -34,11 +36,37 @@ public class BirdHead
 	private const float NECK_POS_MOD = -0.002f * .3f;
 
 
+	private Vector2 _keyboardInput = new Vector2();
+
+
 	public void Update(float dt)
 	{
-
 		Vector2 stick = input.GetLeftStick();
-		stick.x = stick.x*-1f;
+		stick.x = stick.x * -1f;
+
+		if (birdControl.DEBUG_ENABLE_KEYBOARD)
+		{
+			const float MOV_AMOUNT = 0.12f;
+			if (Input.GetKey(KeyCode.I))
+				_keyboardInput.y -= MOV_AMOUNT;
+
+			if (Input.GetKey(KeyCode.K))
+				_keyboardInput.y += MOV_AMOUNT;
+
+			_keyboardInput.y = Mathf.Clamp(_keyboardInput.y, -1f, 1f);
+
+			if (Input.GetKey(KeyCode.J))
+				_keyboardInput.x += MOV_AMOUNT;
+
+			if (Input.GetKey(KeyCode.L))
+				_keyboardInput.x -= MOV_AMOUNT;
+
+			_keyboardInput.x = Mathf.Clamp(_keyboardInput.x, -1f, 1f);
+
+			stick = _keyboardInput;
+			_keyboardInput.y *= 0.9f;
+			_keyboardInput.x *= 0.9f;
+		}
 
 		float beakMod = 1f + 0.45f*beak_held;
 
@@ -63,7 +91,7 @@ public class BirdHead
 		neck.bone.localRotation = neck.initialLocalRotation * Quaternion.AngleAxis(Mathf.Lerp(0, 5f * r3_held, stick.magnitude), new Vector2(normalized.y, normalized.x));
 
 
-		if (input.GetKey(ControllerAction.L1) || input.GetKey(ControllerAction.A))
+		if (input.GetKey(ControllerAction.L1) || input.GetKey(ControllerAction.A) || (birdControl.DEBUG_ENABLE_KEYBOARD && Input.GetKey(KeyCode.W)))
 		{
 			beak_held += dt * 10f;
 			beak_held = Mathf.Min(beak_held, 1f);

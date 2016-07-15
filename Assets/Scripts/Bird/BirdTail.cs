@@ -3,6 +3,7 @@
 public class BirdTail
 {
 	private ControllerInput input;
+	private BirdControl birdControl;
 
 	private BirdBone tail_1;
 	private BirdBone tail_2;
@@ -12,9 +13,10 @@ public class BirdTail
 
 
 
-	public BirdTail(Transform firstTail, ControllerInput input)
+	public BirdTail(Transform firstTail, ControllerInput input, BirdControl birdControl)
 	{
 		this.input = input;
+		this.birdControl = birdControl;
 
 		tail_1 = BirdBone.CreateBirdBone(firstTail);
 		tail_2 = BirdBone.CreateBirdBone(firstTail.FindInChildren("Tail_2"));
@@ -25,7 +27,7 @@ public class BirdTail
 	// Update is called once per frame
 	public void Update (float dt) 
 	{
-		if (input.GetKey(ControllerAction.R1))
+		if (input.GetKey(ControllerAction.R1) || (birdControl.DEBUG_ENABLE_KEYBOARD && Input.GetKey(KeyCode.S)) )
 		{
 			tail_held += dt * 7f;
 			tail_held = Mathf.Min(tail_held, 1f);

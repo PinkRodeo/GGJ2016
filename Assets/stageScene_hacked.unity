@@ -392,6 +392,8 @@ MonoBehaviour:
   _isInitialized: 0
   DEBUG_StartSongTimer: 0
   DEBUG_InitControllerOnStart: 0
+  DEBUG_ENABLE_KEYBOARD: 0
+  DEBUG_BPM: 128
 --- !u!1001 &89365123
 Prefab:
   m_ObjectHideFlags: 0
@@ -473,6 +475,8 @@ MonoBehaviour:
   _isInitialized: 0
   DEBUG_StartSongTimer: 1
   DEBUG_InitControllerOnStart: 1
+  DEBUG_ENABLE_KEYBOARD: 1
+  DEBUG_BPM: 128
 --- !u!1 &111347629
 GameObject:
   m_ObjectHideFlags: 0

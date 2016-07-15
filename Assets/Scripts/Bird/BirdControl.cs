@@ -33,6 +33,7 @@ public class BirdControl : MonoBehaviour
 
 	public bool DEBUG_StartSongTimer = false;
 	public bool DEBUG_InitControllerOnStart = false;
+	public bool DEBUG_ENABLE_KEYBOARD = false;
 
 	[Range(0, 400f)] public float DEBUG_BPM = 128f;
 
@@ -52,8 +53,8 @@ public class BirdControl : MonoBehaviour
 
 		input = new ControllerInput(playerId);
 
-		leftWing = new BirdWing(transform.FindInChildren("Shoulder_L"), "_L", input);
-		rightWing = new BirdWing(transform.FindInChildren("Shoulder_R"), "_R", input);
+		leftWing = new BirdWing(transform.FindInChildren("Shoulder_L"), "_L", input, this);
+		rightWing = new BirdWing(transform.FindInChildren("Shoulder_R"), "_R", input, this);
 
 		leftWing.trigger = ControllerAction.R2;
 		rightWing.trigger = ControllerAction.L2;
@@ -63,11 +64,11 @@ public class BirdControl : MonoBehaviour
 		rightLeg = new BirdLeg(transform.FindInChildren("Leg_Feet_R"), "_R", input);
 
 
-		head = new BirdHead(transform.FindInChildren("Neck"), input);
+		head = new BirdHead(transform.FindInChildren("Neck"), input, this);
 
-		body = new BirdBody(transform.FindInChildren("Body"), input);
+		body = new BirdBody(transform.FindInChildren("Body"), input, this);
 
-		tail = new BirdTail(transform.FindInChildren("Tail_1"), input);
+		tail = new BirdTail(transform.FindInChildren("Tail_1"), input, this);
 
 		_isInitialized = true;
 	}
